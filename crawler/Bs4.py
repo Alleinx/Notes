@@ -13,7 +13,7 @@ demo = r.text
 
 soup = BeautifulSoup(demo, 'html.parser')
 
-# soup.prettify()函数返回更加友好的html string;
+# prettify()返回更加友好的html string;
 print(soup.prettify())
 
 
@@ -95,15 +95,18 @@ for i in soup.html.children:
 
                 # soup.tag.contents
                     # tag节点所有子结点的列表, 将 tag 所有儿子结点存入列表.
+                    # soup.p.contents
                     # @return : [<p><b>content</b></p>]
                     
 
                 # soup.tag.children
                     # 返回迭代类型,包含tag的子结点.
+                    # for child in soup.children:
                     # @return :<p><b>content</b></p>
 
                 # soup.tag.descendants
                     # 子孙结点的迭代类型,包含所有子孙结点,用于循环遍历
+                    # for child in soup.descendants:
                     # 不同于.children 和 .contents , .descendants返回所有子结点:
 
                     # @return : 
