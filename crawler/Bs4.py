@@ -55,6 +55,35 @@ for i in soup.html.children:
 # NavigableString :  <tag.string>
 # Comment         :  
 
+# soup.find_all(name,attrs,recursive,string,**kwargs)
+# soup(..) == soup.find_all(..)
+
+    # 返回一个列表类型,存储查找结果
+    # name       : 对标签名称的检索字符串, 可以是多个标签构成的list. 
+        # Eg. :['a','b'].
+
+    # attrs      : 对标签属性值的检索字符串, 可标注属性检索.
+        # Eg. soup.find_all('p','course')
+        # 返回 p标签属性中含有'course'的字符串.
+        # Eg. soup.find_all(id = 'link1')
+        # Eg. soup.find_all(name = 'cat')
+
+    # recursive :  是否对子孙全部检索,默认True.
+    # string    :  检索内容域.
+
+# 以下函数参数同.find_all()
+    # soup.find()
+        # 搜索,并且只返回一个结果字符串
+    # soup.find_parents()
+        # 在先辈结点中搜索,返回列表类型
+    # soup.find_parent()
+        # 在先辈结点中返回一个结果,字符串类型
+    
+    # soup.find_next_sibling()
+    # soup.find_next_siblings()
+    # soup.find_previous_sibling()
+    # soup.find_previous_siblings()
+    
 # soup = BeautifulSoup(demo,'html.parser')
     # demo 是 html 格式的字符串
     # 'html.parser' 是一种解析html网页的方式
