@@ -57,8 +57,7 @@ public class HistoryPanel extends JPanel {
         g.setColor(Color.red);
         if (history.size() == 1) {
             g.drawRect(0, (zero - history.get(0) * maxY / range), 1, 1);
-        }
-        else {
+        } else {
             for (int i = 1; i < history.size(); i++) {
                 int prv_x = 10 * (i-1);
                 int prv_y = zero - history.get(i-1) * maxY / range;
