@@ -4,7 +4,4 @@ public class ControllerHistory extends Controller {
         super(m);
     }
 
-    public String create(String name, String amount, int type) {
-        return "";
-    }
 }
