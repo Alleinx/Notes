@@ -23,23 +23,23 @@ int solve(int num[], int left, int right) {
     return max(s1,s2,a); 
 }
 
+
 int max(int s1, int s2, int a) {
     int temp = s1 > s2 ? s1 : s2;
     return temp > a ? temp : a;
 }
 
+
 int cal_cross(int num[], int left, int right) {
     int mid = (right - left) / 2 + left;
-    int lmax = 0;
-    int rmax = 0;
+    int lmax = num[mid];
+    int rmax = num[mid + 1];
     int sum = 0;
 
     for(int i = mid; i >= left; i--) {
         sum += num[i];
         if (lmax <= sum) {
             lmax = sum;
-        } else { 
-            break;
         } 
     }
 
@@ -47,8 +47,6 @@ int cal_cross(int num[], int left, int right) {
         sum += num[i];
         if (rmax <= sum) {
             rmax = sum;
-        } else {
-            break;
         }
     }
 
