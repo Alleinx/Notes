@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-
 
 #define PAGELEN 24
 #define LINELEN 512
@@ -16,7 +14,8 @@ int main(int argc, char *argv[]) {
         readFile(stdin); /* deal with pipe */
     } else {
         while(--argc) {
-            if( (fp = fopen(*(++argv), "r")) != NULL) {
+            fp = fopen(*(++argv), "r");
+            if(fp) {
                 readFile(fp);
                 fclose(fp);
             } else {
@@ -30,32 +29,36 @@ int main(int argc, char *argv[]) {
 }
 
 void readFile(FILE *fp) {
+    int current_num_of_lines = 0;
+    int extra_line_amount;
     char buf[LINELEN];
-    int num_of_lines = 0;
-    int reply;
+
+    /* Read user input from keyboard in order to
+       deal with redirection bug */
     FILE *fp_keyboard = fopen("/dev/tty", "r");
-    /* Read from keyboard */
-    if (fp_keyboard == NULL)
+    if (fp_keyboard == NULL) 
         exit(1);
 
     while (fgets(buf, LINELEN, fp)) {
-        if (num_of_lines == PAGELEN) {
-            reply = see_more(fp_keyboard);
-            
-            if (reply == 0) {
+        if (current_num_of_lines == PAGELEN) {
+            extra_line_amount = see_more(fp_keyboard);
+
+            printf("\033[1A"); /* cursor move up 1 line. */
+
+            if (extra_line_amount == 0) {
                 break; 
             }
 
-            num_of_lines -= reply;
+            current_num_of_lines -= extra_line_amount;
         }
+        
         if (fputs(buf, stdout) == EOF) {
             exit(1);
         }
 
-        num_of_lines++;
+        current_num_of_lines++;
     }
 }
-
 
 int see_more(FILE *path) {
     int c;
@@ -63,13 +66,10 @@ int see_more(FILE *path) {
         switch (c) {
             case 'q' :
                 return 0;
-                break;
             case ' ' :
                 return PAGELEN;
-                break;
             case '\n':
                 return 1;
-                break;
         }
         
     }
