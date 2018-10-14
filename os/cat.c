@@ -5,8 +5,7 @@
 
 void readFile(FILE *);
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
     FILE *fp;
     /* code */
 
