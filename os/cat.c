@@ -30,7 +30,7 @@ int main(int argc, char const *argv[]) {
 void readFile(FILE *fp) {
     char buf[BUFSIZE];
 
-    while (fgets(buf, BUFSIZ, fp)) {
+    while (fgets(buf, BUFSIZE, fp)) {
         fputs(buf, stdout);
     }
 }
