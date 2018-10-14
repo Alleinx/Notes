@@ -7,14 +7,13 @@ void readFile(FILE *);
 
 int main(int argc, char const *argv[]) {
     FILE *fp;
-    /* code */
 
     if (argc == 1) {
         readFile(stdin);
     } else {
         while(--argc) {
             fp = fopen(*(++argv), "r+"); /* r+ for detecting if open a file or a directory */
-            if (fp){
+            if (fp) {
                 readFile(fp);
                 fclose(fp);
             } else {
@@ -30,6 +29,7 @@ int main(int argc, char const *argv[]) {
 
 void readFile(FILE *fp) {
     char buf[BUFSIZE];
+
     while (fgets(buf, BUFSIZ, fp)) {
         fputs(buf, stdout);
     }
