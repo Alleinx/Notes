@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
             file_ptr = fopen(*(++argv), "r+");
             if (file_ptr) {
                 if (count_input_file > 1) {
-                    printf("\n==> %s <==\n", *argv);
+                    printf("==> %s <==\n", *argv);
                 }
                 display(file_ptr);
                 fclose(file_ptr);
@@ -35,12 +35,12 @@ int main(int argc, char* argv[]) {
 void display(FILE *fp) {
     char buf[BUFFERSIZE];
     int count_line = COUNT;
-    int str_len;
 
     while (fgets(buf, BUFFERSIZE, fp)) {
-        str_len = strlen(buf);
         
-        for (int i = 0; i < str_len; i++) {
+        for (int i = 0; i < BUFFERSIZE; i++) {
+            if (buf[i] == '\0') break;
+
             if (buf[i] == '\n') {
                 count_line--;
                 if (count_line == 0) {
