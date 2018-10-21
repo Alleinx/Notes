@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #define COUNT 10
 #define BUFFERSIZE 2048
