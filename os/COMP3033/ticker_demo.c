@@ -4,9 +4,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-void wakeup(int signum);
-void inter_wake_up(int signum);
-
 void countdown(int);
 int set_ticker(int);
 
