@@ -259,7 +259,7 @@ void update(process_ptr process, int cur_time, int number_of_process) {
 }
 
 /**
- * update
+ * cal_total_waiting_time
  * DESCRIPTION : This function calculate total waiting time;
  * 
  * Total waiting time = (maxTime * number_of_process) - each process's running time and idle time;
@@ -275,7 +275,7 @@ void cal_total_waiting_time(process_ptr ptr, int *waiting_time, int max_time, in
 }
 
 /**
- * update
+ * total_cpu_bursts
  * DESCRIPTION : This function calculate total cpu bursts amount;
  */
 
