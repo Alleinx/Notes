@@ -34,7 +34,6 @@ int main(void) {
     char prompt_msg_burst_time[] = "Enter the burst time of process ";
     char prompt_msg_period_time[] = "Enter the period of process ";
     int number_of_process = 0;
-    int maxTime = 0;
     int temp;
     process_ptr process_container;
 
