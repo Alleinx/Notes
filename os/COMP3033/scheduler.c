@@ -1,3 +1,5 @@
+/* This is a program simulating CPU scheduling with Earliest-deadline-first algorithm */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -99,7 +101,7 @@ void scheduler(process_ptr ptr, int number_of_process) {
         if (next_process_index == -1) {
             /* wait here */
             cur_time += 1;
-
+            /* If no work to do, then all processes are waiting for next period starting*/
             for (int i = 0; i < number_of_process; i++) {
                 ptr[i].idle_time++;
             }
