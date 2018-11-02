@@ -137,7 +137,7 @@ void scheduler(process_ptr ptr, int number_of_process) {
 
 int select_next_process(process_ptr ptr, int number_of_process, int maxTime) {
     /** Next ddl could exceed maxTime, so we times a number here to prevent this happening
-     *  Otherwise, this function will get run solution.
+     *  Otherwise, this function will get wrong solution.
      */
     int earliest_ddl = maxTime * 10; 
 
