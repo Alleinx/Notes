@@ -20,10 +20,10 @@ void scheduler(process_ptr, int);
 int select_next_process(process_ptr, int,  int);
 bool could_run(process_ptr);
 
-void missed_ddl(process_ptr, int, int, int *);
+void missed_ddl(process_ptr, int, int);
 void normal_run(process_ptr, int*, int, process_ptr, int);
-void preempted(process_ptr, process_ptr, int, int, int);
-void finish(process_ptr, int, int*);
+void preempted(process_ptr, int, int, int);
+void finish(process_ptr, int);
 void update(process_ptr, int,int);
 
 void cal_total_waiting_time(process_ptr, int *, int, int);
@@ -105,10 +105,10 @@ void scheduler(process_ptr ptr, int number_of_process) {
             }
         } else {
             /* run here */
-            missed_ddl(&ptr[next_process_index], cur_time, maxTime, &waiting_time);
-            preempted(&ptr[last_process_index], &ptr[next_process_index],cur_time,last_process_index,next_process_index);
+            missed_ddl(&ptr[next_process_index], cur_time, maxTime);
+            preempted(&ptr[last_process_index],cur_time,last_process_index,next_process_index);
             normal_run(&ptr[next_process_index], &cur_time, last_process_index, ptr, number_of_process);
-            finish(&ptr[next_process_index], cur_time, &waiting_time);
+            finish(&ptr[next_process_index], cur_time);
         }
 
         /* update process status here */
@@ -201,7 +201,7 @@ void normal_run(process_ptr process, int* cur_time, int last_run, process_ptr co
  * If so, the given process exceeds its ddl.
  */
 
-void missed_ddl(process_ptr process, int cur_time, int max_time, int *wait_time) {
+void missed_ddl(process_ptr process, int cur_time, int max_time) {
     if (process->remaining_time - 1 > 0 && cur_time + 1 < max_time && cur_time + 1 == process -> next_ddl) {
         /** 
          * remaing_time -1 and cur_time + 1 here because we put this function before normal_run.
@@ -218,7 +218,7 @@ void missed_ddl(process_ptr process, int cur_time, int max_time, int *wait_time)
  * > If last running process != current running process 
  * and last process could still run ,then, there is a preemption.
  */
-void preempted(process_ptr last_process, process_ptr next_process, int cur_time, int last_run, int next_run) {
+void preempted(process_ptr last_process, int cur_time, int last_run, int next_run) {
     /* If last operation is wait, just return */
     if (last_run == -1) {
         return;
@@ -233,7 +233,7 @@ void preempted(process_ptr last_process, process_ptr next_process, int cur_time,
  * finish
  * DESCRIPTION : This function terminate a process;
  */
-void finish(process_ptr process, int cur_time, int *wait_time) {
+void finish(process_ptr process, int cur_time) {
     if (process->remaining_time == 0) {
         printf("%d: process %d ends\n", cur_time, process->process_index);
     }
