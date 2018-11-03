@@ -54,7 +54,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 char *add_binary(char *A, char *B, int size);
 char add(char A, char B, int *carry);
