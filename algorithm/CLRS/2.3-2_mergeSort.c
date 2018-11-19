@@ -33,8 +33,8 @@ void merge_sort(int *A, int l, int r) {
 }
 
 void merge(int *A, int left, int mid, int right) {
-    int i = left;
-    int j = mid + 1;
+    int i = left; /* start point */
+    int j = mid + 1; /* start point */
     int arr_index = 0;
     int hold[right - left + 1];
 
