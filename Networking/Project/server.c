@@ -26,17 +26,17 @@ int main(int argc, char *argv[]) {
 	sock = socket(AF_INET,SOCK_STREAM, 0);	
 
 	if (sock == -1) {
-        perror("SOCKET");
+		perror("SOCKET");
 		return -1;
 	}
 
 	if (bind(sock, (struct sockaddr *)&local, sizeof(local)) == -1) {
-        perror("BIND");
+		perror("BIND");
 		return -1;
 	}
 
 	if (listen(sock, 1) == -1) {
-        perror("Listen");
+		perror("Listen");
 		return -1;
 	}
 
@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
 	msg_sock = accept(sock, (struct sockaddr*)&client_addr, &addr_len); /* check man here for invalid Parameter */
 
 	if (msg_sock == -1){
-        perror("ACCEPT");
+		perror("ACCEPT");
 		return -1;
 	}
 
