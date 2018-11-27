@@ -34,6 +34,8 @@ void *myprocess(void *arg); /* test running function */
 static CThread_pool *pool = NULL; 
 
 void pool_init (int max_thread_num) {
+    printf("Creating thread pool....\n");
+    printf("Thread pool size: %d\n", max_thread_num);
     pool = (CThread_pool *)malloc(sizeof(CThread_pool));
 
     pthread_mutex_init(&(pool->queue_lock), NULL);
@@ -52,25 +54,25 @@ void pool_init (int max_thread_num) {
 } 
 
 void *thread_routine(void *arg) {
-    printf("Starting thread %u\n", (unsigned)pthread_self()); 
+    printf("Launching thread: %u\n", (unsigned)pthread_self()); 
     
     while (true) {
         pthread_mutex_lock(&(pool->queue_lock)); /* lock here */
 
         /* If no work to do, then call wait */
         while (pool->cur_queue_size == 0 && !pool->is_closed) { 
-            printf("thread %u is waiting\n", (unsigned)pthread_self());
+            printf("Thread: %u is waiting...\n", (unsigned)pthread_self());
             pthread_cond_wait(&(pool->queue_ready), &(pool->queue_lock));
         }
 
         if (pool->is_closed) {
             pthread_mutex_unlock(&(pool->queue_lock));
-            printf("thread %u will exit\n",(unsigned)pthread_self());
+            printf("Thread %u closed...\n",(unsigned)pthread_self());
             pthread_exit(0);
         }
 
         /* work here */
-        printf("thread %u is starting to work\n", (unsigned)pthread_self());
+        printf("Thread: %u starts working...\n", (unsigned)pthread_self());
         assert(pool->cur_queue_size != 0);
         assert(pool->queue_head != NULL);
 
@@ -126,6 +128,7 @@ int pool_destroy() {
         return -1;
     }
 
+    printf("Closing thread pool...\n");
     pool->is_closed = true;
 
     pthread_cond_broadcast(&(pool->queue_ready));
@@ -148,7 +151,7 @@ int pool_destroy() {
 
     free(pool);;
     pool=NULL;
-
+    printf("Thread pool closed.\n");
     return 0;
 }
 
@@ -175,11 +178,11 @@ int main(int argc, char* argv[]) {
 
 /* running function */
 void *myprocess(void *arg) {
-    printf("thread %u working on task %d\n", (unsigned)pthread_self(), *(int*)arg);
+    printf("Thread: %u working on task: %d...\n", (unsigned)pthread_self(), *(int*)arg);
 
     sleep(1);
 
-    printf("thread %u finish task %d\n", (unsigned)pthread_self(), *(int*)arg);
+    printf("Thread: %u finish task: %d\n", (unsigned)pthread_self(), *(int*)arg);
     return NULL;
 }
 
