@@ -6,29 +6,32 @@
 #include <assert.h>
 #include <unistd.h>
 
+#define NUMBER_OF_THREAD 3
+#define NUMBER_OF_JOB 5 /* Note: need set MAX_NUMBER_OF_WORK, otherwise, could cause segmentation fault */
 
+/* Job link list */
 typedef struct job {
-    void *(*process)(void *arg);
-    void *arg;
-    struct job *next;
+    void *(*running_function)(void *arg); /* function pointer */
+    void *arg; /* arg for runing function */
+    struct job *next; /* next job */
+    int job_id; /* indicate current job id */
 }CThread_job;
 
 typedef struct {
-    pthread_mutex_t queue_lock;
-    pthread_cond_t queue_ready;
-
-    CThread_job *queue_head;
-    bool is_closed;
-    pthread_t *thread_id;
-    int max_thread_num;
-    int cur_queue_size;
+    pthread_mutex_t queue_lock; /* lock */
+    pthread_cond_t queue_ready; /* signal */
+    CThread_job *queue_head; /* point to the begining of job list */
+    bool is_closed; /* indicate whether the thread pool is destroyed */
+    pthread_t *thread_id; /* store all thread id */
+    int max_thread_num; /* How many threads are created in this thread pool */
+    int cur_queue_size; /* how many job are  in the waiting queue */
 }CThread_pool;
 
-int pool_add_job (void *(*process) (void *arg), void *arg);
+int pool_add_job (void *(*running_function) (void *arg), void *arg);
 void *thread_routine (void *arg);
-void *myprocess(void *arg);
+void *myprocess(void *arg); /* test running function */
 
-static CThread_pool *pool = NULL;
+static CThread_pool *pool = NULL; 
 
 void pool_init (int max_thread_num) {
     pool = (CThread_pool *)malloc(sizeof(CThread_pool));
@@ -37,7 +40,7 @@ void pool_init (int max_thread_num) {
     pthread_cond_init(&(pool->queue_ready), NULL);
 
     pool->queue_head = NULL;
-    pool->max_thread_num = max_thread_num;
+    pool->max_thread_num = max_thread_num; 
     pool->cur_queue_size = 0;
 
     pool->is_closed = false;
@@ -48,11 +51,53 @@ void pool_init (int max_thread_num) {
     }
 } 
 
-int pool_add_job (void *(*process) (void *arg), void *arg) {
+void *thread_routine(void *arg) {
+    printf("Starting thread %u\n", (unsigned)pthread_self()); 
+    
+    while (true) {
+        pthread_mutex_lock(&(pool->queue_lock)); /* lock here */
+
+        /* If no work to do, then call wait */
+        while (pool->cur_queue_size == 0 && !pool->is_closed) { 
+            printf("thread %u is waiting\n", (unsigned)pthread_self());
+            pthread_cond_wait(&(pool->queue_ready), &(pool->queue_lock));
+        }
+
+        if (pool->is_closed) {
+            pthread_mutex_unlock(&(pool->queue_lock));
+            printf("thread %u will exit\n",(unsigned)pthread_self());
+            pthread_exit(0);
+        }
+
+        /* work here */
+        printf("thread %u is starting to work\n", (unsigned)pthread_self());
+        assert(pool->cur_queue_size != 0);
+        assert(pool->queue_head != NULL);
+
+        pool->cur_queue_size--;
+        CThread_job *job = pool->queue_head; /* get a job from waiting queue */
+        pool->queue_head = job->next; /* modify pointer */
+
+        pthread_mutex_unlock(&(pool->queue_lock)); /* unlock here */
+        (*(job->running_function))(job->arg); /* run function */
+        
+        free(job); 
+        job = NULL;
+
+    }
+
+    /* Never reach here */
+    fprintf(stderr, "Error! System shutting down...\n");
+    pthread_exit(NULL);
+}
+
+int pool_add_job (void *(*running_function) (void *arg), void *arg) {
     CThread_job *job = (CThread_job *)malloc(sizeof(CThread_job));
-    job->process = process;
+
+    job->running_function = running_function;
     job->arg = arg;
     job->next = NULL;
+    job->job_id = *(int*)arg;
 
     pthread_mutex_lock(&(pool->queue_lock));
     CThread_job *member = pool->queue_head;
@@ -61,13 +106,15 @@ int pool_add_job (void *(*process) (void *arg), void *arg) {
         while (member->next != NULL) {
             member = member->next;
         }
-        member->next = job;
+
+        member->next = job; /* find the last place add job here */
     } else {
         pool->queue_head = job;
     }
 
     assert(pool->queue_head != NULL);
     pool->cur_queue_size++;
+
     pthread_mutex_unlock(&(pool->queue_lock));
     pthread_cond_signal(&(pool->queue_ready));
 
@@ -105,57 +152,34 @@ int pool_destroy() {
     return 0;
 }
 
-void *thread_routine(void *arg) {
-    printf("Starting thread %u\n", (unsigned)pthread_self()); /* Here */
-    while (true) {
-        pthread_mutex_lock(&(pool->queue_lock));
-        while (pool->cur_queue_size == 0 && !pool->is_closed) {
-            printf("thread %u is waiting\n", (unsigned)pthread_self());
-            pthread_cond_wait(&(pool->queue_ready), &(pool->queue_lock));
-        }
 
-        if (pool->is_closed) {
-            pthread_mutex_unlock(&(pool->queue_lock));
-            printf("thread %u will exit\n",(unsigned)pthread_self());
-            pthread_exit(0);
-        }
-
-        printf("thread %u is starting to work\n", (unsigned)pthread_self());
-        assert(pool->cur_queue_size != 0);
-        assert(pool->queue_head != NULL);
-
-        pool->cur_queue_size--;
-        CThread_job *job = pool->queue_head;
-        pool->queue_head = job->next;
-        pthread_mutex_unlock(&(pool->queue_lock));
-        (*(job->process))(job->arg);
-        free(job);
-        job = NULL;
-
-    }
-
-    pthread_exit(NULL);
-}
 
 int main(int argc, char* argv[]) {
-    pool_init(3); /* 3 thread in thread pool*/
+    pool_init(NUMBER_OF_THREAD); /* NUMBER_OF_THREAD threads in thread pool*/ 
 
-    int *job = (int *)malloc(sizeof(int) * 10);
-    for (int i = 0; i < 10; i++) {
-        job[i] = i;
+    int *job = (int *)malloc(sizeof(int) * NUMBER_OF_JOB); /* assign NUMBER_OF_JOB jobs here */
+
+    for (int i = 0; i < NUMBER_OF_JOB; i++) {
+        job[i] = i+1;
         pool_add_job(myprocess, &job[i]);
     }
 
-    sleep(5);
+    
+    sleep(5); /* after 5 seconds all thread die */
+    
     pool_destroy();
     free(job);
 
     return 0;
 }
 
+/* running function */
 void *myprocess(void *arg) {
     printf("thread %u working on task %d\n", (unsigned)pthread_self(), *(int*)arg);
+
     sleep(1);
 
+    printf("thread %u finish task %d\n", (unsigned)pthread_self(), *(int*)arg);
     return NULL;
 }
+
