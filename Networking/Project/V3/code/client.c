@@ -49,30 +49,29 @@ int main(int argc, char *argv[]) {
 	memcpy(&(server_addr.sin_addr), hp->h_addr, hp->h_length);
 	server_addr.sin_family = hp->h_addrtype;
 	server_addr.sin_port = htons(port);
-	
+	connect_sock = socket(AF_INET,SOCK_STREAM, 0);	
+
+	if (connect_sock == -1) {
+		perror("socket() failed with error");
+		return -1;
+	}
+
+	if (connect(connect_sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1) {
+		perror("connect() failed with error");
+		return -1;
+	}
+	printf("Client connecting to: %s\n", hp->h_name);
+
 	while (1) {
-		connect_sock = socket(AF_INET,SOCK_STREAM, 0);	
-		if (connect_sock == -1) {
-			perror("socket() failed with error");
-			return -1;
-		}
-
-		printf("Client connecting to: %s\n", hp->h_name);
-
-
-	
-		if ( connect(connect_sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1) {
-			perror("connect() failed with error");
-			return -1;
-		}
-
 		printf("input character string:\n");
 		scanf("%s",szBuff); /* If necessary, change to gets() here. */
 	
 		msg_len = send(connect_sock, szBuff, sizeof(szBuff), 0); /* send here */
-	
+		printf("Client: send succeed\n");
+
 		if (msg_len == -1) {
 			perror("send() failed");
+			close(connect_sock);
 			return -1;
 		}
 
@@ -97,8 +96,8 @@ int main(int argc, char *argv[]) {
 		}
 
 		printf("Echo from the server %s.\n", szBuff);
-		close(connect_sock);
 	}
-	
+
+	close(connect_sock);
     return 0;
 }
