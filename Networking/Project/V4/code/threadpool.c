@@ -6,8 +6,10 @@
 #include <assert.h>
 #include <unistd.h>
 
-#define DEBUG 1
+#define DEBUG 0
+
 /* Job link list */
+
 typedef struct job {
     void *(*running_function)(void *arg); /* function pointer */
     void *arg; /* arg for runing function */
@@ -133,6 +135,7 @@ int pool_add_job (void *(*running_function) (void *arg), void *arg) {
 }
 
 int pool_destroy() {
+    
     if (pool->is_closed) {
         return -1;
     }
@@ -164,7 +167,7 @@ int pool_destroy() {
     return 0;
 }
 
-
+/* Test here */
 /*
 int main(int argc, char* argv[]) {
     pool_init(NUMBER_OF_THREAD); // NUMBER_OF_THREAD threads in thread pool // 

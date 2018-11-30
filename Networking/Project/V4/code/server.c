@@ -1,39 +1,40 @@
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
 #include <arpa/inet.h>
 #include <pthread.h>
 #include <stdbool.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <stdlib.h>
+
 #include "threadpool.c"
+#include "lock.c"
 
 extern CThread_pool* pool;
+extern Lock * lock;
 
 #define NUMBER_OF_THREAD 5
 #define DEFAULT_PORT 5019
 
-void *runner(void *param);
+
+void *running_function(void *param); 
 char *search(char *str);
 int add(char *str);
 
 int main(int argc, char *argv[]) {
-	pthread_t tid;
-	char szBuff[100];
-	int msg_len;
 	socklen_t addr_len;
 	struct sockaddr_in local, client_addr;
 	int sock, msg_sock;
-	int hold[10];
-	int count = 0;
-	bool find = false;
-
+	
+	/* Init here */
 	local.sin_family = AF_INET;
 	local.sin_addr.s_addr = INADDR_ANY;
 	local.sin_port = htons(DEFAULT_PORT);
 	sock = socket(AF_INET,SOCK_STREAM, 0);	
+
 	pool_init(NUMBER_OF_THREAD); // NUMBER_OF_THREAD threads in thread pool // 
+	lock_init(); /* init lock */
 
 	if (sock == -1) {
 		perror("SOCKET");
@@ -49,8 +50,6 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	
-	
 	while (true) {
 		printf("Server: Waiting for the connections ........\n");
 		addr_len = sizeof(struct sockaddr_in);
@@ -64,14 +63,15 @@ int main(int argc, char *argv[]) {
 		}
 
 		printf("Server: detected an new connection, distribute work...\n");
-		pool_add_job(runner, &msg_sock);
+		pool_add_job(running_function, &msg_sock);
 	}
 
 	pool_destroy();
+	lock_destroy();
 	return 0;
 }
 		
-void *runner(void *param) {
+void *running_function(void *param) {
 	int msg_sock = *(int*)param;
 	char szBuff[100];
 	while (true) {
@@ -89,11 +89,18 @@ void *runner(void *param) {
 			close(msg_sock);
 			return 0;
 		}
-		/* Running here */
 
 		printf("Thread %u: Receive a user input, socket number : %d...\n",(unsigned)pthread_self() ,msg_sock);
 
+		reader_lock();
 		char *result = search(szBuff);
+		reader_unlock();
+
+		writer_lock();
+		add("Hello\n");
+		writer_unlock();
+
+		printf("Write succeed\n");
 
 		msg_len = send(msg_sock, result != NULL ? result : "NOT FOUND", sizeof(szBuff), 0);
 
@@ -125,16 +132,14 @@ char *search(char *str) {
 
 int add(char *str) {
 	FILE *fd = fopen("data.txt", "a");
+
 	if (fd == NULL) {
 		perror("data.txt");
 		exit(1);
 	}
 
-	int len = fwrite(str, strlen(str), 1, fd);
-	if (len != strlen(str)) {
-		perror("Write");
-		exit(1);
-	}
+	int len = fwrite("HELLO\n", strlen("HELLO\n"), 1, fd);
+
 	fclose(fd);
 	return 0;
 }
