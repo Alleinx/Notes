@@ -13,6 +13,7 @@ typedef struct {
 static Lock * lock = NULL;
 
 void lock_init() {
+    printf("Initializing lock....\n");
     lock = (Lock *)malloc(sizeof(Lock));
 
     pthread_mutex_init(&(lock->resource), NULL);

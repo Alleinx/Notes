@@ -34,8 +34,8 @@ void *myprocess(void *arg); /* test running function */
 static CThread_pool *pool = NULL; 
 
 void pool_init (int max_thread_num) {
+    printf("Initializing thread pool....\n");
     if (DEBUG) {
-        printf("Creating thread pool....\n");
         printf("Thread pool size: %d\n", max_thread_num);
     }
     pool = (CThread_pool *)malloc(sizeof(CThread_pool));
@@ -84,6 +84,7 @@ void *_thread_routine(void *arg) {
         if (DEBUG) {
             printf("Thread: %u starts working...\n", (unsigned)pthread_self());
         }
+        
         assert(pool->cur_queue_size != 0);
         assert(pool->queue_head != NULL);
         pool->cur_queue_size--;

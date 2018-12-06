@@ -1,0 +1,12 @@
+RandomForest	101011010	0002222000	Notes	admin
+Max	1010101	123-321	joiwqeurqwer	tourist
+Jerry	192192022	341-4234	epiqewopriqpre	touristMax
+GOGO	MMMMMMMMMMMM	20202-222	POI	tourist123
+kksk	papapa	mmmmm	lll	tourist
+hi	my	name	is	tourist123123123
+123123123	32111123	3333333	fsdfasad	?kksk
+123123123	3211	111111	g	?
+Max	13808805859	123-345	baba	touristl630003061
+Papa	13728895461	89-456	mama	l630003061
+Max	13808805859	456-678	baba	touristl630003002
+Mama	13728895461	890-567	mama	l630003002
