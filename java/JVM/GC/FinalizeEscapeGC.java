@@ -4,7 +4,7 @@
  * Algorithm used: reachability analysis + second chance 
  * 
  * reachability analysis: similar to Tree construct in Graph (DFS, BFS)
- * second chance: first chance (failed in reachability analysis) + second chance (self-resuce)
+ * second chance: first chance (failed in reachability analysis) + second chance (self-rescue)
  * 
  * If an object run out of its chance ->GC will collect it.
  */
