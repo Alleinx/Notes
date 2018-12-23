@@ -1,4 +1,4 @@
-/* Anomous inner class demonstration */
+/* Anonymous inner class demonstration */
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
