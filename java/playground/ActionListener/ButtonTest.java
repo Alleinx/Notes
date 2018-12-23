@@ -11,7 +11,8 @@ public class ButtonTest {
         
             @Override
             public void run() {
-                ButtonFrame frame = new ButtonFrame();
+                // ButtonFrame frame = new ButtonFrame();
+                AnoButtonFrame frame = new AnoButtonFrame();
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setVisible(true);
             }
