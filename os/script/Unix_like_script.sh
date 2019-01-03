@@ -1,8 +1,10 @@
+# $#(number of args) here 
 if [ $# -ne 3 ];then
     echo 'Usage: script Arg1 Arg2 Arg3.'
     exit 1
 fi
 
+# control flow here
 echo 'Print parameters here:'
 for para in $1 $2 $3;do
     echo $para
@@ -35,21 +37,49 @@ else
     echo $3 'is not a file.'
 fi
 
-echo "Is it morning? Please answer yes or no:"
-read timeOfDay
-
-if [ "$timeOfDay" = "yes" ];then
-    echo "  Good morning."
-elif [ "$timeOfDay" = "no" ];then
-    echo "  Good sleep."
-else
-    echo "  nice try."
-fi
-
+# $command here
 echo 'print /:'
 for stuff in $(ls /); do
     echo '  ' $stuff
 done
+
+# Case here
+echo "Is it morning? Please answer yes or no:"
+read timeOfDay
+
+case "$timeOfDay" in
+    [yY] | [yY][Ee]Ss] )    echo "Good Morning";;
+    [nN] | [nN][oO] )     echo "Good Afternoon";;
+    *)      echo "Nice Try";;
+esac
+
+# AND operator here:
+touch file_one
+rm file_two
+if [ -f file_one ] && {
+        echo "hello"
+    } && [ -f file_two ] && echo " there";then
+    echo "in if"
+else
+    echo "in else"
+fi
+
+# OR operator here:
+
+# if [ -f file_one ] || ...
+# Notes: AND, OR are in short circuit evaluation mode.
+# And if want multi-statements in one condition -> use {} to cover them.
+
+# function here:
+func_test() {
+    echo "Function test"
+    local local_var=100
+    # function must be defined before use.
+}
+
+echo "Function begin below..."
+func_test
+echo "Function ended above..."
 
 exit 0
 
