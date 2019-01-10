@@ -1,10 +1,12 @@
 /* This program demonstrate when init mechanism will be triggered in JVM */
-/* 1. InitCase will be init because it contains main() function */
-/* 2. SuperClass will be init because SuperClass.value is being used */
+
 /** 
+ * 1. InitCase will be init because it contains main() function.
+ * 2. SuperClass will be init because SuperClass.value is being used.
  * 3. SubClass may or may not be init (Depends on implementation of JVM)
- * Could use -XX:+TraceClassLoading args to observe SubClass's loading.
+ *    Could use -XX:+TraceClassLoading args to observe SubClass's loading.
  */
+
 public class InitCase {
     public static void main(String[] args) {
         
