@@ -81,5 +81,13 @@ echo "Function begin below..."
 func_test
 echo "Function ended above..."
 
+# (($x)) used for arithmetic replacement, ($x) used for executing command and get output (or set)
+
+x=0
+while [ "$x" -ne 10 ];do
+    echo $x
+    x=$(($x+1))
+done
+
 exit 0
 
