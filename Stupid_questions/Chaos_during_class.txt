@@ -21,7 +21,7 @@ Solution:
 * Avoid Interrupt && Don’t Interrupt.
     * Interrupt could leads to fail in message receiving, which also leads to chaos.
         * So, don’t talk to people during class;
-        * Find a place so that you can sit alone;
+        * Find a place where you could sit alone;
         * Don’t ask questions until you know what are the questions.
     * When facing the Interrupt -> depends.
         * If don’t know -> Stop;
