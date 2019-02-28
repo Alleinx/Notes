@@ -1,31 +1,6 @@
-//#include "stdafx.h"
-
-// File:        colorcube.cpp
-// Author:      Matt Daisley
-// Created:     4/25/2012
-// Project:     Source code for Make a Cube in OpenGL
-// Description: Creates an OpenGL window and draws a 3D cube
-//              That the user can rotate using the arrow keys
-//
-// Controls:    Left Arrow  - Rotate Left
-//              Right Arrow - Rotate Right
-//              Up Arrow    - Rotate Up
-//              Down Arrow  - Rotate Down
-
-// ----------------------------------------------------------
-// Includes
-// ----------------------------------------------------------
-//#include <stdio.h>
-//#include <stdarg.h>
 #include <math.h>
-//#define GL_GLEXT_PROTOTYPES
-
 #include <GLUT/GLUT.h>
 
-
-// ----------------------------------------------------------
-// Function Prototypes
-// ----------------------------------------------------------
 void display();
 void specialKeys();
 
@@ -86,7 +61,7 @@ void cylinder() {
         }
     }
     
-// serface
+// surface
     for (int i = 0; i < np; i++) { // i: index for polygon
         glBegin(GL_LINE_LOOP);
         glColor3f(1.0, 0.0, 0.0);
@@ -98,7 +73,7 @@ void cylinder() {
     }
     
     
-//    Buttom cover
+// Buttom cover
     for (int i = 0; i < sectors; i++) { // i: index for polygon
         glBegin(GL_TRIANGLES);
         glColor3f(0.0, 1.0, 0.0);
@@ -181,7 +156,7 @@ int main(int argc, char* argv[]){
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     
     // Create window
-    glutCreateWindow("Color Cube");
+    glutCreateWindow("Approximate Cylinder");
     
     //  Enable Z-buffer depth test
     glEnable(GL_DEPTH_TEST);
