@@ -17,8 +17,7 @@
     1.6 switch to next file
         # :bn
     1.7 switch to previouse file
-        # :bp
-
+        # :bp 
 2. Parenthesis pairing
     2.1 # %
 
@@ -28,7 +27,10 @@
     3.2 paste
         # p //paste in current cursor.
         # P //paste in current line.
-
+    3.3 cut & paste
+        1.# V(whole line), v(character)     //visual mode
+        2.d                                 //cut
+        3.p                                 //paste
 4. Insertion
     4.1 # I //Insert from the begining of the line.
     4.2 # A //Insert from the end of the line.
@@ -47,6 +49,27 @@
             5.1.3.2 :set noignorecase //doesn't ignore cse
             5.1.3.3 :set incsearch //search when start input characters, rather than hitting <enter>
 
+6. Replace
+    6.1 # r* //replace current character(after cursor) to any character (only one); 
+    6.2 # :s/old/new/       //replace the first meet (old) in current line to (new);
+    6.3 # :s/old/new/g      //replace all (old) in current line to (new);
+    6.4 # :%s/old/new/      //replace the first meet (old) in any line of a file to (new);
+    6.5 # :%s/old/new/g     //replace all (old) in the file to (new);
+
+       
+7. Move cursor
+    7.1 # [[        //move to the begining of the file;
+    7.2 # ]]        //move to the end of the file.
+    7.3 shift + direction.
+    
+8. Delete
+    8.1 # x         //similar to delete
+    8.2 # dd        //remove current line
+    8.3 # D         //remove from current character to the end of the line.
+        8.3.1 or use # d$
+    8.4 # :A, *d    //remove line A-*
+    8.5 # :1, $d    //remove all lines
+    
+9. visual mode
+    9.1 v + use direction key;
 */
-
-
