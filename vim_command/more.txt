@@ -1,0 +1,3 @@
+more command:
+    more +/pattern filename     //search pattern in filename
+    more -N filename            //show line number

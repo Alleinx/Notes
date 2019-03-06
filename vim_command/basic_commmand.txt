@@ -69,7 +69,7 @@
         8.3.1 or use # d$
     8.4 # :A, *d    //remove line A-*
     8.5 # :1, $d    //remove all lines
-    
+    8.6 # :d + direction key. 
 9. visual mode
     9.1 v + use direction key;
 */
