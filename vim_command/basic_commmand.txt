@@ -61,7 +61,8 @@
     7.1 # [[        //move to the begining of the file;
     7.2 # ]]        //move to the end of the file.
     7.3 shift + direction.
-    
+    7.4 # 0         //move to the begining of the line
+
 8. Delete
     8.1 # x         //similar to delete
     8.2 # dd        //remove current line
