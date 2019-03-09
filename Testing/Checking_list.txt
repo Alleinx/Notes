@@ -3,6 +3,11 @@
     1. Checking list should focus on possible bugs, not coding style.
     2. During checking process, everyone involved should be impartial and make judgement on program instead of programmer.
         2.1 Focus on program, not programmer.
-        2.2 When bugs come out, don't blame on programmer, but treat bugs as commmon mistakes so that they could be considered to be added to the checking list later.
-    3. All programs contain bugs, if your program passes all checking cases, it doesn't means your program is perfect, instead, it means this checking list didn't provide you any help(This test is unsuccessful). Based on your progress and ddl, make decision on whether put more efforts into testing.
+        2.2 When bugs come out, don't blame on programmer, 
+            but treat bugs as commmon mistakes so that 
+            they could be considered to be added to the checking list later.
+    3. All programs contain bugs, if your program passes all checking cases, 
+       it doesn't means your program is perfect, instead, it means this checking list 
+       didn't provide you any help(This test is unsuccessful). 
+       Based on your progress and ddl, make decision on whether put more efforts into testing.
 
