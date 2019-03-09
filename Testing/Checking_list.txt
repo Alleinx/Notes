@@ -7,7 +7,7 @@
             but treat bugs as commmon mistakes so that 
             they could be considered to be added to the checking list later.
     3. All programs contain bugs, if your program passes all checking cases, 
-       it doesn't means your program is perfect, instead, it means this checking list 
+       it doesn't imply your program is perfect, instead, it means this checking list 
        didn't provide you any help(This test is unsuccessful). 
-       Based on your progress and ddl, make decision on whether put more efforts into testing.
+       Based on your progress and ddl, make decision on whether put more efforts into testing or not.
 
