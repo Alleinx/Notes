@@ -11,3 +11,26 @@
        didn't provide you any help(This test is unsuccessful). 
        Based on your progress and ddl, make decision on whether put more efforts into testing or not.
 
+# 1 Data reference
+    1.1 Uninitialized variable?
+        1.1.1 For each reference(variable, array element, instance variable in an object),
+        attempt to 'prove' informally that the item has a value at that point.
+
+    1.2 Does index out of array boundary?
+    
+    1.3 Does each array index have an integer value? 
+
+    1.4 For all references through pointer or reference variables,
+    is the referenced memory currently allocated?
+        1.4.1 attempt to 'prove' informally that in each reference using a pointer variable, the reference
+        memory exists.
+    
+    1.5 If a data structure is referenced in multiple procedures, is the structure
+    defined identically(exactly same) in each procedure?
+
+    1.6 When indexing an array, is off-by-one error exists?
+        1.6.1 Exceed the boundary by 1 (Also take care whether the index never reaches the last elements of array).
+
+    1.7 For OO language, are all inheritance requirements met in the implementing class?
+
+# 2 Data declaration
