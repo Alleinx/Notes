@@ -11,7 +11,7 @@
        didn't provide you any help(This test is unsuccessful). 
        Based on your progress and ddl, make decision on whether put more efforts into testing or not.
 
-# 1 Data reference
+# 1 Data reference error
     1.1 Uninitialized variable?
         1.1.1 For each reference(variable, array element, instance variable in an object),
         attempt to 'prove' informally that the item has a value at that point.
@@ -33,4 +33,43 @@
 
     1.7 For OO language, are all inheritance requirements met in the implementing class?
 
-# 2 Data declaration
+# 2 Data declaration error
+    2.1 Have all variables been explicitly and properly declared?
+        2.1.1 Variable declaration: int x; float y[];
+    
+    2.2 Is each variable assigned the correct length and datatype?
+        2.2.1 e.g. overflow?
+    
+    2.3 Are there any variables with similar names? This is not 
+    necessarily an error, but it should be seen as a warning that 
+    the names may have been confused somwhere within the program.
+
+# 3 Computation error
+    3.1 Are there any mixed-mode computations? 
+        3.1.1 e.g. (float)a + (int)b;
+            3.1.1.1 Such occurrences are not necessarily errors, but they
+            should be explored carefully to ensure that the language's conversion
+            rules are understood.
+    
+    3.2 Are there any computations using variables having the same datatype but different
+    lengths?
+        3.2.1 (e.g.): short a = (int)c + (int)b;
+    
+    3.3 Is the datatype of the target variable of an assignment smaller than the datatype or 
+    result of the right-hand expression? 
+        3.3.1 reference 3.2.
+    
+    3.4 Is an overflow or underflow expression possible during the computation of an expression?
+    
+    3.5 Is it possible for the denominator in a division operation to be 0?
+
+    3.6 Can the value of a variable go outside the meaningful range?
+        3.6.1 (e.g.) probability > 1;
+    
+    3.7 For expressions containing more than one operator, checking the priority of arithmetical operators.
+
+    3.8 Are there any invalid use of integer arithmetic, particularly divisions?
+        3.8.1 (e.g.) the result of 2 * i / 2 == i depends on whether
+        1. i has an odd or an even value
+        2. whether the multiplication or division is performed first.
+        
