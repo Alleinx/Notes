@@ -1,9 +1,18 @@
+//
+//  cone.cpp
+//  FUKTHISSHIT
+//
+//  Created by noObject on 2019/2/28.
+//  Copyright © 2019 noObject. All rights reserved.
+//
+
 #include <math.h>
 #include <GLUT/GLUT.h>
 
 void display();
+void cone();
 void specialKeys();
-void cylinder();
+
 
 double rotate_y = 0;
 double rotate_x = 0;
@@ -22,11 +31,12 @@ GLubyte cubeIndices[24] = { 0, 3, 2, 1, 2, 3, 7, 6,
 
 
 
-void cylinder() {
-    float v[121][3];//points, sector+1
+void cone() {
+    float v[42][3];//points, sector+1
     float Radius = 0.5;
-    int sectors = 10;
-    int rings = 10;
+    int sectors = 20;
+    int rings = 1;
+    int h = 2;
     float x, y, z;
     //angle = 36, curve = PI / 5;
     //Points value
@@ -34,7 +44,7 @@ void cylinder() {
     {
         for (int j = 0; j < sectors + 1; j++)
         {
-            y = Radius * 0.1 * (i); //z
+            y = Radius * h * (i); //z
             x = Radius * cos(2*j*M_PI / sectors); //x
             z = Radius * sin(2*j*M_PI / sectors); //y
             
@@ -46,7 +56,7 @@ void cylinder() {
     
     
     int np = 0;
-    int index[484];
+    int index[168];
     for (int i = 0; i < rings; i++) { // r: index for ring
         for (int j = 0; j < sectors; j++) { // s: index for sector
             index[4 * np + 0] = i * (sectors + 1) + j;
@@ -57,35 +67,26 @@ void cylinder() {
         }
     }
     
-    // serface
-    for (int i = 0; i < np; i++) { // i: index for polygon
-        glBegin(GL_LINE_LOOP);
-        glColor3f(1.0, 0.0, 0.0);
-        glVertex3fv(v[index[4 * i + 0]]);
-        glVertex3fv(v[index[4 * i + 1]]);
-        glVertex3fv(v[index[4 * i + 2]]);
-        glVertex3fv(v[index[4 * i + 3]]);
-        glEnd();
-    }
     
     
-    //    Buttom cover
+    
+    // lower circle connected to (0, middle points, 0)
     for (int i = 0; i < sectors; i++) { // i: index for polygon
-        glBegin(GL_TRIANGLES);
+        glBegin(GL_LINE_LOOP);
         glColor3f(0.0, 1.0, 0.0);
         glVertex3fv(v[index[4 * i + 0]]);
         glVertex3fv(v[index[4 * i + 1]]);
-        glVertex3f(0.0, 0.0, 0.0);
+        glVertex3f(0.0, Radius * h * rings *(0.5), 0.0);
         glEnd();
     }
     
-    // Upper cover
+    // upper circle connected to (0, middle points, 0)
     for (int i = (rings - 1) * sectors; i < np; i++) { // i: index for polygon
-        glBegin(GL_TRIANGLES);
+        glBegin(GL_LINE_LOOP);
         glColor3f(0.0, 0.0, 1.0);
         glVertex3fv(v[index[4 * i + 2]]);
         glVertex3fv(v[index[4 * i + 3]]);
-        glVertex3f(0, Radius * 0.1 * rings, 0);
+        glVertex3f(0, Radius * h * rings *(0.5), 0);
         glEnd();
     }
 }
@@ -111,7 +112,7 @@ void display(){
     
     //colorcube3();
     //sphere();
-    cylinder();
+    cone();
     glFlush();
     glutSwapBuffers();
     

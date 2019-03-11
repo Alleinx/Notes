@@ -3,7 +3,9 @@
 
 void display();
 void specialKeys();
-void cylinder();
+void capsule();
+void semi_sphere_up();
+void semi_sphere_down();
 
 double rotate_y = 0;
 double rotate_x = 0;
@@ -22,14 +24,16 @@ GLubyte cubeIndices[24] = { 0, 3, 2, 1, 2, 3, 7, 6,
 
 
 
-void cylinder() {
-    float v[121][3];//points, sector+1
+// draw capsule
+void capsule() {
+    float v[121][3];
+
     float Radius = 0.5;
     int sectors = 10;
     int rings = 10;
+
     float x, y, z;
-    //angle = 36, curve = PI / 5;
-    //Points value
+
     for (int i = 0; i < rings + 1; i++)
     {
         for (int j = 0; j < sectors + 1; j++)
@@ -68,25 +72,114 @@ void cylinder() {
         glEnd();
     }
     
-    
-    //    Buttom cover
-    for (int i = 0; i < sectors; i++) { // i: index for polygon
-        glBegin(GL_TRIANGLES);
-        glColor3f(0.0, 1.0, 0.0);
-        glVertex3fv(v[index[4 * i + 0]]);
-        glVertex3fv(v[index[4 * i + 1]]);
-        glVertex3f(0.0, 0.0, 0.0);
-        glEnd();
+    semi_sphere_up();
+    semi_sphere_down();
+}
+
+/* Draw upper semi_sphere */
+void semi_sphere_up()
+{
+    float v[121][3];//points, sector+1
+    float Radius = 0.5;
+    int sectors = 10;
+    int rings = 10;
+    float x, y, z;
+
+    //Points value
+    for (int i = 0; i < rings+1; i++)
+    {
+        for (int j = 0; j < sectors+1; j++)
+        {
+            //float const z = cos(2 * M_PI * r * R);
+            //float const x = sin(2 * M_PI * r * R) * cos(2 * M_PI * s * S);
+            //float const y = sin(2 * M_PI * r * R) * sin(2 * M_PI * s * S);
+            if (2 * i < rings) {
+                y = Radius * cos(i*M_PI/ rings) + (Radius * 0.1 * rings);
+            } else {
+                y = (Radius * 0.1 * rings);
+            }
+            x = Radius * sin(i*M_PI / rings)*cos(2*j*M_PI / sectors);
+            z = Radius * sin(i*M_PI / rings)*sin(2*j*M_PI / sectors);
+            v[i*(sectors + 1) + j][0] = x;
+            v[i*(sectors + 1) + j][1] = y;
+            v[i*(sectors + 1) + j][2] = z;
+        }
+    }
+    int np = 0;
+    int index[484];
+    for (int i = 0; i < rings; i++) { // r: index for ring
+        for (int j = 0; j < sectors; j++) { // s: index for sector
+            index[4 * np + 0] = i * (sectors + 1) + j;
+            index[4 * np + 1] = i * (sectors + 1) + (j + 1);
+            index[4 * np + 2] = (i + 1) * (sectors + 1) + (j + 1);
+            index[4 * np + 3] = (i + 1) * (sectors + 1) + j;
+            np++;
+        }
     }
     
-    // Upper cover
-    for (int i = (rings - 1) * sectors; i < np; i++) { // i: index for polygon
-        glBegin(GL_TRIANGLES);
-        glColor3f(0.0, 0.0, 1.0);
+    for (int i = 0; i < np; i++) { // i: index for polygon
+        glBegin(GL_LINE_LOOP);
+        glColor3f(1.0, 0.0, 0.0);
+        glVertex3fv(v[index[4 * i + 0]]);
+        glVertex3fv(v[index[4 * i + 1]]);
         glVertex3fv(v[index[4 * i + 2]]);
         glVertex3fv(v[index[4 * i + 3]]);
-        glVertex3f(0, Radius * 0.1 * rings, 0);
         glEnd();
+        
+    }
+}
+
+/* Draw lower semi_sphere */
+void semi_sphere_down()
+{
+    float v[121][3];//
+    float Radius = 0.5;
+    int sectors = 10;
+    int rings = 10;
+    float x, y, z;
+    //angle = 36, curve = PI / 5;
+    //Points value
+    for (int i = 0; i < rings+1; i++)
+    {
+        for (int j = 0; j < sectors+1; j++)
+        {
+            //float const z = cos(2 * M_PI * r * R);
+            //float const x = sin(2 * M_PI * r * R) * cos(2 * M_PI * s * S);
+            //float const y = sin(2 * M_PI * r * R) * sin(2 * M_PI * s * S);
+            if (2 * i < rings) {
+                y = -1 * (Radius * cos(i*M_PI/ rings)) ;
+            } else {
+                y = 0;
+            }
+            x = Radius * sin(i*M_PI / rings)*cos(2*j*M_PI / sectors);
+            z = Radius * sin(i*M_PI / rings)*sin(2*j*M_PI / sectors);
+            v[i*(sectors + 1) + j][0] = x;
+            v[i*(sectors + 1) + j][1] = y;
+            v[i*(sectors + 1) + j][2] = z;
+        }
+    }
+    
+    int np = 0;
+    int index[484];
+    for (int i = 0; i < rings; i++) { // r: index for ring
+        for (int j = 0; j < sectors; j++) { // s: index for sector
+            index[4 * np + 0] = i * (sectors + 1) + j;
+            index[4 * np + 1] = i * (sectors + 1) + (j + 1);
+            index[4 * np + 2] = (i + 1) * (sectors + 1) + (j + 1);
+            index[4 * np + 3] = (i + 1) * (sectors + 1) + j;
+            np++;
+        }
+    }
+    
+    for (int i = 0; i < np; i++) { // i: index for polygon
+        glBegin(GL_LINE_LOOP);
+        glColor3f(1.0, 0.0, 0.0);
+        glVertex3fv(v[index[4 * i + 0]]);
+        glVertex3fv(v[index[4 * i + 1]]);
+        glVertex3fv(v[index[4 * i + 2]]);
+        glVertex3fv(v[index[4 * i + 3]]);
+        glEnd();
+        
     }
 }
 
@@ -111,7 +204,7 @@ void display(){
     
     //colorcube3();
     //sphere();
-    cylinder();
+    capsule();
     glFlush();
     glutSwapBuffers();
     
