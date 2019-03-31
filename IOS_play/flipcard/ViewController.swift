@@ -1,6 +1,5 @@
 //
 //  ViewController.swift
-//  Wearing
 //
 //  Created by noObject on 2019/3/31.
 //  Copyright © 2019 noObject. All rights reserved.
@@ -23,7 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet var cardButtons: [UIButton]!
     
     @IBAction func touchCard(_ sender: UIButton) {
-        //@IBAction 'circle in line 25', indicates which component is related to this method.
+        //@IBAction 'circle in line 24', indicates which component is related to this method.
         //Hold 'control' key and drag the method into code area.
         flipCount += 1
         if let cardNumber = cardButtons.index(of: sender) {
