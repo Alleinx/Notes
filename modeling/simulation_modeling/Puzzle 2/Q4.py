@@ -31,7 +31,7 @@ for j in range(observation_num):
                     u += pow(2, current_playing_num) - get_payout(current_playing_num)
                 break
             
-            else:                       #loosing
+            else:                       #losing
                 if get_payout(current_playing_num) >= total_number:
                     u -= total_number   #oops, already Tap out.
                     break
