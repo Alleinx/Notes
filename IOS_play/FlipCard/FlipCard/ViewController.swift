@@ -1,6 +1,5 @@
 //
 //  ViewController.swift
-//
 //  Created by noObject on 2019/3/31.
 //  Copyright © 2019 noObject. All rights reserved.
 //
@@ -8,6 +7,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    private lazy var game = Concentration(numberOfPairsOfCards: cardButtons.count / 2)
     
     private var flipCount: Int = 0 {
         didSet {
@@ -22,7 +23,7 @@ class ViewController: UIViewController {
     @IBOutlet var cardButtons: [UIButton]!
     
     @IBAction func touchCard(_ sender: UIButton) {
-        //@IBAction 'circle in line 24', indicates which component is related to this method.
+        //@IBAction 'circle in line 13', indicates which component is related to this method.
         //Hold 'control' key and drag the method into code area.
         flipCount += 1
         if let cardNumber = cardButtons.index(of: sender) {
@@ -30,12 +31,12 @@ class ViewController: UIViewController {
             //If optional is set -> return corresponding value with corresponding data type.
             //could use ! after optional value to unwrap the value
             //also could use if else like this.
-            flipCard(withEmoji: emojiChoices[cardNumber], on: sender)
-        
+            game.chooseCard(at: cardNumber)
+            
         } else {
             print("Chosen card was not in cardButtons")
         }
-
+        
         
     }
     
@@ -44,7 +45,7 @@ class ViewController: UIViewController {
         if button.currentTitle == emoji {
             button.setTitle("", for: UIControl.State.normal)
             button.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
-        
+            
         } else {
             button.setTitle(emoji, for: UIControl.State.normal)
             button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)

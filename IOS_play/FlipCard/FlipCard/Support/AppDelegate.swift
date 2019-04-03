@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  Wearing
+//  FlipCard
 //
-//  Created by noObject on 2019/3/31.
+//  Created by noObject on 2019/4/3.
 //  Copyright © 2019 noObject. All rights reserved.
 //
 
