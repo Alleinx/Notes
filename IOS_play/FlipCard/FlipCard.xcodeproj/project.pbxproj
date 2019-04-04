@@ -60,8 +60,8 @@
 			children = (
 				F4EAD2652254F322007B1B36 /* Support */,
 				F4EAD2552254F2D5007B1B36 /* ViewController.swift */,
-				F4EAD2662254F34F007B1B36 /* Card.swift */,
 				F4EAD2672254F350007B1B36 /* Concentration.swift */,
+				F4EAD2662254F34F007B1B36 /* Card.swift */,
 				F4EAD2572254F2D5007B1B36 /* Main.storyboard */,
 				F4EAD25F2254F2D6007B1B36 /* Info.plist */,
 			);
