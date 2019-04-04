@@ -15,17 +15,19 @@ class Concentration {
         for _ in 0 ..< numberOfPairsOfCards {
             let card = Card()
             
-            cards += [card, card] //copy two card into cards 
+            cards += [card, card] //copy two card into cards
             //cards.append(card)
         }
         cards.shuffle()
     }
     
     func flipCard(at toMatch: Int) {
-        if !cards[toMatch].isMatched {
+        if !cards[toMatch].isMatched{
+            
             if let alreadyFliped = indexOfOneAndOnlyFaceUpCard , alreadyFliped != toMatch {
                 if cards[alreadyFliped].identifier == cards[toMatch].identifier {
                     // Check if cards match
+                    
                     cards[alreadyFliped].isMatched = true
                     cards[toMatch].isMatched = true
                 }
