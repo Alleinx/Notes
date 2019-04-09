@@ -6,6 +6,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
     
     
@@ -33,6 +34,8 @@ class ViewController: UIViewController {
         //Hold 'control' key and drag the method into code area.
         
         flipCount += 1
+        let py = Python.import("numpy")
+        print(py.arange(100))
         
         if let cardNumber = cardButtons.index(of: sender) {
             //return: nil -> optional is not set

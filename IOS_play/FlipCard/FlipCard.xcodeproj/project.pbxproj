@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F4276133225BC25300512E8F /* NumpyConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427612F225BC25200512E8F /* NumpyConversion.swift */; };
+		F4276134225BC25300512E8F /* Python.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4276130225BC25200512E8F /* Python.swift */; };
+		F4276135225BC25300512E8F /* PythonLibrary+Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4276131225BC25200512E8F /* PythonLibrary+Symbols.swift */; };
+		F4276136225BC25300512E8F /* PythonLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4276132225BC25300512E8F /* PythonLibrary.swift */; };
 		F4EAD2542254F2D5007B1B36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EAD2532254F2D5007B1B36 /* AppDelegate.swift */; };
 		F4EAD2562254F2D5007B1B36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EAD2552254F2D5007B1B36 /* ViewController.swift */; };
 		F4EAD2592254F2D5007B1B36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4EAD2572254F2D5007B1B36 /* Main.storyboard */; };
@@ -17,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F427612F225BC25200512E8F /* NumpyConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumpyConversion.swift; sourceTree = "<group>"; };
+		F4276130225BC25200512E8F /* Python.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Python.swift; sourceTree = "<group>"; };
+		F4276131225BC25200512E8F /* PythonLibrary+Symbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PythonLibrary+Symbols.swift"; sourceTree = "<group>"; };
+		F4276132225BC25300512E8F /* PythonLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PythonLibrary.swift; sourceTree = "<group>"; };
 		F4EAD2502254F2D5007B1B36 /* FlipCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlipCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4EAD2532254F2D5007B1B36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4EAD2552254F2D5007B1B36 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,11 +47,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F4276223225C477E00512E8F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F4EAD2472254F2D5007B1B36 = {
 			isa = PBXGroup;
 			children = (
 				F4EAD2522254F2D5007B1B36 /* FlipCard */,
 				F4EAD2512254F2D5007B1B36 /* Products */,
+				F4276223225C477E00512E8F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +78,10 @@
 				F4EAD2552254F2D5007B1B36 /* ViewController.swift */,
 				F4EAD2672254F350007B1B36 /* Concentration.swift */,
 				F4EAD2662254F34F007B1B36 /* Card.swift */,
+				F427612F225BC25200512E8F /* NumpyConversion.swift */,
+				F4276130225BC25200512E8F /* Python.swift */,
+				F4276132225BC25300512E8F /* PythonLibrary.swift */,
+				F4276131225BC25200512E8F /* PythonLibrary+Symbols.swift */,
 				F4EAD2572254F2D5007B1B36 /* Main.storyboard */,
 				F4EAD25F2254F2D6007B1B36 /* Info.plist */,
 			);
@@ -104,6 +124,9 @@
 		F4EAD2482254F2D5007B1B36 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = noObject;
@@ -150,8 +173,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4EAD2562254F2D5007B1B36 /* ViewController.swift in Sources */,
+				F4276134225BC25300512E8F /* Python.swift in Sources */,
+				F4276133225BC25300512E8F /* NumpyConversion.swift in Sources */,
 				F4EAD2692254F350007B1B36 /* Concentration.swift in Sources */,
 				F4EAD2682254F350007B1B36 /* Card.swift in Sources */,
+				F4276136225BC25300512E8F /* PythonLibrary.swift in Sources */,
+				F4276135225BC25300512E8F /* PythonLibrary+Symbols.swift in Sources */,
 				F4EAD2542254F2D5007B1B36 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,14 +328,22 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 54H5XXWG7S;
 				INFOPLIST_FILE = FlipCard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FlipCard/Support/Python-3.6-iOS-support.b7/Support/Python",
+					"$(PROJECT_DIR)/FlipCard/Support/Python-3.6-iOS-support.b7/Support/XZ",
+					"$(PROJECT_DIR)/FlipCard/Support/Python-3.6-iOS-support.b7/Support/OpenSSL",
+					"$(PROJECT_DIR)/FlipCard/Support/Python-3.6-iOS-support.b7/Support/BZip2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Jerry.FlipCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -319,14 +354,22 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 54H5XXWG7S;
 				INFOPLIST_FILE = FlipCard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FlipCard/Support/Python-3.6-iOS-support.b7/Support/Python",
+					"$(PROJECT_DIR)/FlipCard/Support/Python-3.6-iOS-support.b7/Support/XZ",
+					"$(PROJECT_DIR)/FlipCard/Support/Python-3.6-iOS-support.b7/Support/OpenSSL",
+					"$(PROJECT_DIR)/FlipCard/Support/Python-3.6-iOS-support.b7/Support/BZip2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Jerry.FlipCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
