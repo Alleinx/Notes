@@ -27,3 +27,11 @@ class TransitionError(Error):
         self.previous = previous
         self.next = next
         self.message = message
+    
+if __name__ == "__main__":
+    try:
+        raise InputError('Exg', 'Invalid Operation.')
+    except InputError as e:
+        print(type(e))
+        print(e.args)
+        print(e.message)
