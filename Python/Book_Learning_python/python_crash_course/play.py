@@ -101,7 +101,8 @@ class ElectricCar(Car):
     
     def __init__(self, make, model, year):
         super().__init__(make, model, year)
-        self.battery = Battery()
+
+        self.battery = Battery(100)
         # Or: Car.__init__(self, make, model, year)
     
     #override
@@ -119,5 +120,6 @@ class Battery():
     
 my_tesla = ElectricCar('Tesla', 'model s', 2016)
 my_tesla.fill_gas_tank()
+my_tesla.battery.display_battery_status()
 
 print(my_tesla.get_descriptive_name())
