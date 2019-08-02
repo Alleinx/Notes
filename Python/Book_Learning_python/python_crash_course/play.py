@@ -98,6 +98,7 @@ class Car():
         print('Gas tank is now full.')
 
 class ElectricCar(Car):
+    """Extended from Car."""
     
     def __init__(self, make, model, year):
         super().__init__(make, model, year)
