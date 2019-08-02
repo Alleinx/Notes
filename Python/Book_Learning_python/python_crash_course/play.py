@@ -68,8 +68,8 @@ print(test_var_args(*test))
 # Note: Different from Format 1!
 print(test_var_args(test))
 
-# Class Inheritance:
 
+# Class Inheritance:
 class Car():
     
     def __init__(self, make, model, year):
@@ -105,10 +105,9 @@ class ElectricCar(Car):
         self.battery = Battery(100)
         # Or: Car.__init__(self, make, model, year)
     
-    #override
+    #Play with method Override.
     def fill_gas_tank(self):
         print('Battery is fullly charged.')
-
 
 class Battery():
 
@@ -117,9 +116,24 @@ class Battery():
     
     def display_battery_status(self):
         print('Current Battery Capacity:', self.battery_capacity)
-    
+
+
 my_tesla = ElectricCar('Tesla', 'model s', 2016)
 my_tesla.fill_gas_tank()
 my_tesla.battery.display_battery_status()
-
 print(my_tesla.get_descriptive_name())
+
+# Library
+
+from collections import OrderedDict
+
+# Element Order: The order of being added. (Similar 2 Queue).
+favorite_languages = OrderedDict()
+
+favorite_languages['Jen'] = 'python'
+favorite_languages['Sarah'] = 'C'
+favorite_languages['Edward'] = 'Ruby'
+favorite_languages['Phil'] = 'python'
+
+for name, language in favorite_languages.items():
+    print(name.title() + '\'s favorite language is', language.title() + '.')
