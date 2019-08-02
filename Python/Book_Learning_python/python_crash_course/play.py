@@ -94,12 +94,30 @@ class Car():
     def increment_odometer(self, miles):
         self.odometer_reading += miles
 
+    def fill_gas_tank(self):
+        print('Gas tank is now full.')
 
 class ElectricCar(Car):
     
     def __init__(self, make, model, year):
         super().__init__(make, model, year)
+        self.battery = Battery()
         # Or: Car.__init__(self, make, model, year)
+    
+    #override
+    def fill_gas_tank(self):
+        print('Battery is fullly charged.')
 
+
+class Battery():
+
+    def __init__(self, battery_capacity = 70):
+        self.battery_capacity = battery_capacity
+    
+    def display_battery_status(self):
+        print('Current Battery Capacity:', self.battery_capacity)
+    
 my_tesla = ElectricCar('Tesla', 'model s', 2016)
+my_tesla.fill_gas_tank()
+
 print(my_tesla.get_descriptive_name())
