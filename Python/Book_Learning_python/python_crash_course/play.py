@@ -99,7 +99,7 @@ class Car():
 
 class ElectricCar(Car):
     """Extended from Car."""
-    
+
     def __init__(self, make, model, year):
         super().__init__(make, model, year)
 
@@ -138,3 +138,12 @@ favorite_languages['Phil'] = 'python'
 
 for name, language in favorite_languages.items():
     print(name.title() + '\'s favorite language is', language.title() + '.')
+
+
+# File
+try:
+    with open('NonExisted') as file_obj:
+        print(file_obj.readlines())
+
+except FileNotFoundError:
+    print('Error: file doesn\'t exist.')
