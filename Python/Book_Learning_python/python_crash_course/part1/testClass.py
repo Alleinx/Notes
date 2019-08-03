@@ -1,4 +1,5 @@
 import unittest
+
 class AnonymousSurvey():
 
     def __init__(self, question):

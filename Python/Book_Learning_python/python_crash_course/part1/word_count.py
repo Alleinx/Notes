@@ -1,10 +1,14 @@
+# try-except-else usage
+
 def count_words(filename):
     """Count the number of words in the given file"""
     try:
         with open(filename) as file_obj:
             content = file_obj.read()
+
     except FileNotFoundError:
         print('Sorry, the file <' + filename + '> doesn\'t exist.')
+
     else:
         words = content.split()
         num_words = len(words)
