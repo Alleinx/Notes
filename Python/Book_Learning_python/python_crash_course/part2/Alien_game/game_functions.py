@@ -45,6 +45,11 @@ def update_bullets(bullets):
             bullets.remove(bullet)
 
 
+def update_aliens(aliens):
+    """Update position of all aliens"""
+    aliens.update()
+
+
 def create_fleet(ai_settings, screen, ship, aliens):
     """Create a group of aliens"""
 
