@@ -9,3 +9,9 @@ class Settings():
 
         # Each time, the ship will move by 2 pixels.
         self.ship_speed_factor = 3.5
+
+        # Config for bullet
+        self.bullet_speed_factor = 5
+        self.bullet_width = 5
+        self.bullet_height = 5
+        self.bullet_color = (60, 60, 60)
