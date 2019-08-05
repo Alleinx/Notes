@@ -11,12 +11,13 @@ def check_events(ai_settings, screen, ship, bullets):
             sys.exit()
 
         elif event.type == pygame.KEYDOWN:
-            check_keydown_events(event, ai_settings, screen, ship, bullets)
+            __check_keydown_events(event, ai_settings, screen, ship, bullets)
 
         elif event.type == pygame.KEYUP:
-            check_keyup_events(event, ship)
+            __check_keyup_events(event, ship)
 
-def check_keydown_events(event, ai_settings, screen, ship, bullets):
+
+def __check_keydown_events(event, ai_settings, screen, ship, bullets):
     """React when user press down a key"""
 
     if event.key == pygame.K_RIGHT:
@@ -33,10 +34,9 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
 
     # Shoot a bullet when user press "SPACE" key.
     elif event.key == pygame.K_SPACE:
-        new_bullet = Bullet(ai_settings, screen, ship)
-        bullets.add(new_bullet)
+        fire_bullet(ai_settings, screen, ship, bullets)
 
-def check_keyup_events(event, ship):
+def __check_keyup_events(event, ship):
     """React when user release a key"""
     if event.key == pygame.K_RIGHT:
         ship.moving_right = False
@@ -56,7 +56,7 @@ def update_screen(ai_settings, screen, ship, bullets):
     screen.fill(ai_settings.bg_color)
     
     # Draw bullet
-    
+
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     # Draw the ship
@@ -64,3 +64,17 @@ def update_screen(ai_settings, screen, ship, bullets):
 
     # Refresh the screeen to display changes 
     pygame.display.flip()
+
+def update_bullets(bullets):
+    """Update the position of bullets and remove bullets that out of the window"""
+
+    bullets.update()
+
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)
+
+
+def fire_bullet(ai_settings, screen, ship, bullets):
+    new_bullet = Bullet(ai_settings, screen, ship)
+    bullets.add(new_bullet)
