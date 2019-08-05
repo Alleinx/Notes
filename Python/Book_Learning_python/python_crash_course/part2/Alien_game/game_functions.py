@@ -45,8 +45,9 @@ def update_bullets(bullets):
             bullets.remove(bullet)
 
 
-def update_aliens(aliens):
+def update_aliens(ai_settings, aliens):
     """Update position of all aliens"""
+    __check_fleet_edges(ai_settings, aliens)
     aliens.update()
 
 
@@ -128,3 +129,19 @@ def __check_keyup_events(event, ship):
             
     elif event.key == pygame.K_DOWN:
         ship.moving_down = False
+
+
+def __check_fleet_edges(ai_settings, aliens):
+    """do operations when alien reachs the edge of the window"""
+    for alien in aliens.sprites():
+        if alien.check_edges():
+            __change_fleet_direction(ai_settings, aliens)
+            break
+
+def __change_fleet_direction(ai_settings, aliens):
+    """Move all the aliens downwards and change their direction"""
+    for alien in aliens.sprites():
+        alien.rect.y += ai_settings.fleet_drop_speed
+    
+    ai_settings.fleet_direction *= -1
+
