@@ -40,6 +40,8 @@ print(sorted(student_tuples, key=itemgetter(1,2)))
 print(sorted(student_obj, key=attrgetter('grade', 'age')))
 
 # Stable Sorting
+# Stability in sorting: https://www.geeksforgeeks.org/stability-in-sorting-algorithms/
+
 data = [('red', 1), ('blue', 1), ('red', 2), ('blue', 2)]
 print(sorted(data, key = itemgetter(0)))
 
