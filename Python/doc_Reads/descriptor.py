@@ -10,7 +10,11 @@ class Car():
         # Define Read-Only descriptor by raising AttributeError()
         # raise AttributeError('Read-Only Attribute')
         print('Updating var')
-        self.val = val
+        if isinstance(val, int):
+            self.val = val
+        else:
+            print('Error: val should be a integer.')
+        
 
 class MyClass():
     # This is a class attribute(shard accross all instance of the class).
@@ -35,6 +39,7 @@ print(m1.car_inventory)
 
 m1.car_inventory = 20
 print(m1.car_inventory)
+m1.car_inventory = 'test'
 
 m2 = MyClass()
 print(m2.car_inventory)
