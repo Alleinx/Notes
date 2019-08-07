@@ -37,6 +37,7 @@ print(sorted(student_obj, key = lambda student : student.age))
 from operator import itemgetter, attrgetter
 
 print(sorted(student_tuples, key=itemgetter(1,2)))
+# perform sorting firstly on attr 'grade', then on 'age'.
 print(sorted(student_obj, key=attrgetter('grade', 'age')))
 
 # Stable Sorting
