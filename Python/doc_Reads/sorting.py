@@ -38,3 +38,14 @@ from operator import itemgetter, attrgetter
 
 print(sorted(student_tuples, key=itemgetter(1,2)))
 print(sorted(student_obj, key=attrgetter('grade', 'age')))
+
+# Stable Sorting
+data = [('red', 1), ('blue', 1), ('red', 2), ('blue', 2)]
+print(sorted(data, key = itemgetter(0)))
+
+# With stable sorting, we could perform DESC first on 'grade' then ASC on 'age'
+
+# sort on secondary key, ASC
+s = sorted(student_obj, key=attrgetter('age'))
+# sort on primary key, DESC
+print(sorted(s, key = attrgetter('grade'), reverse=True))
