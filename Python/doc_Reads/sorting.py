@@ -52,3 +52,8 @@ print(sorted(data, key = itemgetter(0)))
 s = sorted(student_obj, key=attrgetter('age'))
 # sort on primary key, DESC
 print(sorted(s, key = attrgetter('grade'), reverse=True))
+
+# reverse parameter and reversed() could reserve stability.
+standard_way = sorted(data, key=itemgetter(0), reverse=True)
+double_reversed = list(reversed(sorted(reversed(data), key=itemgetter(0))))
+assert standard_way == double_reversed
