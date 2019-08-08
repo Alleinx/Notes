@@ -87,11 +87,11 @@ class Property():
             raise AttributeError("can't delete attribtue")
         self.fdel(obj)
 
-    def getter(self, fget)
+    def getter(self, fget):
         return type(self)(fget, self.fset, self.fdel, self.__doc__)
 
     def setter(self, fset):
-        return type(self)(self.fget, fset, self.fdel, self.__doc__
+        return type(self)(self.fget, fset, self.fdel, self.__doc__)
     
     def deleter(self, fdel):
         return type(self)(self.fget, self.fset, fdel, self.__doc__)
