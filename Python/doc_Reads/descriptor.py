@@ -105,7 +105,7 @@ class Property():
 class Cell():
     def getvalue(self):
         """recalculate the cell before returning value"""
-        self.recalc()
-        return self._value
+        # self.recalc()
+        # return self._value
 
     value = property(getvalue)
