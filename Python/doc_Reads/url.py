@@ -54,5 +54,40 @@ req = urllib.request.Request('http://www.pretend_server.org')
 try:
     urllib.request.urlopen(req)
 
+except urllib.error.HTTPError as e:
+    print(e.code)
+
 except urllib.error.URLError as e:
     print(e.reason)
+
+# -----------------------------------
+# Wrap up URL Exception 
+# No.1:
+someurl = ''
+req = urllib.request.Request(someurl)
+try:
+    response = urllib.request.urlopen(req)
+except urllib.error.HTTPError as e:
+    print('The server couldn\'t fulfill the request.')
+    print('Error code: ', e.code)
+except urllib.error.URLError as e:
+    print('We failed to reach a server')
+    print('Reason: ', e.reason)
+else:
+    # Everything is fine
+    pass
+
+#No.2:
+req = urllib.request.Request(someurl)
+try:
+    response = urllib.request.urlopen(req)
+except urllib.error.URLError as e:
+    if hasattr(e, 'reason'):
+        print('We failed to reach a server.')
+        print('Reason: ', e.reason)
+    elif hasattr(e, 'code'):
+        print('The server couldn\'t fulfill the request.')
+        print('Error code: ', e.code)
+else:
+    # Everything is fine
+    pass
