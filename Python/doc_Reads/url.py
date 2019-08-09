@@ -1,5 +1,10 @@
 import urllib.request
 import urllib.parse
+import socket
+
+# timeout in seconds:
+timeout = 5
+socket.setdefaulttimeout(timeout)
 
 # Receive data:
 req = urllib.request.Request('http://www.voidspace.org.uk')
@@ -90,4 +95,8 @@ except urllib.error.URLError as e:
         print('Error code: ', e.code)
 else:
     # Everything is fine
+    # Return the actual URL of the requesting page.
+    # print(e.geturl())
+    # Return the info of the requesting page.
+    # print(e.info())
     pass
