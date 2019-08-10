@@ -9,7 +9,7 @@ y = [i**2 for i in x]
 
 # ----------------------------
 # Color & size
-# plt.scatter(x, y, s=1, c = [(0,0.7,0.7)],edgecolors=None)
+# plt.scatter(x, y, s=1, c = (0,0.7,0.7),edgecolors=None)
 # s: size of a point.
 # c: RGB color, should use a 2-D array with a single row if you
 #       really want to specify the same RGB/RGBA value for all points.

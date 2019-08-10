@@ -13,14 +13,8 @@ class RandomWalk():
         """Genereate walking path"""
 
         while len(self.x) < self.num_points:
-        
-            x_direction = choice([1, -1])
-            x_distance = choice([i for i in range(5)])
-            x_step = x_direction * x_distance
-
-            y_direction = choice([1, -1])
-            y_distance = choice([i for i in range(5)])
-            y_step = y_direction * y_distance
+            x_step = self.get_step()
+            y_step = self.get_step()
 
             # Avoid going nowhere
             if x_step == 0 and y_step == 0:
@@ -33,3 +27,10 @@ class RandomWalk():
             self.x.append(next_x)
             self.y.append(next_y)
     
+    def get_step(self):
+        """get walking step"""
+        direction = choice([1, -1])
+        distance = choice([i for i in range(5)])
+        step = direction * distance
+
+        return step
