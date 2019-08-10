@@ -3,25 +3,24 @@ import pygal
 
 from dice import Dice
 
-dice = Dice()
+dice1 = Dice()
+dice2 = Dice(10)
 
-results = []
-for roll_num in range(1000):
-    result = dice.roll()
-    results.append(result)
+results = [dice1.roll() * dice2.roll() for _ in range(10000)]
 
-frequencies = []
+iter_num = (dice1.num_sides*dice2.num_sides) + 1
+
 # Analyze result
-for value in range(1, dice.num_sides+1):
-    frequency = results.count(value)
-    frequencies.append(frequency)
+frequencies = [results.count(value) for value in range(1, iter_num)]
 
 hist = pygal.Bar()
-hist._title = 'Results of rolling one D6 1000 times.'
-hist.x_labels = ['1', '2', '3', '4', '5', '6']
+
+hist._title = 'Results of rolling D6 * D10 10,000 times.'
 hist._x_title = 'Result'
 hist._y_title = 'Frequence of Result'
 
-hist.add('D6', frequencies)
+hist.x_labels = [str(i) for i in range(1, iter_num)]
+# pass value to the graph
+hist.add('D6  D10', frequencies)
 
 hist.render_to_file('dice_visual.svg')
