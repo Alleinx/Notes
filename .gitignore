@@ -1,2 +1,3 @@
 __pycache__/
+*.svg
 .DS_Store
