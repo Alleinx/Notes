@@ -16,11 +16,21 @@ with open(file) as f:
 
     dates, highs, lows = [], [], []
     for row in csv_reader:
-        dates.append(datetime.strptime(row[2], '%Y-%m-%d'))
-        highs.append(int(row[5]))
-        lows.append(int(row[-1]))
+        try:
+            current_date = datetime.strptime(row[2], '%Y-%m-%d')
+            high = int(row[5])
+            low = int(row[-1])
+        except ValueError:
+            print('missing data.')
+        except Exception:
+            print('Error occured.')
+        else:
+            dates.append(current_date)
+            highs.append(high)
+            lows.append(low)
 
     plt.plot(dates, highs, c = 'red', label='high')
     plt.plot(dates, lows, c='blue', label='low')
+    plt.fill_between(dates, highs, lows, facecolor='orange', alpha=0.3)
     plt.legend(loc = 'upper left')
     plt.show()
