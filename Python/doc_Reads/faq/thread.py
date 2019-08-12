@@ -5,8 +5,9 @@ import threading, queue, time
 
 def worker():
     print('Running worker')
-    # let the thread distributer init other thread
-    time.sleep(0.1)
+    # let the thread distributer init other thread because
+    # thread doesn't run concurrently on some platform.
+    # time.sleep(0.1)
     while True:
         try:
             arg = q.get(block=False)
@@ -20,15 +21,16 @@ def worker():
             time.sleep(0.5)
 
 q = queue.Queue()
+# dding work to the queue
+for i in range(50):
+    q.put(i)
 
 # start pool of 5 workers
 for i in range(5):
     t = threading.Thread(target=worker, name='worker {index}'.format(index=i+1))
     t.start()
 
-# begin adding work to the queue
-for i in range(50):
-    q.put(i)
+
 
 print('Main Thread sleeping...')
-time.sleep(5)
+# time.sleep(5)
