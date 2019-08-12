@@ -28,6 +28,11 @@ def g(*args, **kwargs):
 
 # invoke function with str?
 class Foo:
+    @staticmethod
+    # Static method, no 'self' parameter.
+    def static(arg1, arg2, arg3):
+        print(arg1, arg2, arg3)
+
     def t(self):
         print('Method: t')
  
@@ -35,10 +40,20 @@ if __name__ == "__main__":
     # lazy_import()
     f((1,2,3,4),5,6,7, key='map')
 
+    # Static method
+    Foo.static(1,2,3)
+
     # invoke function with str
     t = getattr(Foo(), 't')
     t()
     # or
     dispatch = {'T': Foo().t()}
+    # or dispatch = {'T': Foo().t}
+    # dispatch['T']()
     dispatch['T']
+
+    # concatenate str
+    my_strings = [str(i) for i in range(20)]
+    result = ' '.join(my_strings)
+    print(result)
     
