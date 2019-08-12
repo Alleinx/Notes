@@ -26,9 +26,19 @@ def g(*args, **kwargs):
     print(args)
     print(kwargs)
 
-
+# invoke function with str?
+class Foo:
+    def t(self):
+        print('Method: t')
+ 
 if __name__ == "__main__":
     # lazy_import()
     f((1,2,3,4),5,6,7, key='map')
-    
+
+    # invoke function with str
+    t = getattr(Foo(), 't')
+    t()
+    # or
+    dispatch = {'T': Foo().t()}
+    dispatch['T']
     
