@@ -18,7 +18,8 @@ class FrenchDeck:
     def __getitem__(self, position):
         return self._cards[position]
 
-    # Invoked by interpreter when execute print(obj)
+    # Invoked by interpreter when execute print(obj), if doesn't override __str__()
+    # Otherwise, __str__() will be invoked.
     def __repr__(self):
         return str(self._cards)
 
