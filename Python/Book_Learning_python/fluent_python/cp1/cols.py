@@ -7,10 +7,20 @@ class FrenchDeck:
     suits = 'spades diamonds clubs herts'.split()
 
     def __init__(self):
-        self._cards = [Card(rank, suit) for suit in self.suits for rank in self.ranks]
-
+        self._cards = [Card(rank, suit) for suit in self.suits
+                                            for rank in self.ranks]
+                                            
     def __len__(self):
         return len(self._cards)
 
     def __getitem__(self, position):
         return self._cards[position]
+
+    def __repr__(self):
+        return str(self._cards)
+
+
+if __name__ == "__main__":
+    beer_card = FrenchDeck()
+    print(beer_card)
+    print(len(beer_card))
