@@ -53,9 +53,21 @@ print(l)
 board = [[None] * 3 for i in range(3)]
 board[-1][-1] = 100
 
-# Different from
+# Notice the difference: 
+# The following code is equivlant to
+# row = [None] * 3
+# wierd_board = []
+# for i in range(3):
+#    wierd_board.append(row)
+
 wierd_board = [[None] * 3] * 3
 wierd_board[-1][-1] = 123
 
 print(board)
 print(wierd_board)
+
+# The Correct one should be 
+# board = []
+# for i in range(3):
+#   row = [None] * 3
+#   board.append(row)
