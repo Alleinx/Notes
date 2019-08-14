@@ -82,3 +82,21 @@ except TypeError as e:
     print('TypeError: \'tuple\' object does not support item assignment.')
 
 print(t)
+#------------------------
+# Array
+from array import array
+from random import random
+floats = array('d', (random() for i in range(10**5)))
+fp = open('float.bin', 'wb') 
+
+floats.tofile(fp)
+fp.close()
+
+floats2 = array('d')
+fp = open('float.bin', 'rb')
+floats2.fromfile(fp, 10**5)
+fp.close()
+
+assert floats == floats2
+# array.tofile & array.fromfile is way more faster than normal file read operation
+# because all data need to be converted to float when use normal file read operation.
