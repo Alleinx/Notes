@@ -7,7 +7,7 @@ tshirts = [(color, size) for color in colors
 # or 
 # tshirts = [(color, size) for size in sizes
 #                               for color in colors]
-print(tshirts)
+# print(tshirts)
 
 # For other sequence, better use generator expression, for saving memory
 t = tuple(str(i) for i in range(100))
@@ -20,8 +20,8 @@ print(t)
 x_set = [i for i in range(100)]
 y_set = [i for i in range(500, 600)]
 # Use Generator Expression!
-for point in ((x, y) for x in x_set for y in y_set):
-    print(point)
+# for point in ((x, y) for x in x_set for y in y_set):
+#     print(point)
 
 #------------------------
 # Use Tuple for records
@@ -36,3 +36,26 @@ for passport in sorted(traveler_ids, key=operator.itemgetter(1)):
 
 for country, _ in traveler_ids:
     print(country)
+
+#------------------------
+# Slice
+l = [i for i in range(10)]
+print(l)
+# slice assignment, RHS should be an iterable obj.
+l[2:5] = [20, 30]
+# deletion
+print(l)
+del l[5:7]
+print(l)
+#------------------------
+# +, * Operator on sequence obj
+
+board = [[None] * 3 for i in range(3)]
+board[-1][-1] = 100
+
+# Different from
+wierd_board = [[None] * 3] * 3
+wierd_board[-1][-1] = 123
+
+print(board)
+print(wierd_board)
