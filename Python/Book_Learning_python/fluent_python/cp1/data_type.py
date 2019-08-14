@@ -100,3 +100,20 @@ fp.close()
 assert floats == floats2
 # array.tofile & array.fromfile is way more faster than normal file read operation
 # because all data need to be converted to float when use normal file read operation.
+
+#------------------------
+# deque
+from collections import deque
+dq = deque(range(10), maxlen=10)
+dq.rotate(-1)
+# will remove the rightmost element, and add -1 to the begining of the queue.
+dq.appendleft(-1)
+# will remove the 3 elements at the begining of the queue and add 3 new elements to the end.
+dq.extend([11,22,33])
+
+print(dq)
+left = dq.popleft()
+print(dq)
+right = dq.pop()
+print(dq)
+
