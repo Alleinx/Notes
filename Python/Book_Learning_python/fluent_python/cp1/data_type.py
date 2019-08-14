@@ -71,3 +71,14 @@ print(wierd_board)
 # for i in range(3):
 #   row = [None] * 3
 #   board.append(row)
+
+#------------------------
+# tuple Inplace addition
+# Also mentioned in python official document.
+try:
+    t = (1,2, [30, 40])
+    t[2] += [50, 60]
+except TypeError as e:
+    print('TypeError: \'tuple\' object does not support item assignment.')
+
+print(t)
