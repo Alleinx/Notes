@@ -1,4 +1,10 @@
 from pattern import Customer, LineItem
+import inspect
+import promotions
+
+# Put all promo methods in promotions.py into a list:
+promos = [func for name, func in
+            inspect.getmembers(promotions, inspect.isfunction)]
 
 class Order:
     def __init__(self, customer, cart, promotion=None):
@@ -22,16 +28,10 @@ class Order:
     def __repr__(self):
         return '<Order total: {0} due: {1}'.format(self.total(), self.due())
 
-def fidelity_promo(order: Order):
-    return order.total() * 0.05 if order.customer.fidelity >= 1000 else 0
+def best_promo(order):
+    """Choose the best promotion for different customer"""
+    return max(promo(order) for promo in promos)
 
-def bulk_item_promo(order: Order):
-    discount = 0
-    for item in order.cart:
-        if item.quantity >= 20:
-            discount += item.total() * 0.01
-    
-    return discount
     
 if __name__ == "__main__":
     joe = Customer('John Doe', 0)
@@ -42,12 +42,13 @@ if __name__ == "__main__":
         LineItem('watermellon', 5, 5.0),
     ]
 
-    print(Order(joe, cart, promotion=fidelity_promo))
-    print(Order(ana, cart, promotion=fidelity_promo))
+    print(Order(joe, cart, promotion=best_promo))
+    print(Order(ana, cart, promotion=best_promo))
 
     cart = [
         LineItem('banana', 40, .5),
         LineItem('apple', 30, 1.5),
         LineItem('watermellon', 50, 5.0),
     ]
-    print(Order(joe, cart, promotion=bulk_item_promo))
+    
+    print(Order(joe, cart, promotion=best_promo))
