@@ -1,3 +1,10 @@
+# @decorate
+# def target():
+#   pass
+# is equal to:
+# target = decorate(target)
+# target() -> decorate(target)()
+
 def decorate(func):
     # will print out 'running target()'
     func()
@@ -5,13 +12,14 @@ def decorate(func):
         print('Running Inner')
     # will print out 'running Inner'
     inner()
+    return inner
 
 @decorate
-def target():
+def outer():
     print('Running target()')
 
 # Equivlant to:
-# target = decorate(target)
+# outer = decorate(outer)
 
 if __name__ == "__main__":
-    target
+    outer()
