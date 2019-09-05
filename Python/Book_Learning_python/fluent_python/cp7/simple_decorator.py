@@ -1,4 +1,5 @@
 import time
+import functools
 
 def clock(func):
     def clocked(*args):
@@ -18,6 +19,10 @@ def clock(func):
 def snooze(second):
     time.sleep(second)
 
+@functools.lru_cache()
+# lru_cache is a decorator that implements optimization mechanism.
+# Execution Order for @decorator1 @decorator2 def func()
+# func = decorator1(decorator2(func))
 @clock
 # factorial will be stored in global scope of the program.
 # clock(factorial)
@@ -27,5 +32,5 @@ def factorial(n):
 if __name__ == "__main__":
     print('*' * 40, 'Calling snooze(.123)')
     snooze(.123)
-    print('*' * 40, 'Calling factorial(6)')
-    print('6!=', factorial(6))
+    print('*' * 40, 'Calling factorial(10)')
+    factorial(10)
