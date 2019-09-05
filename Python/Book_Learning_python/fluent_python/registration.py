@@ -17,6 +17,9 @@ def f3():
     print('running f3()')
 
 def main():
+    # f1 = register(f1)
+    # f2 = register(f2)
+    # decorator is executed when the module is loaded.
     print('running main()')
     print('registry ->', registry)
     f1()
