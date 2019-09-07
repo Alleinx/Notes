@@ -42,3 +42,30 @@ print('registry ->', registry)
 
 f1()
 f2()
+#------------------------------------------------------------------
+# The following function test the property of 'free variable'
+print('\n\n\n\n')
+
+def test(other_args=False):
+    print('running test()')
+    
+    def decorator(func):
+        print('running decorator()', other_args)
+        def operation_function(*args):
+            print('Running operation function', other_args)
+            print('args passed to operation_function(): ', args)
+            func(*args)
+            # Need to use *args to pass variable positional parameters to other function.
+
+        return operation_function
+
+    return decorator
+
+@test()
+def d1(*args):
+    print('running f1()')
+    print(args)
+d1(123, 321, 123123123, 5235234)
+# d1(123, 321, 123123, 123123, ...) will also works if d1() doesn't take any variable positional parameters.
+print(test().__code__.co_freevars)
+print(d1.__code__.co_freevars)
