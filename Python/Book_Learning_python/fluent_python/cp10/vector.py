@@ -11,8 +11,11 @@ class Vector:
 
     def __init__(self, components):
         self._components = array(self.typecode, components)
+        # Check what's inside self.
         for x in self:
             print(x)
+
+        print(self, self._components)
     
     def __iter__(self):
         return iter(self._components)
@@ -96,5 +99,4 @@ class Vector:
         typecode = chr(octets[0])
         memv = memoryview(octets[1:]).cast(typecode)
         return cls(memv)
-    
     
