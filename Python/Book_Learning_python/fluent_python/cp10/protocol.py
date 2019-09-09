@@ -1,9 +1,8 @@
 # To let some class to behave like sequence, we don't need to let the class
 # be the subclass of any specific class(like java), but only need to implement
-# some necessary method
-# For example, to let a class behave like a sequence, the class need to implement
+# some necessary methods.
+# For example, to let a class behave like a sequence, the class needs to implement
 # __len__ and __getitem__ methods. After that, it could be used as a sequence.
-# Actually, it's the same as java.
 import collections 
 
 Card = collections.namedtuple('Card', ['rank', 'suit'])
