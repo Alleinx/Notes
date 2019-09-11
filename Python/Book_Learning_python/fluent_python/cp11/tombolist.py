@@ -5,6 +5,8 @@ from random import randrange
 from tombola import Tombola
 
 @Tombola.register
+# If not regist, there still another way to anounce that Tombolist is a subclass of Tombola,
+# but need to implement __subclasshook__ inside class Tombola.
 class Tombolist(list):
 
     def pick(self):
