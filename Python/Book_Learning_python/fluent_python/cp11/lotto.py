@@ -27,5 +27,7 @@ class LotteryBlower(Tombola):
     def inspect(self):
         return tuple(sorted(self._balls))
     
-    
+    def __len__(self):
+        return len(self._balls)
+
     
