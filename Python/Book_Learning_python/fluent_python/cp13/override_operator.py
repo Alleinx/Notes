@@ -1,4 +1,4 @@
-# This program demonstrates how to override Unary operator:
+# This program demonstrates how to override Unary/Binary operator:
 import math
 
 class Vector2d:
@@ -25,6 +25,15 @@ class Vector2d:
     def __repr__(self):
         return 'Vector (%.2f, %.2f)' % (self.x, self.y)
 
+    def __add__(self, other):
+        try:
+            return Vector2d(self.x + other.x, self.y + other.y)
+        except TypeError:
+            return NotImplemented
+    
+    def __radd__(self, other):
+        return self + other
+
 if __name__ == "__main__":
     a = Vector2d(4, 3)
     print(a)
@@ -37,3 +46,7 @@ if __name__ == "__main__":
     c = +b
     print(c)
     print(abs(c))
+
+    d = a + b
+    print(d)
+    print(abs(d))
