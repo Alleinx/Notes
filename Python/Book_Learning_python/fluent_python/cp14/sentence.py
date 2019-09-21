@@ -20,7 +20,7 @@ class Sentence:
         return 'Sentence(%s)' % reprlib.repr(self.text)
     
     def __iter__(self):
-        """In a Iterable obj, __iter__ needs to return a new iterator"""
+        """In an Iterable obj, __iter__ needs to return a new iterator"""
 
         return SentenceIterator(self.words)
 
