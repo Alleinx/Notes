@@ -14,10 +14,23 @@ class Sentence:
         return 'Sentence(%s)' % reprlib.repr(self.text)
     
     def __iter__(self):
-        for word in self.words
+        for word in self.words:
             yield word
+        # Generator registor(Factory method) won't raise StopIteration Exception.
 
-        # Generator won't raise StopIteration Excetpin,
-        # but exit after generating all elements in the given list.
+if __name__ == "__main__":
+    def gen_AB():
+        print('start')
+        yield 'A'
+        print('continue')
+        yield 'B'
+        print('end')
+
+    for c in gen_AB():
+        print('-->', c)
     
-    
+       
+    s = Sentence('"The time has come," the Walrus said,')
+
+    for word in s:
+        print(word)
