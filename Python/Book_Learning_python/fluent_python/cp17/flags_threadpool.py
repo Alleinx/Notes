@@ -21,6 +21,7 @@ def download_many(cc_list):
     # ThreadPoolExecutor.__exit__ will be called:
     # which will call executor.shutdown(wait=True), which will be hung up before all threads finish their
     # job.
+    # In fact, this program is not a real concurrent program, because of GIL.
     return len(list(res))
 
 if __name__ == "__main__":
