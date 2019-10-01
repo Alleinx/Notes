@@ -1,9 +1,11 @@
+# This program demonstrates how to use argpars in python.
 import argparse
 
 parser = argparse.ArgumentParser()
 
 # Define your args from here:
 
+# 1.Positional argument.
 # This method indicates which arg is **required** in this program.
 # Actually, echo is a **positional argument**.
 # 'help' keyword indicates the help msg shown when the --help/-h is used.
@@ -16,7 +18,7 @@ parser.add_argument("echo", help="echo the string you use here.")
 parser.add_argument("square", help="display a square of a given number.", type=int)
 
 # -----------------------------------------
-# Introducing Optional arguments
+# 2.Introducing Optional arguments
 # The order of optional arguments doesn't matter.
 # Add '-' or '--' in front of a argument, then the argument will become optional.
 # 'choice' keyword indecates the range of accetable input.
