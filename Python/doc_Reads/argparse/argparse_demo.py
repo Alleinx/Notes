@@ -1,7 +1,7 @@
-# This program demonstrates how to use argpars in python.
+# This program demonstrates how to use argparse in python.
 import argparse
 
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser(description='This program demonstrates how to use argparse module in python.')
 
 # Define your args from here:
 
@@ -51,6 +51,14 @@ parser.add_argument('-l', help='Demonstrate the usage of action-store_ture.', ac
 # don't have choice keyword.
 # but could be replaced with default.
 parser.add_argument('-c', help='Demonstrate the usage of action-count.', action='count', default=0)
+
+
+# Conflicting options
+# optional args in the same conflicting group can't be used at the same time.
+# usage: argparse_demo.py ... [-a | -b] ...
+group = parser.add_mutually_exclusive_group()
+group.add_argument('-a', action='store_true')
+group.add_argument('-b', action='store_true')
 
 # get all the args:
 args = parser.parse_args()
