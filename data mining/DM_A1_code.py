@@ -35,13 +35,12 @@ def normalize(x):
     return [(data - min_num)/inter for data in x]
     
 import statsmodels.api as sm
-import pylab
 
 age_norm = normalize(age)
 fat_norm = normalize(fat)
 
 sm.qqplot_2samples(np.asarray(age_norm), np.asarray(fat_norm), xlabel='age', ylabel='fat', line='45')
-pylab.show()
+plt.show()
 
 # -------------------------------
 # For Q6 :)
