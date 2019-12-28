@@ -79,3 +79,59 @@ print(a)
 # (a,b,v) denotes the (start, end, stride) for row accessing.
 # (j,k,h) denotes the (start, end, stride) for column accessing.
 print(a[::1, :3:1].diagonal())
+
+# Numpy:
+a = np.random.rand(3,4)
+a = T.from_numpy(a)
+print(a)
+print(type(a.numpy()))
+
+# Save/Load Tensor:
+# T.save(a, './test.t')
+# b = T.load('./test.t')
+
+# Could also use h5py:
+# import h5py
+# f = h5py.File('./test.hdf5', 'w')
+# f.create_dataset('a', data=a.numpy())
+# f.close()
+
+# f = h5py.File('./test.hdf5', 'r')
+# b = f['a'][1:]
+# f.close()
+# print(b)
+
+# Move Tensors to CUDA:
+# 1st:
+try:
+    a.to(device='cuda')
+except AssertionError as e:
+    print('Your device doesn\'t support Cuda.')
+print('Currently running on:', a.device)
+
+# 2nd:
+try:
+    a = T.tensor(
+        [
+            [1,2],
+            [3,4],
+            [5,6]
+        ],
+        dtype=T.float,
+        device='cuda'
+    )
+except AssertionError:
+    print('Your device doesn\'t support Cuda.')
+
+# 3rd:
+try:
+    a.cuda()
+except AssertionError:
+    print('Your device doesn\'t support Cuda.')
+
+a = T.tensor(range(10), dtype=T.float, device='cpu')
+print(a)
+a.pow_(2)
+print(a)
+a.sqrt_()
+print(a)
