@@ -35,5 +35,47 @@ b = T.zeros(1, 2)
 print(a, b)
 
 # 5. FLoatTensor:
-a = T.FloatTensor([[1,2,], [3,4]])
+a = T.FloatTensor([[1,2], [3,4]])
 print(a)
+
+# Values are stored in Storage instance, which is a flat array.
+# Tensors are just views on corresponding Storage instance.
+print(a.storage())
+
+# Change sub-tensor has side-effect on the original tensor:
+a[0][1] = 10
+print(a)
+
+# Clone the tensor 
+b = a.clone()
+b[-1][-1] = 5
+print(b)
+print(a)
+
+print(id(a.storage()))
+print(id(a.storage()) == id(b.storage()))
+print(a.storage())
+print(b.storage())
+
+# Transposing:
+a = T.rand(3,10)
+print(a.shape)
+print(a.t().shape)
+print(a.view(10, -1).shape, a.size())
+
+# dtype:
+print(a.dtype)
+a = a.to(T.long)
+print(a.dtype)
+a = a.double()
+print(a.dtype)
+a = a.type(T.float)
+print(a.dtype)
+
+# Accessing elements:
+a = T.rand(3,5)
+print(a)
+# In genearl: tensor[a:b:v, j:k:h]
+# (a,b,v) denotes the (start, end, stride) for row accessing.
+# (j,k,h) denotes the (start, end, stride) for column accessing.
+print(a[::1, :3:1].diagonal())
