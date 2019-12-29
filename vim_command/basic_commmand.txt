@@ -80,3 +80,6 @@
 9. visual mode
     9.1 v + use direction key;
 */
+
+# Appendix
+* https://www.jianshu.com/p/117253829581
