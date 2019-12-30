@@ -19,7 +19,7 @@ def main(n_epochs, learning_rate, params, x, y):
 
 def main_w_optim(n_epochs, optimizer, params, x, y):
     '''
-    Training progress with optimizer
+    Training process with optimizer
     1. Get predicted value with model
     2. Calculate loss
     3. Update Gradient
@@ -37,6 +37,26 @@ def main_w_optim(n_epochs, optimizer, params, x, y):
         if epoch % 1000 == 0:
             print('Epoch', epoch, 'Loss', loss)
     
+    return params
+
+def train_eval_optim(n_epochs, optimizer, params, train_x, train_y, val_x, val_y)
+    '''
+    Evaluate the model during the training process
+    '''
+    for epoch in range(1, n_epochs + 1):
+        predicted = model(train_x, params)
+        loss = loss_fn(predicted, train_y)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+        if epoch % 1000 == 0:
+            # Evaluate the model; with torch.no_grad(), no extra computational graph will be created
+            with torch.no_grad():
+                val_predicted = model(val_x, params)
+                val_loss = loss_fn(val_predicted, val_y)
+
+            print('Epoch:', epoch, 'Training Loss:', loss, 'CV loss:', val_loss)    
     return params
 
 if __name__ == "__main__":
