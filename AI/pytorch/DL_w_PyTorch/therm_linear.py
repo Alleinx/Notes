@@ -16,12 +16,12 @@ optimizer = optim.Adam(linear_model.parameters(), lr=1e-2)
 # Training:
 n_epochs = 10000
 for epoch in range(1, n_epochs + 1):
-    predicted = linear_model(t_c)
+    predicted = linear_model(t_u)
 
     # We use MSE loss here
     loss_fn = nn.MSELoss()
 
-    loss = loss_fn(predicted, t_u)
+    loss = loss_fn(predicted, t_c)
 
     optimizer.zero_grad()
     loss.backward()
