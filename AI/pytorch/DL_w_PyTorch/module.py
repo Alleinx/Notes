@@ -1,7 +1,11 @@
 import torch
 import torch.nn as nn
 
+# x: (batch_size, #feature_dim)
 x = torch.rand(3,2, dtype=torch.float)
+
+# Linear(input_size, output_size)
+# input_size = #feature_dim.
 linear_layer = nn.Linear(2,1, bias=True)
 print(x)
 
