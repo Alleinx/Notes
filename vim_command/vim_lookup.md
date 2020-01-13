@@ -77,6 +77,7 @@
         8.7.2 #de   //remove till the end of current word
         8.7.3 #db   //(Delete)
         8.7.4 #cw   //de + i
+    8.8 delete to the end of the line: d$.
 9. visual mode
     9.1 v + use direction key;
 */
