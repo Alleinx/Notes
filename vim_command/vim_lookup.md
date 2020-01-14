@@ -106,7 +106,7 @@
 #### Window
     10.1 split window
         # :split, vertical split.
-	# :vsplit, horizontal split.
+        # :vsplit, horizontal split.
 
     10.2 close split
         # :close
@@ -115,7 +115,13 @@
         # :split ./filename
 
     10.4 choose between different window:
-        # <Ctrl + W> + h,j,k,l
+        # <Ctrl + w> + h,j,k,l
+        # <C-w> + w, cycle between the open windows
+
+    10.5 move window
+        # <c-w> + H,J,K,L; move current window to ...
+        # <c-w> + r; rotate all windows.
+        # <c-w> + x; exchange the current window with its neighbor.
 
 # Appendix
 * https://www.jianshu.com/p/117253829581
