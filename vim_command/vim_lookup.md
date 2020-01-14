@@ -4,6 +4,7 @@
 		- operator: what to do, such as d for delete.
 		- [number]: is an optional count to repeat the motion. 
 		- motion: moves over the text to operate on, such as w (word), $ (to the end of line).
+    - **Typing :h [cmd] to get the doc for [cmd].**
 
 
 #### General
