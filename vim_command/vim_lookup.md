@@ -1,4 +1,16 @@
 /**
+0. Gist
+- ** Typing a number with an operator repeats it that many times. **
+    - operator [number] motion
+	- operator: what to do, such as d for delete.
+	- [number]: is an optional count to repeat the motion. 
+	- motion: moves over the text to operate on, such as w (word), $ (to the end of line).
+
+
+#### General
+- undo: u	//undo the last command; U	//undo opeartions on a whole line.
+- redo: <CTRL-R>
+
 1. File Operation
 
     1.1 open/create file
@@ -8,16 +20,11 @@
             # ZZ
     1.2 open a file in vim
         # :open file
-    1.3 split window
-        # :split
-    1.4 close split
-        # :close
-    1.5 open another file in the same window
-        # :split ./filename
-    1.6 switch to next file
+    1.3 switch to next file
         # :bn
-    1.7 switch to previouse file
+    1.4 switch to previouse file
         # :bp 
+
 2. Parenthesis pairing
     2.1 # %
 
@@ -31,6 +38,7 @@
         1.# V(whole line), v(character)     //visual mode
         2.d                                 //cut
         3.p                                 //paste
+
 4. Insertion
     4.1 # I //Insert from the begining of the line.
     4.2 # A //Insert from the end of the line.
@@ -61,7 +69,12 @@
     7.1 # [[        //move to the begining of the file;
     7.2 # ]]        //move to the end of the file.
     7.3 shift + direction.
-    7.4 # 0         //move to the begining of the line
+    7.4 # 0         //move to the begining of the line.
+    7.4.1 # $       //move to the end of the line.
+    7.5 # :w        //move to the begining of next word.
+    7.6 # :b        //move to the begining of previous word.
+    7.7 # :e        //move to the end of current word.
+    7.8 # :n*       //repeat operation n times.
 
 8. Delete
     8.1 # x         //similar to delete
@@ -73,14 +86,31 @@
     8.6 # :d + direction key. 
 
     8.7 Remove words
-        8.7.1 #dw   //remove till the begining of next word
-        8.7.2 #de   //remove till the end of current word
-        8.7.3 #db   //(Delete)
-        8.7.4 #cw   //de + i
+        8.7.0 #d + n + w   //delete next n words.
+        8.7.1 #dw   //remove till the begining of next word.
+        8.7.2 #de   //remove till the end of current word.
+        8.7.3 #db   //(Delete).
+        8.7.4 #cw   //de + i.
     8.8 delete to the end of the line: d$.
+
 9. visual mode
-    9.1 v + use direction key;
+    9.1 v + use direction key: copy characters/words.
+    9.2 <Shift + v> + use direction key: copy lines.
 */
+
+10. Window
+    10.1 split window
+        # :split, vertical split.
+	# :vsplit, horizontal split.
+
+    10.2 close split
+        # :close
+
+    10.3 open another file in the same window
+        # :split ./filename
+
+    10.4 choose between different window:
+        # <Ctrl + W> + h,j,k,l
 
 # Appendix
 * https://www.jianshu.com/p/117253829581
