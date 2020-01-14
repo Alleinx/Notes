@@ -94,10 +94,10 @@
     - Operator defines which operation to take; 
         - c: change
         - d: delete
-        -gu: make lowercase
-        -gU: make uppercase
-        -g~: reverse the case.
-        - >: shift right
+        - gu: make lowercase
+        - gU: make uppercase
+        - g~: reverse the case.
+        - \>: shift right
         - <: shift left
         - :h operator to see more operators.
 
