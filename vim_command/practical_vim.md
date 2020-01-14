@@ -100,6 +100,7 @@
         - \>: shift right
         - <: shift left
         - :h operator to see more operators.
+        - [count]J: join the following [count] lines.
 
     - [count] defines how many time the operation will be executed.
 
@@ -110,3 +111,30 @@
         - e.g. cc = S = ddi   //delete the whole line and enter insert mode.
         - gUU = gUgU    //make the line uppercase.
         - gugu = guu make the line lowercase.
+
+#### Chapter3
+
+- T13 : Insertion mode
+    - deletion under insert mode:
+        - <C-h> = backspace.
+        - <C-w> = delete previous word. (!)
+        - <C-u> = delete until the begining of the line. (!)
+
+- T14 : Back to general mode
+    - <Esc>
+    - <C-[>
+    - <C-c>
+
+- T15/16 Register, [skip]
+
+- T17 Insert not commonly used character
+    - <C-v>u{code}
+        - If we know the unicode of a character, we can insert the character by <C-v>u{unicode}.
+
+- T18 insert not commonly used character with digraphs, [skip]
+
+- T19 replace mode
+    - use **R** to enter replace mode.
+    - use **r** to replace a single character.
+
+#### Chapter4
