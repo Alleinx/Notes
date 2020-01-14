@@ -9,6 +9,10 @@
 #### General
     - undo: u	//undo the last command; U	//undo opeartions on a whole line.
     - redo: <CTRL-R>
+	- Execute a shell command:
+		- :[cmd]	//execute cmd within vim
+
+
 
 #### File Operation
 
@@ -90,6 +94,8 @@
         8.7.2 #de   //remove till the end of current word.
         8.7.3 #db   //(Delete).
         8.7.4 #cw   //de + i.
+        8.7.5 #daw  //delete the word under cursor.
+
     8.8 delete to the end of the line: d$.
 
 #### visual mode
