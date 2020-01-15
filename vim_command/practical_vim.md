@@ -112,7 +112,7 @@
         - gUU = gUgU    //make the line uppercase.
         - gugu = guu make the line lowercase.
 
-#### Chapter3
+## Chapter3
 
 - T13 : Insertion mode
     - deletion under insert mode:
@@ -137,4 +137,4 @@
     - use **R** to enter replace mode.
     - use **r** to replace a single character.
 
-#### Chapter4
+## Chapter4
