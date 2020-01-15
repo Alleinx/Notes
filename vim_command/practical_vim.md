@@ -5,136 +5,137 @@
     - Techniques
 
 ## Chapter1
-- T1: The . command:
-	- . command can repeat the last operation.
+- T1: The ```.``` command:
+	- ```.``` command can repeat the last operation.
 		- Includes commands in normal mode; Inserted character; etc.
 
-	- . is actually a macro, which could execute pre-defined operation in sequence.
+	- ```.``` is actually a macro, which could execute pre-defined operation in sequence.
 
-- T2: Use . to reduce duplicated operation (!)
+- T2: Use ```.``` to reduce duplicated operation (!)
     - Composed keys:
-        - C == c$
-            - c$ : delete the rest of the line and enter insert mode.
-            - c [motion]: delete + enter insert mode. (!)
-        - s == cl
+        - ```C == c$```
+            - ```c$``` : delete the rest of the line and enter insert mode.
+            - ```c``` [motion]: delete + enter insert mode. (!)
+        - ```s == cl```
             - delete the next character and enter insert mode.
-        - S == ^C (!)
+        - ```S == ^C``` (!)
             - **delete the whole line and enter insert mode.**
-            - ^ : move cursor to the first non-empty character of the line.
-            - 0 : move cursor to the first character of the line.
-            - $ : move cursor to the last character of the line.
-        - I == ^i
+            - ```^``` : move cursor to the first non-empty character of the line.
+            - ```0``` : move cursor to the first character of the line.
+            - ```$``` : move cursor to the last character of the line.
+        - ```I == ^i```
             - Enter insert mode at the begining of the statement.
-        - A == $a
+        - ```A == $a```
             - Append at the end of the sentence.
-        - o
+        - ```o```
             - Insert a line below.
-        - O
+        - ```O```
             - Insert a line Above.
 
-- T3: Find: f{char}
-    - f{char}: find the next {char} and place cursor on it.
-        - use ; to move to the next matched {char}.
-        - use , to move to the previous matched {char}.
+- T3: Find: ```f{char}```
+    - ```f{char}```: find the next {char} and place cursor on it.
+        - use ```;``` to move to the next matched {char}.
+        - use ```,``` to move to the previous matched {char}.
 
 - T4: Undo 
     - different motion has different undo keywords.
-    - u is the mostly used undo operand.
+    - ```u``` is the mostly used undo operand.
 
 - T5: search/replace
-    - /keywords 
+    - ```/keywords```
         - Search keywords globally.
-        - Use n/N to select next/previous matched word.
-    - :noh
+        - Use ```n/N``` to select next/previous matched word.
+    - ```:noh```
         - Turn off highlight after search.
-    - :%s/target/to/g
+    - ```:%s/target/to/g```
         - Replace all {target} within the text with {to}.
-    - cw.
-        - cw : clear a word and enter insertion mode; Recognized as 1 operation/macro.
-        - . : use . to repeat.
+    - ```cw.```
+        - ```cw``` : clear a word and enter insertion mode; Recognized as 1 operation/macro.
+        - ```.``` : use ```.``` to repeat.
 
-- T6 : pattern of .
-    - Ideal situation: move-key + .
-        - use move-key to move and use . to repeat operation.
+- T6 : pattern of ```.```
+    - Ideal situation: move-key + ```.```
+        - use move-key to move and use ```.``` to repeat operation.
     - Think how to convert duplicated operations into the ideal pattern. 
 
 ## Chapter 2
-- T7 : switch to normal mode.
+- T7 : Switch to normal mode when not typing.
 
-- T8 : control the size of undo operation
-    - i {insert some text} <Esc> : is a modification.
+- T8 : Control the size of undo operation
+    - ```i {insert some text}``` <Esc> : is a modification.
         - we can control the size of each undo operation by inserting <Esc> at the place we need.
         - Since undo operation will undo the "last operation".
 
-- T9 : . the duplicated modification.
-    - dl:
+- T9 : ```.``` the duplicated modification.
+    - ```dl```:
         - delete a letter.
-    - daw:
+    - ```daw```:
         - delete a word.
-    - das or S:
+    - ```das``` or ```S```:
         - delete a sentence.
-    - dap:
+    - ```dap```:
         - delete a paragraph.
-    - Since l, aw, as, ap is a [motion], d[motion] is considered as a single operation; So daw/s/p is ideal when using . operation.
+    - Since ```l, aw, as, ap``` is a [motion], d[motion] is considered as a single operation; So ```daw/s/p``` is ideal when using ```.``` operation.
 
 - T10 : Modify Numbers:
-    - [count]<ctrl-a>
+    - ```[count]<ctrl-a>```
         - Add the number under cursor by [count].
-    - [count]<ctrl-x>
+    - ```[count]<ctrl-x>```
         - Subtract the number under cursor by [count].
     - If the cursor is not on a number, execute these commands will modify the first number in current line.
 
 - T11 : Repeat > [count]
     - Use [count] if necessary:
-        - if use [operator][count][motion], then undo will undo the whole modification.
-        - In contrast, use . could provide better flexibility.
-        - c3w or dw..i: depends.
+        - if use ```[operator][count][motion]```, then undo will undo the whole modification.
+        - In contrast, use ```.``` could provide better flexibility.
+        - ```c3w``` or ```dw..i```: depends.
 
 - T12 : Operator + [count] + [motion] = Operation
     - Operator defines which operation to take; 
-        - c: change
-        - d: delete
-        - gu: make lowercase
-        - gU: make uppercase
-        - g~: reverse the case.
-        - \>: shift right
-        - <: shift left
-        - :h operator to see more operators.
-        - [count]J: join the following [count] lines.
+        - ```c```: change
+        - ```d```: delete
+        - ```gu```: make lowercase
+        - ```gU```: make uppercase
+        - ```g~```: reverse the case.
+        - ```\>```: shift right
+        - ```<```: shift left
+        - ```:h``` operator to see more operators.
+        - ```[count]J```: join the following [count] lines.
 
     - [count] defines how many time the operation will be executed.
 
-    - The scope of operation is determined by motion; (e.g. dw, daw, dl, dap).
+    - The scope of operation is determined by motion; (e.g. ```dw, daw, dl, dap```).
 
     - Combine operator and motion. (!)
     - **When a operator is called twice, then it will perform on current line.**
-        - e.g. cc = S = ddi   //delete the whole line and enter insert mode.
-        - gUU = gUgU    //make the line uppercase.
-        - gugu = guu make the line lowercase.
+        - e.g.``` cc = S = ddi```   //delete the whole line and enter insert mode.
+        - ```gUU = gUgU```    //make the line uppercase.
+        - ```gugu = guu``` make the line lowercase.
 
 ## Chapter3
 
 - T13 : Insertion mode
     - deletion under insert mode:
-        - <C-h> = backspace.
-        - <C-w> = delete previous word. (!)
-        - <C-u> = delete until the begining of the line. (!)
+        - ```<C-h>``` = backspace.
+        - ```<C-w>``` = delete previous word. (!)
+        - ```<C-u>``` = delete until the begining of the line. (!)
 
 - T14 : Back to general mode
-    - <Esc>
-    - <C-[>
-    - <C-c>
+    - ```<Esc>```
+    - ```<C-[>```
+    - ```<C-c>```
 
 - T15/16 Register, [skip]
 
 - T17 Insert not commonly used character
-    - <C-v>u{code}
-        - If we know the unicode of a character, we can insert the character by <C-v>u{unicode}.
+    - ```<C-v>u{code}```
+        - If we know the unicode of a character, we can insert the character by ```<C-v>u{unicode}```.
 
-- T18 insert not commonly used character with digraphs, [skip]
+- T18 Insert not commonly used character with digraphs, [skip]
 
-- T19 replace mode
-    - use **R** to enter replace mode.
-    - use **r** to replace a single character.
+- T19 Replace mode
+    - use ```R``` to enter replace mode.
+    - use ```r``` to replace a single character.
 
 ## Chapter4
+- T20 PH
