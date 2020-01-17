@@ -3,5 +3,7 @@ more +/pattern filename     //search pattern in filename
 more -N filename            //show line number
 
 #### Terminal Operations:
-1. delete a line of command: <C-u>
+- Also works for vim under insert mode.
+1. delete until the position of cursor <C-u>
 2. delete a previous word: <C-w>
+3. delete a letter: <C-h>
