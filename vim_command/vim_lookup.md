@@ -20,7 +20,8 @@
 - Execute a shell command:
     - ```:[cmd]```	: execute cmd within vim
 
-
+- blockwise visual mode: ```<C-v>```
+    - Select characters blockwise.
 
 #### File Operation
 
