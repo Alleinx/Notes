@@ -189,11 +189,11 @@
         - copy lines within range to register [x].
     - ```[line] put [x]```
         - paste contents in [x] after [line]
-    - ```[range] copy {address}``
+    - ```[range] copy {address}```
         - copy lines within range after address line.
-    - ```[range] move {address}``
+    - ```[range] move {address}```
         - move lines within range after address line.
-    - ```[range] join``
+    - ```[range] join```
         - join lines within range. 
     - ```[range] substitute/{pattern}/{string}/[flags]```
         - replace {pattern} within range to {string}.
