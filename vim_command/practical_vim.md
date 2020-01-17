@@ -50,7 +50,7 @@
     - ```:%s/target/to/g```
         - Replace all {target} within the text with {to}.
     - ```cw.```
-        - ```cw``` : clear a word and enter insertion mode; Recognized as 1 operation/macro.
+        - ```cw``` : change a word and enter insertion mode; Recognized as 1 operation/macro.
         - ```.``` : use ```.``` to repeat.
 
 - T6 : pattern of ```.```
@@ -138,4 +138,47 @@
     - use ```r``` to replace a single character.
 
 ## Chapter4
-- T20 PH
+- T20 Visual Mode
+    - ```<C-g>```
+        - Switch between "visual mode" and "select mode"
+        - In select mode, input will replace selected area; In visual mode, input will not change selected area by default, we can press ```c``` to achieve the same effect as select mode.
+
+- T21 Selection under visual mode
+    - ```v```: select a character at a time.
+    - ```V```: select a line at a time.
+    - ```<C-v>```: select a block at a time (!).
+        - When want to select a character vertically.
+    - ```gv```: select previous selected area. 
+
+    - Change the selective side (!):
+        - ```o``` will change the moving direction of visual mode. In this way, we can easily change the selected area.
+
+- T22 Repeat Visual cmd using ```.```
+- T23 Use operator rather than visual mode if possible.
+    - By doing so, we could better utilize the power of ```.``` operator.
+
+    - For one-time operations; and text areas that are hard to be described using cmd, it's convenient to use visual mode.
+
+    - ```U``` could convert selected text into upper case under visual mode.
+
+    - ```vit```: select text between a Tag; Then press ```U``` to convert them into upper case. However, using ```.``` to repeat this operation will modify the same # of characters as the first selected item.
+
+    - ```gUit```: This could solve the problem that ```vit-U``` has.
+
+- T24 Select text blocks vertically:
+    - ```<C-v>```
+        - Enter blockwise visual mode.
+
+- T25 modify vertical texts:
+    - ```<C-v>``` -> select vertical text areas that want to modify at the same time -> ```c``` -> input modified contents -> ```<Esc>``` -> done.
+    - ```<C-v>``` -> select text -> operator -> modify -> back to normal mode and done.
+
+- T26 Append Text after text-areas with different length:
+    - could use ```A{text}``` and key + ```.``` operation.
+    - could also ```<C-v>$A``` and key + ```{text}``` to add text (!).
+
+    - ```i/I``` and ```a/A```:
+        - When using ```<C-v>```, ```i/a``` are treated as a component of a text object, instead of entering the insert mode; ```I/A``` will enter insert mode at the begining/end of the "selected area", instead of the "whole line".
+
+## Chapter5
+- T27 PH
