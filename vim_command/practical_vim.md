@@ -181,4 +181,21 @@
         - When using ```<C-v>```, ```i/a``` are treated as a component of a text object, instead of entering the insert mode; ```I/A``` will enter insert mode at the begining/end of the "selected area", instead of the "whole line".
 
 ## Chapter5
-- T27 PH
+- T27 Command-line mode in Vim
+    - press ```:```, and vim will enter command-line mode; cmds within command-line mode is called "ex-cmd".
+    - ```[range] delete [x]```
+        - delete lines within range to register [x].
+    - ```[range] yank [x]```
+        - copy lines within range to register [x].
+    - ```[line] put [x]```
+        - paste contents in [x] after [line]
+    - ```[range] copy {address}``
+        - copy lines within range after address line.
+    - ```[range] move {address}``
+        - move lines within range after address line.
+    - ```[range] join``
+        - join lines within range. 
+    - ```[range] substitute/{pattern}/{string}/[flags]```
+        - replace {pattern} within range to {string}.
+    - ```%s/{pattern}/{string}```
+        - replace {pattern} globally to {string}.
