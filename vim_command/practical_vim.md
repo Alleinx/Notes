@@ -185,17 +185,54 @@
     - press ```:```, and vim will enter command-line mode; cmds within command-line mode is called "ex-cmd".
     - ```[range] delete [x]```
         - delete lines within range to register [x].
+
     - ```[range] yank [x]```
         - copy lines within range to register [x].
+
     - ```[line] put [x]```
         - paste contents in [x] after [line]
+
     - ```[range] copy {address}```
         - copy lines within range after address line.
+
     - ```[range] move {address}```
         - move lines within range after address line.
+
     - ```[range] join```
         - join lines within range. 
+
     - ```[range] substitute/{pattern}/{string}/[flags]```
         - replace {pattern} within range to {string}.
+
     - ```%s/{pattern}/{string}```
         - replace {pattern} globally to {string}.
+
+- T28 Execute cmds on multiple lines
+    - ```:{start}, {end}[ex-cmds]```
+        - {start}, {end} are addresses; line number is one of the addresses.
+        - ```{/some_pattern}, {/end_pattern}``` could also be address, i.e. could use search pattern as the address.
+        - address could also be selected regions; use visual mode to select some text and then enter the cmd command-line mode to conduct operations using cmds.
+
+    - [ex-cmds] could also be cmds in normal mode.
+        - e.g. ```:3d``` means delete the 3rd line.
+
+    - ```:{line}```
+        - Jump to line.    
+
+    - Address lookup table:
+        - ```.``` represent the address for current line.
+        - ```$``` represent the address for the last line in the doc.
+        - ```%``` represent all the lines in the doc.
+            - ```:%s``` == ```:%substitute```
+        - ```0``` represent the 0th line of the file; useful when want the last address to be the begining of the file. e.g. ```x copy 0```: copy xth line to the begining of the file.
+
+- T29: use ':t' and ':m' to copy and move lines
+    - ```t``` is the short version of ex-cmd ```copy```.
+        - E.g.: 
+            - ```:6 t .``` copy 6th line after the current line.
+            - ```:. t 6``` copy current line after the 6th line.
+            - ```. t .``` == ```yyp```
+            - ```. t $``` copy current line after the last line.
+            - ```'<, '> t0``` copy select lines to the begining of the file.
+
+    - ```m``` is the short version of ex-cmd ```move```.
