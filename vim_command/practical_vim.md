@@ -58,7 +58,7 @@
         - use move-key to move and use ```.``` to repeat operation.
     - Think how to convert duplicated operations into the ideal pattern. 
 
-## Chapter 2
+## Chapter2
 - T7 : Switch to normal mode when not typing.
 
 - T8 : Control the size of undo operation
@@ -136,7 +136,7 @@
 - T19 Replace mode
     - use ```R``` to enter replace mode.
     - use ```r``` to replace a single character.
-
+ 
 ## Chapter4
 - T20 Visual Mode
     - ```<C-g>```
@@ -219,7 +219,7 @@
     - ```:{line}```
         - Jump to line.    
 
-    - Address lookup table:
+    - Address lookup table (!):
         - ```.``` represent the address for current line.
         - ```$``` represent the address for the last line in the doc.
         - ```%``` represent all the lines in the doc.
@@ -236,3 +236,47 @@
             - ```'<, '> t0``` copy select lines to the begining of the file.
 
     - ```m``` is the short version of ex-cmd ```move```.
+
+- T30: execute normal mode cmds on selected area (!)
+    - ```'<,'> normal [cmd]```
+        - e.g. If we want to do "repeat" operation on selected lines, we could use ```'<,'> normal .```, instead of ```j + .``` for many times. 
+        - ```%normal A;``` to add ; for all the lines in the doc.
+            - Or use ```<C-v>[count]j$A;```
+
+- T31: repeat the last ex-cmd
+    - Use ```.``` to repeat last normal cmd.
+    - Use ```@:``` to repeat last ex-cmd.
+        - If want to repeat a ex-cmd multiple times, use ```@@``` after the first ```@:```.
+
+- T32: auto-completion for ex-cmd
+    - Use ```<Tab>, <S-Tab>``` to iterate/reverse iterate the completion list. 
+    - Use ```<C-d>``` to list all items in the completion list (!).
+        - e.g ```cop<C-d>``` will list all item in completion list for "cop".
+
+- T33: Insert copied word into cmd-line mode: [skip]
+- T34: Trace history
+    - Press ```<Up>, <Down>``` in cmd-line mode to trace historical ex-cmds.
+    - vim will also preserve history for "Search mode".
+
+- T35: Shell cmd (!)
+    - Use ```:![shell-cmd]``` to execute a shell cmd.
+        - ```:ls``` invokes the built-in cmd of vim.
+        - ```:!ls``` invokes the shell cmd.
+
+    - If want to execute multiple shell cmds:
+        - 1st way:
+            - Use ```:shell``` to create a shell;
+            - After using, input exit to back into vim;
+        - 2nd way:
+            - Use ```Ctrl-z``` to hang up vim process.
+            - Use ```fg``` to get back into vim.
+
+    - Lookup table (!)
+        - ```:shell```                  : launch a shell (type exit to return to vim).
+        - ```!{cmd}```                  : execute {cmd} in shell.
+        - ```read !{cmd}```             : execute {cmd} in shell and insert result after cursor in vim.
+        - ```[range]write !{cmd}```     : execute {cmd} in shell with input in [range].
+        - ```[range]!{filter}           : execute {filter} with input in [range].
+
+## Chapter6
+- T36: manage files
