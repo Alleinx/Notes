@@ -23,6 +23,9 @@
 - blockwise visual mode: ```<C-v>```
     - Select characters blockwise.
 
+- Repeat the last ex-cmd
+    ```@:```
+
 #### File Operation
 
 - Open/create file
