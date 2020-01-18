@@ -77,13 +77,17 @@
 - ```:%s/old/new/g```     : replace all (old) in the file to (new); 
        
 #### Move cursor
-- ```[[```        :move to the begining of the file;
-- ```]]```        :move to the end of the file.
-- ```0```         :move to the begining of the line.
-- ```$```       :move to the end of the line.
-- ```w```        :move to the begining of next word.
-- ```b```        :move to the begining of previous word.
-- ```e```        :move to the end of current word.
+- ```[[```            :move to the begining of the file;
+- ```]]```            :move to the end of the file.
+- ```0```             :move to the begining of the line.
+- ```$```             :move to the end of the line.
+- ```w```             :move to the begining of next word.
+- ```b```             :move to the begining of previous word.
+- ```e```             :move to the end of current word.
+- ```G```             :move to the end of file.
+- ```gg```            :move to the begining of the file.
+- ```[i]G```          :move to the ith line of the file.
+- ```<C-o>```         :move back to the previous position.
 
 #### Delete
 - ```x```         :similar to delete
