@@ -26,6 +26,8 @@
 - Repeat the last ex-cmd
     ```@:```
 
+- ```<C-o>```         :move cursor back to the previous position.
+
 #### File Operation
 
 - Open/create file
