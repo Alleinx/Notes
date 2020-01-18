@@ -173,7 +173,6 @@
     - ```<C-v>``` -> select vertical text areas that want to modify at the same time -> ```c``` -> input modified contents -> ```<Esc>``` -> done.
     - ```<C-v>``` -> select text -> operator -> modify -> back to normal mode and done.
 
-- T26 Append Text after text-areas with different length:
     - could use ```A{text}``` and key + ```.``` operation.
     - could also ```<C-v>$A``` and key + ```{text}``` to add text (!).
 
@@ -276,7 +275,7 @@
         - ```!{cmd}```                  : execute {cmd} in shell.
         - ```read !{cmd}```             : execute {cmd} in shell and insert result after cursor in vim.
         - ```[range]write !{cmd}```     : execute {cmd} in shell with input in [range].
-        - ```[range]!{filter}           : execute {filter} with input in [range].
+        - ```[range]!{filter}```        : execute {filter} with input in [range].
 
 ## Chapter6
 - T36: manage files
