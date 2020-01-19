@@ -379,7 +379,7 @@
     - ```f{char}```
     - use ```;``` and ```,``` to choose forward and backward.
     - ```t{char}```     :move cursor 1 char before the next {char} (!).
-        - ```dt{char}   :delete till the specified character.
+        - ```dt{char}```   :delete till the specified character.
     - when moving, better use ```f{char}```; when modifying(d, c), better use ```dt{char}/ct{char}``` (!).
 
 - T50: moving with search
