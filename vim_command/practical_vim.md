@@ -279,3 +279,55 @@
 
 ## Chapter6
 - T36: manage files
+    - Changes will be temporarily stored in vim buffer, and write to file when save those changes. 
+    - Use ```:ls``` to list items in buffer.
+    - Open multiple docs using ```vim files```, files will be stored in buffer; Use ```:bnext``` and ```:bprevious``` to switch between files; Could also use ```<C-^>``` to switch files in buffer.
+        - ```:bp``` == ```:bprevious```, ```:bn``` == ```:bnext``` (!).
+        - Use ```:bd {buffer_index}``` to delete/close specific buffer (!).
+
+
+- T37: Group buffer using args
+    - Use ```args {files}``` to add files into buffer inside vim. Then, we can use ```:bn``` and ```:bp``` to switch files.
+    - Use ```:w``` to write changes to file; Use ```:e!``` to discard all changes that haven't been saved to file.
+    - Use ```:wa!``` to write all changes to files.
+
+- T38: manage hidden buffer
+    - Vim will not allow user to switch to another buffer if there are changes haven't been saved in current buffer, unless we use ```!```; After adding ```!``` to the end of ex-cmd, current buffer will become a "hidden buffer", and we can make changes in other buffer as normal; When we want to close all windows, vim will remind us to "save/discard" changes in all hidden buffer if existed. 
+
+- T39: divide workspace into several windows
+    - Split window:
+        - Use ```<C-w>s``` to split horizontally.
+        - Use ```<C-w>v``` to split vertically
+            - Then, we could use ```edit {file}``` to override buffer.
+            - Or, we could switch buffers using ```:bn, :bp``` if any.
+        - ```:split```, vertical split.
+        - ```:vsplit```, horizontal split.
+    - Switch between windows:
+        - ```<C-w> + hjkl```
+        - ```<C-w> + w``` or ```<C-w><C-w>```
+    - Close windows:
+        - ```close```   : close the activated window.
+        - ```only```    : close all other windows rather than the activated window.
+
+- T40: Using tabpage in vim
+    - In vim, tabpage is a container contains several windows.
+        - I.e. Each tabpage contains several windows; different tabs could have different windows.
+        - Tabpage is useful when we need to work on sth else but don't want mess up current windows alignment.
+
+    - Open/close tabpage
+        - ```tabe {filename}``` : create a new tabpage.
+            - if {filename} is not provided, will create a new tabpage with empty buffer.
+        - Use ```<C-w>T``` to move current window into a new tabpage.
+        - ```tabclose```        : close current tab.
+        - ```close```           : close the tabpage if there's only 1 window in it.
+        - ```tabonly```         : close other tabs.
+
+    - Switch between tabpages:
+        - ```{N}gt```           : go to {N}th tabpage; {N} start from 1.
+        - ```gt```              : go to next tabpage.
+        -``gT```                : go to previous tabpage.
+    - Re-arrange tabpages:
+        - ```:tabmove [N]```    : move current tabpage into [N]th place.
+
+## Chapter7
+- T41: using ```:edit``` to open files
