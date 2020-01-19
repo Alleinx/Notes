@@ -285,6 +285,7 @@
         - ```:bp``` == ```:bprevious```, ```:bn``` == ```:bnext``` (!).
         - Use ```:bd {buffer_index}``` to delete/close specific buffer (!).
             - Use ```:.bd``` to delete/close activated buffer (!).
+            - Use ```{start},{end}bd``` to delect buffer in range.
 
 
 - T37: Group buffer using args
@@ -333,7 +334,7 @@
 ## Chapter7
 - T41: using ```:edit``` to open files
     - ```edit {file}``` or ```e {file}``` (!).
-    - ```edit %:h```            : % will be the path of file in activated buffer
+    - ```edit %:h```            : % will be the path of file in activated buffer.
     - Add a config to .vimrc file; now, we can use ```%%``` to show the path of the file in activated buffer.
 
 - T42: use ```:find``` to open files
@@ -349,3 +350,39 @@
     - Use ```Sexplore``` to open the file system in a horizontal window (!).
         - Or use ```:Sex``` for short cut.
     - Use ```<C-^>``` to switch between file system management window and workplace.
+    - Use ```o``` to open file in a new window; Use ```<CR>``` to open file in current window (default).
+
+- T44: Save file into not-existed dir
+    - when we try to save file into a not existed dir, an error will occur.
+    - We could use ```:!mkdir -p %h``` to create the target dir first, then save the file into it.
+        - ```%``` is the path of file in activated buffer. 
+
+- T45: Save file as super-user, [skip]
+
+## Chapter8
+- T46: place your finger in the right place.
+
+- T47: distinguish "actual line" and "screen line"
+    - ```g + {move_keys}``` to move between "screen line"
+        - e.g. ```g0```, ```g + hjkl```, ```g$```, ```g^```.
+
+- T48: move based on word/WORD (!)
+    - distinguish "word" and "WORD"
+        - word: {character, number, _, non-empty character}, seperated using empty-character.
+        - WORD: {character}, seperated using empty-character.
+        - use ```w, b, e, ge``` to jump between word; use ```W, B, E, gE``` to jump between WORD.
+    - ```ge```      :move to the end of last previous word.
+    - ```ea```      :add to the end of the word.
+    - ```w, e, b``` :...
+
+- T49: search/move based on character
+    - ```f{char}```
+    - use ```;``` and ```,``` to choose forward and backward.
+    - ```t{char}```     :move cursor 1 char before the next {char} (!).
+        - ```dt{char}   :delete till the specified character.
+    - when moving, better use ```f{char}```; when modifying(d, c), better use ```dt{char}/ct{char}``` (!).
+
+- T50: moving with search
+    - visual mode with search;
+    - delete with search;
+    - move with search;
