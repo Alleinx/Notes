@@ -31,6 +31,9 @@
 - ```:e!```         : Discard all buffed changes that haven't been written to file.
 
 - ```<C-g>```       : check file status.
+
+- ```t{char}```     :move cursor 1 char before the next {char}.
+    - ```dt{char}   :delete till the specified character.
 #### File Operation
 
 - Open/create file
@@ -92,6 +95,7 @@
 - ```w```             :move to the begining of next word.
 - ```b```             :move to the begining of previous word.
 - ```e```             :move to the end of current word.
+- ```ge```            :move to the end of previous word.
 - ```G```             :move to the end of file.
 - ```gg```            :move to the begining of the file.
 - ```[i]G```          :move to the ith line of the file.
