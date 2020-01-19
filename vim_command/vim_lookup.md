@@ -26,10 +26,11 @@
 - Repeat the last ex-cmd
     ```@:```
 
-- ```<C-o>```         :move cursor back to the previous position.
+- ```<C-o>```       :move cursor back to the previous position.
 
 - ```:e!```         : Discard all buffed changes that haven't been written to file.
 
+- ```<C-g>```       : check file status.
 #### File Operation
 
 - Open/create file
