@@ -28,6 +28,8 @@
 
 - ```<C-o>```         :move cursor back to the previous position.
 
+- ```:e!```         : Discard all buffed changes that haven't been written to file.
+
 #### File Operation
 
 - Open/create file
