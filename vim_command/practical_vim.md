@@ -284,6 +284,7 @@
     - Open multiple docs using ```vim files```, files will be stored in buffer; Use ```:bnext``` and ```:bprevious``` to switch between files; Could also use ```<C-^>``` to switch files in buffer.
         - ```:bp``` == ```:bprevious```, ```:bn``` == ```:bnext``` (!).
         - Use ```:bd {buffer_index}``` to delete/close specific buffer (!).
+            - Use ```:.bd``` to delete/close activated buffer (!).
 
 
 - T37: Group buffer using args
@@ -325,9 +326,26 @@
     - Switch between tabpages:
         - ```{N}gt```           : go to {N}th tabpage; {N} start from 1.
         - ```gt```              : go to next tabpage.
-        -``gT```                : go to previous tabpage.
+        - ```gT```              : go to previous tabpage.
     - Re-arrange tabpages:
         - ```:tabmove [N]```    : move current tabpage into [N]th place.
 
 ## Chapter7
 - T41: using ```:edit``` to open files
+    - ```edit {file}``` or ```e {file}``` (!).
+    - ```edit %:h```            : % will be the path of file in activated buffer
+    - Add a config to .vimrc file; now, we can use ```%%``` to show the path of the file in activated buffer.
+
+- T42: use ```:find``` to open files
+    - ```:find``` allow us to open a file using filename without input the complete filepath.
+        - Need to set path first: use ```:set path+={path/**}``` to add a new path.
+
+- T43: use "netrw" to manage file system.
+    - Use ```e{dir}``` to open the file system management window of {dir}.
+        - ```:e.``` opens the Fs of current dir(dir of activated buffer).
+        - Or use ```:E``` to achieve the same effect.
+    - Use ```Vexplore``` to open the file system in a vertical window (!).
+        - Or use ```:Vex``` for short cut.
+    - Use ```Sexplore``` to open the file system in a horizontal window (!).
+        - Or use ```:Sex``` for short cut.
+    - Use ```<C-^>``` to switch between file system management window and workplace.
