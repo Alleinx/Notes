@@ -117,8 +117,14 @@
     - ```:split```, vertical split.
     - ```:vsplit```, horizontal split.
 
+    - Use ```<C-w>s``` to split horizontally.
+    - Use ```<C-w>v``` to split vertically
+        - Then, we could use ```edit {file}``` to override buffer.
+        - Or, we could switch buffers using ```:bn, :bp``` if any.
+
 - close split
-    - ```:close```
+    - ```close```   : close the activated window.
+    - ```only```    : close all other windows rather than the activated window.
 
 - open another file in the same window
     - ```:split ./filename```
