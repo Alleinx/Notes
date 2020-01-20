@@ -444,3 +444,40 @@
     - ```ys{motion}{target}```           :add a surrounding.
         - ```v``` + ```S{target}```      :add a surrounding.
     - ```yS{motion}{target}```           :add a surrounding of {motion} to a new line with indent.
+
+## Chapter9
+- T55: walk through jump-through list
+    - Use ```:jumps``` to view the jump-through list.
+        - jump      :index.
+        - line/col  :cursor position.
+        - file/text :which file.
+
+    - Move around:
+        - ```<C-o>```        :go backward.
+        - ```<C-i>```        :go forward.
+
+- T56: walk through change list
+    - Use ```:changes``` to view the change list.
+    
+    - Move around:
+        - ```g;```          :move cursor to the position of "previous" change;
+        - ```g,```          :move cursor to the position of "next" change;
+
+- T57: Jump to files under cursor (!)
+    - Use ```gf``` cmd to go to file "play.txt" if it exist under path.
+        - we can jump forward/backward using ```<C-i>``` and ```<C-o>```.
+
+    - Add expanded-name
+        - ```:set suffixesadd+={.name}```
+        - Now, we can go to file "play", even we doesn't wirte its expanded name.
+
+- T58: Jump through global mark (!)
+    - As mentioned before, we could use ```m{a-z}``` to create a mark inside a file.
+        - Use ``` `{mark}``` to jump to {mark}.
+
+    - We could also create a global mark using ```m{A-Z}```.
+        - This is useful when we want to find definition in other files; Yes, we can use ```<C-o>``` to jump back; However, when the number of files increase, it takes more effort to get back to the original file; Thus, mark sure to set a "global mark" before using commands that could lead us to other places.
+
+## Chapter10
+- T59: delete/copy/paste using "nameless register".
+    - 
