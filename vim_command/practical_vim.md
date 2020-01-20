@@ -136,6 +136,7 @@
 - T19 Replace mode
     - use ```R``` to enter replace mode.
     - use ```r``` to replace a single character.
+        - could also use ```r``` to replace selected character.
  
 ## Chapter4
 - T20 Visual Mode
@@ -386,3 +387,60 @@
     - visual mode with search;
     - delete with search;
     - move with search;
+
+- T51: select text inside tags
+    - vim can select text inside some tags (<, {, (, ', ", [).
+        - cursor must be placed inside the tags.
+
+    - operator {a;i}
+        - a: text and(with) the tag.
+        - i: text within the tag.
+
+    - e.g.:
+        - ```vi{tag}```      :select text inside the tag. (e.g. <Text>, press ```vi<``` will select Text).
+        - ```va{tag}```      :select text inside the tag with tag. (e.g. <Text>, press ```va<``` will select <Text>).
+        - ```ci{tag}``` 
+        - ```di{tag}``` 
+
+    - lookup table:
+        - ```a)``` or ```a(```       :select text with parentheses.
+        - ```i)``` or ```i(```       :select text inside parentheses.
+        - ```a}``` or ```a{```       :select text with braces.
+        - ```i}``` or ```i{```       :select text inside braces.
+        - ```a] or a[; i] or i[```   :select ... brackets.
+        - ```a> or a<; i> or i<```   :select ... angle brackets.
+        - ```a' or a'; i' or i'```   :select ... single quotes.
+        - ```a" or a"; i" or i"```   :select ... double quotes.
+        - ```a` or a`; i` or i` ```  :select ... backticks.
+        - ```at or at; it or it ```  :select ... tags.
+
+- T52: more deletion
+    - lookup table
+        - ```iw```      :current word.
+        - ```aw```      :current word + "space". 
+            - ```dw``` == ```daw```
+            - ```cw``` == ```ciw```
+        - ```iW```      :current WORD.
+        - ```aW```      :current WORD + "space".
+        - ```is```      :current sentence.
+        - ```as```      :current sentence + "space". 
+        - ```ip```      :current paragraph.
+        - ```ap```      :current paragraph. + "space". 
+
+    - In general, better use ```as, aw, ap``` with ```d{motion}```; and use ```iw, is, ip``` with ```c{motion}```.
+
+- T53: set mark to jump back quickly (!)
+    - ```m{a-zA-Z}```   will set a mark at current position of cursor with {a-zA-Z}.
+    - ``` `{mark}```    will jump to the line marked with {mark}.
+        - Could also use ```<C-o>```.
+        - use ```mm``` and ``` `m``` to mark a mark and jump back.
+
+- T54: jump between parentheses
+    - ```%```       :jump between pair of parentheses (e.g. (),{,[])
+
+- Usage of vim-surround (!)
+    - ```cs{old}{new}```                 :change a surrounding.
+    - ```ds{target}```                   :delete a surrounding.
+    - ```ys{motion}{target}```           :add a surrounding.
+        - ```v``` + ```S{target}```      :add a surrounding.
+    - ```yS{motion}{target}```           :add a surrounding of {motion} to a new line with indent.
