@@ -431,7 +431,7 @@
 
 - T53: set mark to jump back quickly (!)
     - ```m{a-zA-Z}```   will set a mark at current position of cursor with {a-zA-Z}.
-    - ``` `{mark}```    will jump to the line marked with {mark}.
+    - ``` '{mark}```    will jump to the line marked with {mark}.
         - Could also use ```<C-o>```.
         - use ```mm``` and ``` `m``` to mark a mark and jump back.
 
@@ -480,4 +480,19 @@
 
 ## Chapter10
 - T59: delete/copy/paste using "nameless register".
-    - 
+    - ```y{motion}```       : yank {motion} into nameless register. 
+
+- T60: deep into vim register
+    - Yank/put into/from system (!)
+        - yank into system clickboard       :Use ```"+``` prefix.
+        - put from system clickboard        :Use ```"+``` prefix under insert mode.
+            - or just use ```<C-p>``` under insert mode.
+    - Delete/yank/put in vim will use one of the registers; we could add ```"{register}``` prefix to indicate which register to use; If not indicate, vim will use the "nameless register" by default.
+    - The blackhole register :operations after ```"_``` prefix will not be stored to nameless register (!).
+        - i.e. we could use ```"_dd``` to delete a line while not mess up the nameless register.
+    - Named register
+        - vim provide 26 named register: {a-z}; we could use ```_{a-z}``` prefix to indicate which named register to use.
+
+- T61: replace register content with selected area
+    - when we replace content of selected area with content inside the register, content of selected area will be written into the register.
+        - This design makes it easy to switch 2 selected areas (!).
