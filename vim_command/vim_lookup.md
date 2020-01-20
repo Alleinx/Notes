@@ -34,6 +34,16 @@
 
 - ```t{char}```     :move cursor 1 char before the next {char}.
     - ```dt{char}   :delete till the specified character.
+
+#### Plugin
+- Usage of vim-surround (!)
+    - ```cs{old}{new}```                 :change a surrounding.
+    - ```ds{target}```                   :delete a surrounding.
+    - ```ys{motion}{target}```           :add a surrounding.
+        - ```v``` + ```S{target}```      :add a surrounding.
+    - ```yS{motion}{target}```           :add a surrounding of {motion} to a new line with indent.
+
+
 #### File Operation
 
 - Open/create file
