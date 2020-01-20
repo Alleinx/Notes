@@ -92,14 +92,15 @@
 
 - T12 : Operator + [count] + [motion] = Operation
     - Operator defines which operation to take; 
-        - ```c```: change
-        - ```d```: delete
-        - ```gu```: make lowercase
-        - ```gU```: make uppercase
-        - ```g~```: reverse the case.
-        - ```\>```: shift right
-        - ```<```: shift left
-        - ```:h``` operator to see more operators.
+        - ```c```       : change
+        - ```d```       : delete
+        - ```gu```      : make lowercase
+        - ```gU```      : make uppercase
+        - ```~```       : make uppercase
+        - ```g~```      : reverse the case.
+        - ```\>```      : shift right
+        - ```<```       : shift left
+        - ```:h```      : operator to see more operators.
         - ```[count]J```: join the following [count] lines.
 
     - [count] defines how many time the operation will be executed.
@@ -287,6 +288,7 @@
         - Use ```:bd {buffer_index}``` to delete/close specific buffer (!).
             - Use ```:.bd``` to delete/close activated buffer (!).
             - Use ```{start},{end}bd``` to delect buffer in range.
+    - ```:bs{#buffer}```        :split {buffer} into a new window.
 
 
 - T37: Group buffer using args
@@ -311,6 +313,9 @@
     - Close windows:
         - ```close```   : close the activated window.
         - ```only```    : close all other windows rather than the activated window.
+    - Alter Windows:
+        - ```<C-w>{HL}  : move current window left/right(switch to vertical split).
+        - ```<C-w>{JK}  : move current window down/up(switch to horizontal split).
 
 - T40: Using tabpage in vim
     - In vim, tabpage is a container contains several windows.
@@ -509,4 +514,57 @@
     - To prevent this issue, always use ```"+p``` or ```<C-r>+``` to put content in system clipboard into vim (!).
 
 ## Chapter11
-- T64: Macro
+- T64: Macro (!)
+    - macro is a series of commands.
+    - record a macro:
+        - start recording: ```q{register}```
+        - input cmds.
+        - end recording: ```q```, the macro will be stored in {register}.
+    - play a macro:
+        - ```[count]@{register}```; After the first use, we could use ```@@``` to repeat.
+    - Better define a macro in parallel.
+
+- T65: cursor movement when using a macro.
+    - Principle: make sure every cmd could be executed repeatedly when defining a macro.
+        - ```w, b, e, ge``` is better than ```hjkl```; make sure cursor will be in the right position every time you use a macro when define it;
+    - when one of the motions failed, the macro will stop executing.
+        - for macros contain "move to next matched obj", we could set [count] to a very large number and the macro will automatically stops when the motions fail (!).
+
+- T66: ```[count]@{register}``` (!)
+    - Use simple recorded macro and use ```[count] @{register}``` to repeat it(like the use of ```.```).
+
+- T67: Repeat modification on continuous lines (!)
+    - ```[count]@{register}```                  :execute a macro in series.
+        - if one of the macro failed, the rest will stop executing.
+    - ```:{selected area}normal @{register}```  :execute a macro in parallel
+        - all of the macros will be executed even if some failed.
+
+    - parallel execution is more robust; serial execution is more convenient and can help us locate problems during execution.
+
+- T68: append new cmds to recorded macro
+    - use ```q{A-Z}``` to append contents onto previous macro, so we don't need to record the whole macro again.
+
+- T69: execute macro in multiple files, [skip]
+
+- T70: iterate index 
+    - define and increase a var:
+        - ```:let i=0```                           :define a variable i.
+        - ```<C-r>=i```                            :insert the value of i(under insert mode).
+        - ```:let i+=1```                          :increase i by 1.
+    - macro:
+        - ```qa0<C-r>=i<CR> )<Esc>:let i+=1<CR>q```: this macro will increase the number of i as iteration.
+        - finally, use parallel execution to execute the macro.
+
+- T71: modify a record macro (!)
+    - Use ```:reg {a-z}``` to view the content of a macro.
+    - Since macros are stored in register, we can put the content of register to current window and modify it. Finally, we could yank the content back to update the macro.
+
+    - modify a macro (!):
+        - ```"{register}p```
+        - modify
+    - save a macro (!):
+        - ```"{register}y{motion}```
+
+## Chapter12
+- T72: search mode and case sensitiveness
+    - PH
