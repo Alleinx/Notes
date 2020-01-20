@@ -35,6 +35,18 @@
 - ```t{char}```     :move cursor 1 char before the next {char}.
     - ```dt{char}   :delete till the specified character.
 
+- Jump to files under cursor (!)
+    - Use ```gf``` cmd to go to file "play.txt" if it exist under path.
+        - we can jump forward/backward using ```<C-i>``` and ```<C-o>```.
+    - Add expanded-name
+        - ```:set suffixesadd+={.name}```
+        - Now, we can go to file "play", even we doesn't wirte its expanded name.
+
+- Jump through global mark (!)
+    - As mentioned before, we could use ```m{a-z}``` to create a mark inside a file.
+        - Use ``` `{mark}``` to jump to {mark}.
+    - We could also create a global mark using ```m{A-Z}```.
+        - This is useful when we want to find definition in other files; Yes, we can use ```<C-o>``` to jump back; However, when the number of files increase, it takes more effort to get back to the original file; Thus, mark sure to set a "global mark" before using commands that could lead us to other places.
 #### Plugin
 - Usage of vim-surround (!)
     - ```cs{old}{new}```                 :change a surrounding.
