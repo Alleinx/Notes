@@ -33,7 +33,7 @@
 - ```<C-g>```       : check file status.
 
 - ```t{char}```     :move cursor 1 char before the next {char}.
-    - ```dt{char}   :delete till the specified character.
+    - ```dt{char}```   :delete till the specified character.
 
 - Jump to files under cursor (!)
     - Use ```gf``` cmd to go to file "play.txt" if it exist under path.
