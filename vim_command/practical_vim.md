@@ -484,8 +484,8 @@
 
 - T60: deep into vim register
     - Yank/put into/from system (!)
-        - yank into system clickboard       :Use ```"+``` prefix.
-        - put from system clickboard        :Use ```"+``` prefix under insert mode.
+        - yank into system clipboard       :Use ```"+``` prefix.
+        - put from system clipboard        :Use ```"+``` prefix under insert mode.
             - or just use ```<C-p>``` under insert mode.
     - Delete/yank/put in vim will use one of the registers; we could add ```"{register}``` prefix to indicate which register to use; If not indicate, vim will use the "nameless register" by default.
     - The blackhole register :operations after ```"_``` prefix will not be stored to nameless register (!).
@@ -496,3 +496,17 @@
 - T61: replace register content with selected area
     - when we replace content of selected area with content inside the register, content of selected area will be written into the register.
         - This design makes it easy to switch 2 selected areas (!).
+
+- T62: put out content inside a register
+    - ```p```       :paste content after the cursor.
+    - ```P```       :paste content before the cursor.
+    - Could also use ```<C-r>{register}``` to put in insert mode (!).
+        - use "" to reference nameless register in normal mode, " in insert mode.
+        - use ```y{motion}``` to yank, and ```ciw``` to clear; finally, use ```<C-R>0``` to put.
+
+- T63: interact with system clipboard
+    - "autoindent" arg could mess up the indentation.
+    - To prevent this issue, always use ```"+p``` or ```<C-r>+``` to put content in system clipboard into vim (!).
+
+## Chapter11
+- T64: Macro
