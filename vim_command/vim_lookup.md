@@ -47,6 +47,11 @@
         - Use ``` `{mark}``` to jump to {mark}.
     - We could also create a global mark using ```m{A-Z}```.
         - This is useful when we want to find definition in other files; Yes, we can use ```<C-o>``` to jump back; However, when the number of files increase, it takes more effort to get back to the original file; Thus, mark sure to set a "global mark" before using commands that could lead us to other places.
+
+- yank/put into/from system (!)
+    - yank into system clickboard       :Use ```"+``` prefix.
+    - put from system clickboard        :Use ```"+``` prefix under insert mode.
+        - or just use ```<C-p>``` under insert mode.
 #### Plugin
 - Usage of vim-surround (!)
     - ```cs{old}{new}```                 :change a surrounding.
