@@ -127,6 +127,10 @@
 - ```gg```            :move to the begining of the file.
 - ```[i]G```          :move to the ith line of the file.
 - ```<C-o>```         :move back to the previous position.
+- ```<C-d>```         :...
+- ```<C-u>```         :...
+- ```<C-e>```         :move downwards.
+- ```<C-y>```         :move upwards.
 
 #### Delete
 - ```x```         :similar to delete
