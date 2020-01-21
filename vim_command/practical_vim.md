@@ -607,10 +607,47 @@
 
 - T85: utilize search history (!)
     - use ```q/``` to open search history buffer. We could modify the content in it and press ```<CR>``` on a modified pattern to perform search.
-
+    - use ```q:``` to open command buffer. 
 - T86: use ```*``` to search word under cursor
     - ```*``` will search word under cursor.
 
 ## Chapter14
 - T87: ```substitute``` command.
+    - ```:[range]s[ubstitute]/{pattern}/{string}/[flags]```
+        - ```[range]```                 :suitable for all ex-cmds.
+        - ```[flags]```                 :use flags to adjust behavior of substitute (!).
+            - ```g```                   :by default range, replace all matches on "Current Line".
+            - ```c```                   :need confirm before each replacement.
+            - ```n```                   :Vim will not execute replace operation, only print the number of total matches.
+        - ```{string}```
+            - ```\={vim script}```      :execute ```{vim script}``` and replace ```{string}``` with its result
+
+- T88: match and replace all pattern
+     - Add ```[range]``` to the ```substitute```; To substitute globally, set ```[range]=%```.
+
+- T89: make confirmation before every replacement
+    - ```:%s/{pattern}/{string}/c```
+    - Answers:
+        - ```y```           :...
+        - ```n```           :...
+        - ```q```           :exit substitute progress.
+        - ```l```           :substitute current item and exit.
+        - ```a```           :substitute the rest items and exit.
+    - Scroll window
+        - ```<C-d>```; ```<C-u>```.
+        - ```<C-e>```; ```<C-y>```.
+
+- T90: reuse previous search pattern, [skip]
+
+- T91: replace ```{string}``` with content of register.
+    - Use ```<C-r>{register}``` to paste register content into command line.
+
+- T92: redo the previous substitute operation, [skip]
+- T93: use submatch to rearrange csv files, [skip]
+- T94: execute arithmetic calculation during substitution, [skip]
+- T95: switch 2 words or more, [skip]
+- T96: substitute over multiple docs, [skip]
+
+## Chapter15
+- T97: ```global``` command
     - ph
