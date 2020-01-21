@@ -96,7 +96,7 @@
         - ```d```       : delete
         - ```gu```      : make lowercase
         - ```gU```      : make uppercase
-        - ```~```       : make uppercase
+        - ```~```       : reverse the case.
         - ```g~```      : reverse the case.
         - ```\>```      : shift right
         - ```<```       : shift left
@@ -567,4 +567,50 @@
 
 ## Chapter12
 - T72: search mode and case sensitiveness
-    - PH
+    - Turn on both ignorecase and smartcase.
+    - After turning on smartcase, if one of the letter in searching pattern is uppercase, the ignorecase will automatically be ignored.
+
+- T73: ```\v``` switch when using regex, [skip]
+- T74: searching using ```\V```
+    - If want to search using regex, use ```/\v{pattern}``` (magic mode).
+    - If want to search string without ESC, use ```/\V{pattern}``` (nomagic mode).
+
+- T75: ues () to pair sub-matches, [skip]
+- T76: search a pattern accurately
+    - If we want to search the word "the", when we input '/the', there may be lots of other matches excepts the word "the"; 
+    - we could use '''/\v<pattern>``` to specifically search the pattern "<pattern>" (!).
+
+- T77: define the search boarder, [skip]
+- T78: Escape character
+    - Use ```\V``` to turn off escape mode during searching.
+    - The rest are [skiped].
+
+## Chapter13
+- T79: search cmd
+    - ```/{pattern}```      :forward searching.
+    - ```?{pattern}```      :backward searching.
+    - Use ```n/N```         :go next/previous match item depends on searching direction.
+
+- T80: highlight matched items, [skip]
+
+- T81: "incsearch":
+    - Use ```<C-r><C-w>``` to auto-complete the rest of a matched pattern.
+
+- T82: count the number of total matched item.
+    - ```%s///gn```         :count the number of total matches.
+        - ```n``` will stop the substitude operation and count the number of matches.
+
+- T83: move cursor to the end of matched pattern
+    - ```/{pattern}/e```    :automatically place cursor at the end of each matched pattern.
+
+- T84: operate on complete matches, [skip]
+
+- T85: utilize search history (!)
+    - use ```q/``` to open search history buffer. We could modify the content in it and press ```<CR>``` on a modified pattern to perform search.
+
+- T86: use ```*``` to search word under cursor
+    - ```*``` will search word under cursor.
+
+## Chapter14
+- T87: ```substitute``` command.
+    - 
