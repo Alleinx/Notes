@@ -650,4 +650,28 @@
 
 ## Chapter15
 - T97: ```global``` command
-    - ph
+    - ```:[range] g[lobal][!] /{pattern}/ [cmd]```
+        - e.g. ```:g/pattern/d```                        :delete all lines contain "pattern" in current file.
+    - ```:[range] v[global][!] /{pattern}/ [cmd]```      :delete lines without ```{pattern}```.
+    - ```:g/{start}/ .,{finish} [cmd]```                 :general term of ```global``` command.
+
+- T98: delete lines contain ```{pattern}``` (!).
+    - ```:g/pattern/d```                        :delete all lines contain "pattern" in current file.
+    - ```:v/pattern/d```                        :delete all lines without "pattern" in current file.
+
+- T99: display all TODO (!).
+    - ```[range] yank [a-zA-Z]```           :copy ```[range]``` into register [a-zA-Z] (!).
+    - ```:g/TODO/p```                       :print all TODO in current file.
+
+- T100: ```:sort```
+    - ```:[range]sor[t][!] [b][f][i][n][o][r][u][x] [/{pattern}/]```
+        - ```[!]```                    :order is reversed.
+        - ```[i]```                    :case is ignored.
+        - ```[n][f][x][o][b]```        :mutually execlusive.
+    - e.g.
+        - ```:g/{/ .+1,/}/-1 sort```   :sort all contents inside "{}".
+            - ```.+1,/}/-1 sort```     :is ```[cmd]``` in ```:g/{pattern}/[cmd]```.
+            - ```.```                  :denotes current line of cursor.
+            - ```/{/```                :place cursor on the matches.
+
+## Chapter16|17|18|19|20, [skip]
