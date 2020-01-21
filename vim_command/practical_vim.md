@@ -314,8 +314,8 @@
         - ```close```   : close the activated window.
         - ```only```    : close all other windows rather than the activated window.
     - Alter Windows:
-        - ```<C-w>{HL}  : move current window left/right(switch to vertical split).
-        - ```<C-w>{JK}  : move current window down/up(switch to horizontal split).
+        - ```<C-w>{HL}```  : move current window left/right(switch to vertical split).
+        - ```<C-w>{JK}```  : move current window down/up(switch to horizontal split).
 
 - T40: Using tabpage in vim
     - In vim, tabpage is a container contains several windows.
@@ -578,7 +578,7 @@
 - T75: ues () to pair sub-matches, [skip]
 - T76: search a pattern accurately
     - If we want to search the word "the", when we input '/the', there may be lots of other matches excepts the word "the"; 
-    - we could use '''/\v<pattern>``` to specifically search the pattern "<pattern>" (!).
+    - we could use ```/\v<pattern>``` to specifically search the pattern ```<pattern>``` (!).
 
 - T77: define the search boarder, [skip]
 - T78: Escape character
@@ -613,4 +613,4 @@
 
 ## Chapter14
 - T87: ```substitute``` command.
-    - 
+    - ph
