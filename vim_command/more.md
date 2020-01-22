@@ -1,6 +1,6 @@
 #### more command
-more +/pattern filename     //search pattern in filename
-more -N filename            //show line number
+```more +/pattern filename```     //search pattern in filename.
+```more -N filename```            //show line number.
 
 #### Terminal Operations:
 - Also works for vim under insert mode.
