@@ -27,10 +27,34 @@
 - Item4: Write Helper Functions instead of Complex Expressions
     - As soon as expressions get complicated, it's time to wrap them into functions.
         - One statement/function does 1 thing; Don't mix too many functionalities into 1 statement/function.
-    - Make good use of ternary statement        :```value_1 if condition else value_b```.
+    - Make good use of ternary statement        : ```value_1 if condition else value_b```.
         - Instead of boolean operators.
 
 - Item5: Know How to Slice Sequence
+    - Slicing can be extended to classes that implements the ```__getitem__()``` and ```__setitem__()``` method.
+    - Beware the negative and 0 index can get surprising results from slicing.
+        - ```list[-0:]```       :return a copy of original list.
+    - Slicing is forgiving of out-of-bound indexes.
+
+- Item 6|7, [skip]
+
+- Item8: Avoid More than 2 Expressions in List Comprehensions.
+
+- Item9: Consider Generator for huge amount of data.
+    - Save memory (Lazy unpacking).
+
+- Item10: consider ```enumerate()``` rather than ```range()```
+    - Useful when want to know the index of current item during iteration.
+
+- Item11: use ```zip``` to process iterators in parallel
+    - In python3.x, ```zip()``` returns a lazy "generator".
+    - Use ```itertools.zip_longest()``` to avoid truncating behavior.
+
+- Item12: Avoid ```else``` blocks after ```{for/while}``` loops "entirely".
+    - The ```else``` block after a loop "only runs" if the loop body "didn't" encounter a ```break``` statement.
+
+- Item13: Take Advantage of Each Block in ```try/except/else/finally```
+    - Ph
 
 ## Chapter2: Functions
 
