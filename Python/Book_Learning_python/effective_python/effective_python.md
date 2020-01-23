@@ -11,7 +11,7 @@
         - Whitespace:
             - Use spaces instead of tabs for indentation and 4 spaces for indentation.
             - Continuations of long expressions onto additional lines should be indented by 4 extra spaces from their indentation level.
-            - No spaces around (list_index, kw_assignments).
+            - No spaces around (list_index, slice, kw_assignments).
         - Naming:
             - Class and Exception           :CamelNaming.
             - func, var, attr               :lowercase_underscore.
@@ -22,6 +22,15 @@
                 - ```if a is not b```
             - ```if sth is not None```      :to check whether sth is None;
                 - Be careful when checking sth is "empty" or "None".
+- Item3: Differences between str, bytes, unicode, [skip]
+
+- Item4: Write Helper Functions instead of Complex Expressions
+    - As soon as expressions get complicated, it's time to wrap them into functions.
+        - One statement/function does 1 thing; Don't mix too many functionalities into 1 statement/function.
+    - Make good use of ternary statement        :```value_1 if condition else value_b```.
+        - Instead of boolean operators.
+
+- Item5: Know How to Slice Sequence
 
 ## Chapter2: Functions
 
