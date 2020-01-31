@@ -101,7 +101,7 @@
 
     - A generator function/exp is always a "generator"; A geneartor is always a "Iterator". "Iterator" contains the ```__next__()``` method. Container is usually "Iterable", calling ```iter()``` on a iterable obj will return an iterator (in general). An Iterable obj is not always an iterator, but could become an iterator.
     - An iterable object must implement ```__iter__()``` method, which returns a iterator in general.
-    - To make an iterable obj Iterator:
+    - To make an iterable obj an Iterator:
         - implement ```__iter__()```            :1. return self; 2. maintain a flag/count.
         - implement ```__next__()```            :1. return value based on flag/count; 2. reset flag & raise StopIteration.
 
