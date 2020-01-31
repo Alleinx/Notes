@@ -87,11 +87,12 @@
             - Try to avoid using ```nonlocal``` keyword; And if needed, create a class to include and track variables need ```nonlocal``` keyword.
 
 - Item16: Consider Generators instead of Returning Lists. (!)
-    - When need to write a function that process a sequence of data and return a sequence of result, always use Generator instead of returning List.
+    - When need to write a function that process a sequence of data and return a sequence of result, conxider Generator instead of returning List.
+        - Commonly used in user iterable object.
     - Syntax: ```... yield value ...```.
     - **Beware**: generator results can only be iterated once; If need to store the result, store result in list/array first, or use defensive iterating rules.
 
-- Item17: Be Defensive when iterating over arguments (!)
+- Item17: **Be Defensive when iterating over arguments** (!)
     - Beware of functions that iterate over *input arguments multiple times*. If these arguments are iterators, you may missing values after the first traverse.
         - You can convert the argument into a container, but will consume lots of memory if the obj is large.
         - Or be defensive: You can detect an obj is an iterator instead of a container by using ```iter(obj) is iter(obj)```, and only manipulate container obj. Outside iterator will be exhausted if used inside a method.
@@ -105,6 +106,8 @@
         - implement ```__iter__()```            :1. return self; 2. maintain a flag/count.
         - implement ```__next__()```            :1. return value based on flag/count; 2. reset flag & raise StopIteration.
 
+- Item18: Reduce Visual Noise with Variable Positional Arguments
+    - ph
 ## Chapter3: Classes and Inheritance
 
 ## Chapter4: Metaclasses and Attributes
