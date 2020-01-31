@@ -88,8 +88,22 @@
 
 - Item16: Consider Generators instead of Returning Lists. (!)
     - When need to write a function that process a sequence of data and return a sequence of result, always use Generator instead of returning List.
-    - Syntax: ```... yield value```.
-    - Beware: generator results can only be iterated once; If need to store the result, store result in list/array first, or use defensive iterating rules.
+    - Syntax: ```... yield value ...```.
+    - **Beware**: generator results can only be iterated once; If need to store the result, store result in list/array first, or use defensive iterating rules.
+
+- Item17: Be Defensive when iterating over arguments (!)
+    - Beware of functions that iterate over *input arguments multiple times*. If these arguments are iterators, you may missing values after the first traverse.
+        - You can convert the argument into a container, but will consume lots of memory if the obj is large.
+        - Or be defensive: You can detect an obj is an iterator instead of a container by using ```iter(obj) is iter(obj)```, and only manipulate container obj. Outside iterator will be exhausted if used inside a method.
+
+    - You can define your own iterable obj by implementing the ```__iter__()``` method as a generator.
+        - when use ```for``` blocks or other built-in like ```sum()```, python will call ```iter(obj)```, which will call ```obj.__iter__()```. The ```__iter__()``` method need to return a iterator obj(which implements the ```__next__()``` method(the ```__next__() method need to raise a StopIteration Exception)). The ```for``` loop repeatedly calls the ```next()``` function until it's exhausted (and raises a StopIteration exception).
+
+    - A generator function/exp is always a "generator"; A geneartor is always a "Iterator". "Iterator" contains the ```__next__()``` method. Container is usually "Iterable", calling ```iter()``` on a iterable obj will return an iterator (in general). An Iterable obj is not always an iterator, but could become an iterator.
+    - An iterable object must implement ```__iter__()``` method, which returns a iterator in general.
+    - To make an iterable obj Iterator:
+        - implement ```__iter__()```            :1. return self; 2. maintain a flag/count.
+        - implement ```__next__()```            :1. return value based on flag/count; 2. reset flag & raise StopIteration.
 
 ## Chapter3: Classes and Inheritance
 
