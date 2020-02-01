@@ -140,14 +140,36 @@
     - Use "None" as the default value for arguments that have **dynamic value(changes through time/event)**, and document the actual behavior in the docstring.
 
 
-- Item21: Enforce Clarity with Keyword-Only Arguments (!)
+- **Item21: Enforce Clarity with Keyword-Only Arguments(!)**
     - When functions are complex, it's better to require that callers are clear about their intentions by making functions accept **keyword-only arguments**, which can only be supplied by keyword, never by positional argument.
         - Syntax: ```def func(arg1, arg2, *, kw1, kw2)```
-        - By doing so, user can only call this function using ```func(arg1, arg2, kw1=v1, kw2=v2)```, not by ```func(arg1, arg2, kw1, kw2)```.
+        - By doing so, user can only call this function using ```func(arg1, arg2, kw1=v1, kw2=v2)```, never by ```func(arg1, arg2, kw1, kw2)```.
 
     - Use keyword-only arguments to force callers to supply keyword arguments for potentially confusing functions, especially those that accept multiple Boolean flags.
 
 ## Chapter3: Classes and Inheritance
+- Item22: Prefer Helper classes over bookkeeping with dictionaries and tuples
+    - Dictionaries are so easy to use that there's a danger of overextending them.
+    - As soon as the bookkeeping is getting complicated, break it into classes.
+
+    - ```collections.namedtuple(type_name, attrs, ...) -> cls```
+        - return a subclass of tuple with attrs.
+        - Limitations:
+            - You can't specify default argument values for namedtuple cls.
+            - The attribute values of namedtuple instances are accessible using indexes/iterations, leading to unintentional usage.
+
+    - Summary:
+        - Avoid making dicts with values that are other dicts or long tuples.
+        - Use namedtuple for lightweight, immutable data container before you need the flexibility of a full cls.
+        - Move your book keeping code to helper clses, when your internal state dicts get complicated.
+
+- Item23: Accept Functions for simple interface instead of cls
+    - **You may want to add dynamic behavior to a function(!)**
+        - In other language, you may need to define 2 clses and their dependencies.
+        - In python, you can directly pass function to the receiver function to achieve polymorphism.
+            - ```def func1(hook, ...): if condition {hook()}, ...```
+    - Instead of using cls, functions are often all you need for simple interfaces between components.
+    - When you need a function to maintain state, consider defining a cls that provides the ```__call__()``` method instead of defining a stateful closure.
 
 ## Chapter4: Metaclasses and Attributes
 
