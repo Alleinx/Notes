@@ -86,11 +86,13 @@
             - And the scope becomes "[1-2]" of reference scope; Module and built-in scope is not included.
             - Try to avoid using ```nonlocal``` keyword; And if needed, create a class to include and track variables need ```nonlocal``` keyword.
 
+
 - Item16: Consider Generators instead of Returning Lists. (!)
     - When need to write a function that process a sequence of data and return a sequence of result, conxider Generator instead of returning List.
         - Commonly used in user iterable object.
     - Syntax: ```... yield value ...```.
     - **Beware**: generator results can only be iterated once; If need to store the result, store result in list/array first, or use defensive iterating rules.
+
 
 - Item17: **Be Defensive when iterating over arguments** (!)
     - Beware of functions that iterate over *input arguments multiple times*. If these arguments are iterators, you may missing values after the first traverse.
@@ -106,8 +108,45 @@
         - implement ```__iter__()```            :1. return self; 2. maintain a flag/count.
         - implement ```__next__()```            :1. return value based on flag/count; 2. reset flag & raise StopIteration.
 
+
 - Item18: Reduce Visual Noise with Variable Positional Arguments
-    - ph
+    - Replace the last arguments with ```*args``` to improve readability on caller side.
+        - e.g. : ```def func(var_a, *values)```;        caller: ```func(var_a, 1,2,3,4,5)```.
+
+    - Cons:
+        1. Have to change all caller function when need to add a new argument.
+        2. Buggy: if caller want to pass a iterable obj, need to unpack the variable first with ```*var```.
+        3. Since positional argument is always a tuple, could consume lots of memory.
+
+
+- Item19: Provide Optional Behavior with Keyword Arguments
+    - Usage: Positional arguments must be specified before keyword arguments.
+
+    - Benefit:
+        1. Keyword arguments make the function call clearer to reader of the code.
+            - e.g. ```func(first_arg=arg1, ...)```
+        2. Provide default and additional operations based on different type/value of the keyword argument.
+
+    - Always pass optional arguments using the keyword names and never pass them as positional arguments.
+
+- Item20: Use "None" and Docstrings to Specify Dynamic default arguments
+    - Default arguments are evaluated **Only Once** per module load(or when the function is defined).
+        - Could cause odd behaviors for dynamic values.
+        - Explains why ```def func(some_arg=[])``` may cause unexpected results.
+        - So avoid placing mutable obj in the function arguments.
+
+    - Use ```None``` as a placeholder to the keyword arguments and use ```default_behavior if arg is None else behavior``` to choose between default/indicated behavior.
+
+    - Use "None" as the default value for arguments that have **dynamic value(changes through time/event)**, and document the actual behavior in the docstring.
+
+
+- Item21: Enforce Clarity with Keyword-Only Arguments (!)
+    - When functions are complex, it's better to require that callers are clear about their intentions by making functions accept **keyword-only arguments**, which can only be supplied by keyword, never by positional argument.
+        - Syntax: ```def func(arg1, arg2, *, kw1, kw2)```
+        - By doing so, user can only call this function using ```func(arg1, arg2, kw1=v1, kw2=v2)```, not by ```func(arg1, arg2, kw1, kw2)```.
+
+    - Use keyword-only arguments to force callers to supply keyword arguments for potentially confusing functions, especially those that accept multiple Boolean flags.
+
 ## Chapter3: Classes and Inheritance
 
 ## Chapter4: Metaclasses and Attributes
