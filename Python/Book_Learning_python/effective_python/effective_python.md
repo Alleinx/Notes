@@ -210,3 +210,9 @@
         - ```not```         :return ```bool(x)```.
         - ```!=```          :refers to ```__eq__()```, ```__ne__()```, ```__cmp__()``` method.
     - ```is not```          :same as ```is```.
+
+- ```@classmethod``` and ```@staticmethod```
+    - ```@classmethod func(cls, args) -> cls object```
+        - Could be used to provide constructor polimorphism, and can be inherited by subclasses.
+    - ```@staticmethod func(args) -> Any```
+        - Basically just a function; Its task is usually logically bound to the class, but doesn't require instantiation.
