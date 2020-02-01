@@ -163,6 +163,7 @@
         - Use namedtuple for lightweight, immutable data container before you need the flexibility of a full cls.
         - Move your book keeping code to helper clses, when your internal state dicts get complicated.
 
+
 - Item23: Accept Functions for simple interface instead of cls
     - **You may want to add dynamic behavior to a function(!)**
         - In other language, you may need to define 2 clses and their dependencies.
@@ -171,6 +172,25 @@
     - Instead of using cls, functions are often all you need for simple interfaces between components.
     - When you need a function to maintain state, consider defining a cls that provides the ```__call__()``` method instead of defining a stateful closure.
 
+
+- Item24: Use ```@classmethod``` to provide constructor polymorphism
+    - Interface in python       : ```def func(): raise NotImplementedError```.
+
+    - Python only supports single constructor per class, the ```__init__()``` method.
+    - To provide constructor polymophism (or override the constructor), we need to use ```@classmethod``` keyword.
+        - ```@classmethod``` convert a function into class method, which can be called on the class.
+            - A decorator function on ```__init__()```.
+        - Syntax:   ```@classmethod def func(cls, arg1, arg2, arg3, ...): ... cls(args) ...```
+        - Usage :   ```Class.func(args)```
+
+
+- Item25: Initialize Parent Classes with ```super()```.
+    - Python's Method Resolution Order(MRO) solves the problems of superclass initialization order and diamond inheritance problem.
+    - **Always use ```super().__init__(args)``` to initialize parent classes.(!)**
+
+
+- Item26: Use multiple inheritance only for mix-in utility classes
+    - 
 ## Chapter4: Metaclasses and Attributes
 
 ## Chapter5: Concurrency and Parallelism
