@@ -220,6 +220,8 @@
 - **The use of keyword-only arguments:**
     - If the function contains ```*arg```, don't need to use keyword-only argument.
         -  e.g. ```print(*object, sep=' ', ...)```.
+    - If the args contains an iterable obj, use keyword-only argument.
+        - Try to avoid putting normal positional arg with an iterable arg into the same function.
 
     - If the function has multiple form, like ```max(iterable), max(arg1, arg2,...)```, then use the keyword-only argument to prevent mis-using.
         - That's why ```max(iterable, *[, key, default])```.
@@ -227,3 +229,6 @@
 - **The doc-form of optional keyword**
     - If the keyword has a default value, use ```func(arg, kw1=de_value, ...)```.
     - If the keyword doesn't have a default value, use ```func(arg[, kw1, kw2])```
+
+- The best way to join strings:
+    - Use ```''.join(sequence)```
