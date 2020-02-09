@@ -190,7 +190,7 @@
 
 
 - Item26: Use multiple inheritance only for mix-in utility classes
-    - 
+    - TODO
 ## Chapter4: Metaclasses and Attributes
 
 ## Chapter5: Concurrency and Parallelism
