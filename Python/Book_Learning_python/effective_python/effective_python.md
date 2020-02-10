@@ -243,10 +243,9 @@
     - More specifically, we need to put common code into ```__get__(), __set__()```.
         - e.g.: ```self.attr = ClassWithGetSet()```. If this class attribute is an object that has ```__get__(), __set__()``` method, python will assume you want to follow the descriptor protocol.
 
-    - ```py
+    ```py
     exam.math_grade = 50
     # Will be interpreted as Exam.__dict__['writting_grade'].__set__(exam, 40)
-
     print(exam.writing_grade)
     # Will be interpreted as print(Exam.__dict__['writting_grade'].__get__(exam, Exam))
     ```
