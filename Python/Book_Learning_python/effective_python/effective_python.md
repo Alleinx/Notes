@@ -190,7 +190,33 @@
 
 
 - Item26: Use multiple inheritance only for mix-in utility classes
-    - TODO
+    - Avoid using multiple inheritance if **mix-in** (util) class can achieve the same func.
+
+
+- Item27: Prefer Public Attributes over Private ones
+    - Private fields are specified by prefixing attr's name with 2 underscore.
+        - Directly accessing private fields from outside the class will cause an exception.
+        - *Subclass can't access its parent class's private fields.*
+
+    - Essentially, what private attr does is translate ```ClassObject.__private_attr``` to ```_ClassObject.private_attr```; Knowing this, we can access any private fields with ```obj._ClassObject__private_field```.
+        - Private fields are actually stored in ```obj.__dict__```.
+        - Could use *protected field*, by means ```ClassObj._protect_field```
+
+    - Anyway, your potential subclasses will still access the private fields when the absolutely need to, and using private field is easily breakable.
+
+    - In general, it's better to use public & protected attributes; 
+    - Only consider using private field to **avoid naming conflict** with subclasses that're out of your control.
+        - The only time to seriously consider using private attribute is *when you're worried about naming conflicts with subclasses.* This is a concern with classes that are part of a public API; the subclasses are out of your control, so naming conflict is especially possible. To reduce the risk of this happening, you can use a private attribute in the parent class to ensure that there are no attribute names that overlap with cild classes.
+
+
+- Item28: Inherit from ```collections.abc``` for custom container types.
+    - For classes that inherited from classes in ```collections.abc```, if the custom class doesn't implement some essential method, an error will be raised until all necessary method are implemented.
+    - After defining required method by an abstract base class, it will provide all of the additional methods for free.
+
+    - Inherit directly from Python's container types for simple usage.
+    - Beward the number of methods required to implement a custom container type correctly.
+    - Have your custom type inherit from the ```collections.abc``` to ensure your classes match required interface and behavior.
+
 ## Chapter4: Metaclasses and Attributes
 
 ## Chapter5: Concurrency and Parallelism
