@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     print(exam.writing_grade)
     # Will be interpreted as print(Exam.__dict__['writting_grade'].__get__(exam, Exam))
-    
+
     second_exam = Exam()
     second_exam.writing_grade = 70
     second_exam.math_grade = 80

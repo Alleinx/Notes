@@ -4,7 +4,6 @@ def safe_division_c(number, divisior, *, ignore_overflow=False, ignore_zero_divi
     '''
     keyword-only arguments
     '''
-    
     try:
         return number / divisior
     except OverflowError:
@@ -17,7 +16,7 @@ def safe_division_c(number, divisior, *, ignore_overflow=False, ignore_zero_divi
             return float('inf')
         else:
             raise ZeroDivisionError('divide 0')
-    
+
 def safe_division(number, divisior, ignore_overflow=False, ignore_zero_division=False):
     try:
         return number / divisior
