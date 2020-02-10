@@ -211,13 +211,49 @@
 
 - Item28: Inherit from ```collections.abc``` for custom container types.
     - For classes that inherited from classes in ```collections.abc```, if the custom class doesn't implement some essential method, an error will be raised until all necessary method are implemented.
-    - After defining required method by an abstract base class, it will provide all of the additional methods for free.
+
+    - After defining required method by an abstract base class, it will provide all of the additional methods for free, (consider extend from ```collections.abc``` if want to act like a builtin).
 
     - Inherit directly from Python's container types for simple usage.
+
     - Beward the number of methods required to implement a custom container type correctly.
+
     - Have your custom type inherit from the ```collections.abc``` to ensure your classes match required interface and behavior.
 
 ## Chapter4: Metaclasses and Attributes
+- Item 29: Use Plain Attributes Instead of Get&Set Methods
+    - If want to add extra behavior when read/set/del an attribute, you can use ```@property, @attr.setter, @attr.deleter``` to add a decorator onto a function.
+
+    - Can even assign ```@property``` to ```arg``` of ```__init__(self, arg)```: when executing ```self.arg = arg```, ```@arg.setter``` method will be called, immediately running the validation code before **object construction** has completed.
+        - Same for init super class.
+        - Can also provide read-only attr.
+
+    - Be sure to avoid any other side effects except the specified attribute.
+
+
+- Item 30: Consider ```@property``` instead of Refactoring Attributes
+    - Use ```@property``` to give attributes new functionality.
+    - Make incremental progress toward data models by using ```@property```
+    - Consider refactoring a class when you find yourself using ```@property``` too heavily.
+
+
+- Item 31: Use Descriptors for Reusable ```@property``` methods
+    - If we have multiple attributes, defining getter, setter for each one of them is dump. Instead, could use ```__get__(*args, **kws), __set__(*args, **kws)``` to define bunch of (get,set) behavior.
+
+    - More specifically, we need to put common code into ```__get__(), __set__()```.
+        - e.g.: ```self.attr = ClassWithGetSet()```. If this class attribute is an object that has ```__get__(), __set__()``` method, python will assume you want to follow the descriptor protocol.
+
+    - ```py
+    exam.math_grade = 50
+    # Will be interpreted as Exam.__dict__['writting_grade'].__set__(exam, 40)
+
+    print(exam.writing_grade)
+    # Will be interpreted as print(Exam.__dict__['writting_grade'].__get__(exam, Exam))
+    ```
+
+    - Syntax:
+        - ```def __get__(self, instance, instance_type)```
+        - ```def __set__(self, instance, value)```
 
 ## Chapter5: Concurrency and Parallelism
 
