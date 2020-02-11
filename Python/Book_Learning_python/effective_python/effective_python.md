@@ -254,6 +254,25 @@
         - ```def __get__(self, instance, instance_type)```
         - ```def __set__(self, instance, value)```
 
+- Item 32: Use ```__getattr__(), __getattribute__(), __setattr__()``` for Lazy Attributes
+    - Plain instance attribute, ```@property``` method, descriptors can't handle dynamic attributes, like database scheme, since they need to be defined in advance.
+    - Python relies on the ```hasattr(object, name, value)```, to determine whether attributes exist.
+    - And the ```getattr(object, name)``` to access property values.
+
+    - ```__getattr__(object, name)```: Python makes dynamic behavior possible with the ```__getattr__()``` special method. If your class defines ```__getattr__()```, **it will only be called everytime an attribute can't be found** in an ```instance.__dict__```. **(!)**
+
+    - ```__getattribute__(object, name)```: This method is called **everytime an attribute is accessed** on an object, no matter whether it exists in the ```instance.__dict__``` or not. This enables us to do extra operations everytime we access some attributes.
+        - In the event that a dynamically accessed property **shouldn't exist**, you can raise an ```AttributeError```.
+
+    - ```__setattr__(object, name, value)```    : This method is **always** called everytime an attribute is assigned on an instance, no matter whether the attribute exist or not.
+
+    - When you define ```__getattribute__(), __setattr__()``` method in your class, it may cause infinite loop, since accessing & modifing attributes need to call them. 
+        - **To avoid this problem, use ```super().__getattribute__(), super().__setattr__()``` to avoid infinite recursion. (!) **
+
+
+- Item 33: Validate Subclasses with Metaclasses
+    - TODO
+
 ## Chapter5: Concurrency and Parallelism
 
 ## Chapter6: Bulit-in Modules
