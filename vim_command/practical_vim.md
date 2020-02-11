@@ -325,7 +325,10 @@
     - Open/close tabpage
         - ```tabe {filename}``` : create a new tabpage.
             - if {filename} is not provided, will create a new tabpage with empty buffer.
+
         - Use ```<C-w>T``` to move current window into a new tabpage.
+        - Use ```Tabmerge [tabnumber] [left|right|top|bottom]``` to merge tab into window.
+
         - ```tabclose```        : close current tab.
         - ```close```           : close the tabpage if there's only 1 window in it.
         - ```tabonly```         : close other tabs.
