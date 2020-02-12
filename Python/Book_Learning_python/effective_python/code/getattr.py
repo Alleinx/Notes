@@ -31,7 +31,9 @@ class ValidatingDB(object):
 
         print('Called __getattribute__({name})'.format(name=name))
         try:
-            # Use super().__getattribute__() to avoid infinite recurrsion, since use getattr(self, name) or other way will also call __getattribute__.
+            # To avoid infinite recurrsion, can't use self.__dict__[name], since it will call self.__getattribute__().
+            # Instead, could use:
+            # return object.__getattribute__(self, name)
             return super().__getattribute__(name)
         except AttributeError:
             if name == 'bad_name':
@@ -45,7 +47,9 @@ class SavingDB(object):
     def __setattr__(self, name, value):
         print('Called __setattr__({},{})'.format(name, value))
 
-        # Use super().__setattr__() to avoid infinite recurrsion, since use setattr(self, name, value) or other way will also call __setattr__.
+        # To avoid infinite recurrsion, could use:
+        # self.__dict__[name] = value
+        # object.__setattr__(name, value)
         super().__setattr__(name, value)
 
 if __name__ == '__main__':
