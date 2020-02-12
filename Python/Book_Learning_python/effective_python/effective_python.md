@@ -263,11 +263,14 @@
 
     - ```__getattribute__(object, name)```: This method is called **everytime an attribute is accessed** on an object, no matter whether it exists in the ```instance.__dict__``` or not. This enables us to do extra operations everytime we access some attributes.
         - In the event that a dynamically accessed property **shouldn't exist**, you can raise an ```AttributeError```.
+        - Has **2** ways to avoid infinite recursion
 
     - ```__setattr__(object, name, value)```    : This method is **always** called everytime an attribute is assigned on an instance, no matter whether the attribute exist or not.
+        - Has 3 ways to avoid infinite recursion.
+    - ```__delattr__(object, name)```           : Has 3 ways to avoid infinite recursion.
 
     - When you define ```__getattribute__(), __setattr__()``` method in your class, it may cause infinite loop, since accessing & modifing attributes need to call them. 
-        - **To avoid this problem, use ```super().__getattribute__(), super().__setattr__()``` to avoid infinite recursion. (!) **
+        - **To avoid this problem, use ```super().__getattribute__(), super().__setattr__(), super().__delattr__()``` to avoid infinite recursion. (!) **
 
 
 - Item 33: Validate Subclasses with Metaclasses
