@@ -315,3 +315,7 @@
 
 - The best way to join strings:
     - Use ```''.join(sequence)```
+
+- Java Interface-like checking before creating an instance of a user defined class in python?
+    - Source: https://docs.python.org/3/library/abc.html
+    - Python provide the ```abc``` module, which allows you to write *abstract base classes*, i.e. classes  you can't instantiate unless you override all of their methods.
