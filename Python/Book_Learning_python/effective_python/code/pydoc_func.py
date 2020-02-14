@@ -4,11 +4,11 @@
 
 import collections.abc
 
-def test(*args, **kw):
+def user_dict(*args, **kw):
     '''
-    test() -> {}
-    test(Mapping, **kw) -> {k: v}
-    test(arg1, *args) -> {v:default}
+    user_dict() -> {}
+    user_dict(Mapping, **kw) -> {k: v}
+    user_dict(arg1, *args) -> {v:default}
     '''
     total_args = len(args)
 
@@ -20,7 +20,7 @@ def test(*args, **kw):
     if isinstance(args[0], collections.abc.Mapping):
         print('Mapping')
         if total_args > 1:
-            raise TypeError('test() takes 1 positional argsument, but got {}.'.format(total_args))
+            raise TypeError('user_dict() takes 1 positional argsument, but got {}.'.format(total_args))
         for k, v in args[0].items():
             result[k] = v
         for k, v in kw.items():
@@ -35,18 +35,18 @@ if __name__ == '__main__':
     a = {'a':1, 'c':4}
     print('a isinstance of collections.abc.Mapping:', isinstance(a, collections.abc.Mapping))
 
-    b = test(a, c=2, d=10)
-    print('Testing test(Mapping, **kw):', b)
+    b = user_dict(a, c=2, d=10)
+    print('Testing user_dict(Mapping, **kw):', b)
 
-    c = test()
-    print('Testing test():', c)
+    c = user_dict()
+    print('Testing user_dict():', c)
 
-    d = test(3,2,4,5)
-    print('Testing test(arg1, **args):', d)
+    d = user_dict(3,2,4,5)
+    print('Testing user_dict(arg1, **args):', d)
 
     # Should Raise a TypeError
-    # e = test(3,2,[])
+    # e = user_dict(3,2,[])
 
     # Test mix using Mapping and arg.
     # Should raise a TypeError.
-    # c = test(a, 1)
+    # c = user_dict(a, 1)
