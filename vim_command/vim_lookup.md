@@ -174,5 +174,12 @@
     - ```<c-w> + r```; rotate all windows.
     - ```<c-w> + x```; exchange the current window with its neighbor.
 
+- Resize window
+    - ```<C-w><, <C-w>>```: resize the window horizontally.
+    - ```<C-w>+, <C-w>-```: resize the window vertically.
+    - ```: res[ize] [+,-] [number]``` : use command to resize.
+    - ```: vertical res[ize] [+,-] [number]``` : use command to resize.
+    - ```<C-w>=```        : resize the window to be equal.
+
 # Appendix
 - https::www.jianshu.com/p/117253829581
