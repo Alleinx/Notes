@@ -7,7 +7,7 @@ class Register(object):
 class BoundedResistance(Register):
     def __init__(self, arg):
         super().__init__(arg)
-        # or self.arg = arg 
+        # or self.arg = arg
         # will also execute @arg.setter() from BoundedResistance cls
 
     @property
@@ -20,5 +20,11 @@ class BoundedResistance(Register):
             raise ValueError('{} must be greater than 0'.format(new))
         self._arg = new
 
+
+r1 = BoundedResistance(10)
+
+print(r1.__dict__)
+print(hasattr(r1, 'arg'))
+print(r1.arg, r1._arg, r1.arg == r1._arg)
 
 r3 = BoundedResistance(-5)
