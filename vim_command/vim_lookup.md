@@ -181,5 +181,11 @@
     - ```: vertical res[ize] [+,-] [number]``` : use command to resize.
     - ```<C-w>=```        : resize the window to be equal.
 
+#### Plugins:
+- netrw
+    - ```d```       : Make a directory
+    - ```D```       : Delete a directory/file.
+    - Just do ```:h netrw-quickmap```
+
 # Appendix
 - https::www.jianshu.com/p/117253829581
