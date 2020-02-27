@@ -8,4 +8,8 @@
         - Operations when user navigate throught the Form.
 
 - Widget object:
+    - Text box, labels, sliders, etc.
+
+- Application object:
+    - These object provide a convenient way to manage the running of your application.
     
