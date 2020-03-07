@@ -25,7 +25,7 @@ def main():
     # format: change the format of logging msg.
     # level : threshold, indicates what types of info can be printed out.
 
-    logging.basicConfig(filename='myapp.log', filemode='a',
+    logging.basicConfig(filename='./myapp.log', filemode='a',
                         format='[%(asctime)s] %(levelname)s: %(message)s', level=logging.DEBUG)
 
     # logging.info(), normal record
