@@ -1,18 +1,19 @@
 import unittest
 
+
 class TestStringMethod(unittest.TestCase):
     def setUp(self):
         print('setUp() method will be executed before every test method.')
 
     def tearDown(self):
         print('tearDown() method will be executed after every test method.')
-    
+
     # Test method should start with 'test' prefix
     def test_upper(self):
         print('test_upper()')
         # check whether two things are equal
         self.assertEqual('foo'.upper(), 'FOO')
-    
+
     def test_isupper(self):
         # check conditions
         print('test_isupper()')
@@ -29,6 +30,7 @@ class TestStringMethod(unittest.TestCase):
         # Use assertRaises() to check whether a specific type of exception is raised.
         with self.assertRaises(TypeError):
             s.split(2)
+
 
 if __name__ == "__main__":
     # start testing
