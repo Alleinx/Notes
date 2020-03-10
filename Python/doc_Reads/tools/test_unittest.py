@@ -2,6 +2,14 @@ import unittest
 
 
 class TestStringMethod(unittest.TestCase):
+    @classmethod
+    def setUpClass(self):
+        print('This setup method will only be called once')
+
+    @classmethod
+    def tearDownClass(self):
+        print('This teardown method will only be called once')
+
     def setUp(self):
         print('setUp() method will be executed before every test method.')
 
