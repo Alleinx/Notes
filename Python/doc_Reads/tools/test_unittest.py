@@ -3,11 +3,11 @@ import unittest
 
 class TestStringMethod(unittest.TestCase):
     @classmethod
-    def setUpClass(self):
+    def setUpClass(cls):
         print('This setup method will only be called once')
 
     @classmethod
-    def tearDownClass(self):
+    def tearDownClass(cls):
         print('This teardown method will only be called once')
 
     def setUp(self):
