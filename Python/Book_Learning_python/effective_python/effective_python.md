@@ -279,10 +279,15 @@
 ## Chapter5: Concurrency and Parallelism
 
 ## Chapter6: Bulit-in Modules
-
-## Chapter7: Collaboration
+- Item46: Use Built-in Algorithms and Data Structures.
 
 ## Chapter8: Production
+- Item55: Use ```__repr__()``` for debuging message.
+
+- Item58: Use CProfile before optimizing
+    - ```CProfile.Profile() -> Profile```
+    - ```Profile.runcall(func)```       : will list detailed information about the function call.
+    - Use these information to optimize your program.
 
 ## MISC
 - ```is```, ```not```, ```!=```, ```==```
