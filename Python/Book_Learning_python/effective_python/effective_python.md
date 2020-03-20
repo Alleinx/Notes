@@ -276,9 +276,30 @@
 - Item 33: Validate Subclasses with Metaclasses
     - TODO
 
-## Chapter5: Concurrency and Parallelism
-
 ## Chapter6: Bulit-in Modules
+
+- Item42: Define Func Decorators with ```functools.wraps()```
+    - Procedure:
+        - Define Decorator function:
+        ```py
+        def decorator_func(func):
+            @functools.wraps(func)
+            def wrapper(*args, **kwargs):
+                #Extra behavior before func()
+                result = func(*args, **kwargs)
+                #Extra behavior after func()
+                return result
+            return wrapper
+        ```
+
+        - Decorating calling function:
+        ```py
+        @decorator_func
+            def calling_func(): {...}
+        ```
+
+    - Should always use ```functools.wraps(func)``` to customize your own decorator.
+
 - Item46: Use Built-in Algorithms and Data Structures.
 
 ## Chapter8: Production
