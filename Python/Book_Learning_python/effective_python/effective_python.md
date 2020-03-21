@@ -274,7 +274,19 @@
 
 
 - Item 33: Validate Subclasses with Metaclasses
-    - TODO
+    - Use metaclasses to ensure that subclasses are well formed at the time they're defined, before objects of their type are constructed.
+
+    - A metaclass is defined by inheriting from ```type```
+
+    - Usage: ```class ConcatenateClass(BaseClass, metaclass=ConcatenateMetaClass)```
+        ```py
+        class ConcatenateMetaClass(type):
+            def __new__(meta, name, bases, class_dict):
+                # put validation code here
+                return type.__new__(meta, name, bases, class_dict)
+        ```
+
+    - The ```__new__()``` method of metaclass is run after the **class** statement's entire body has been processed.
 
 ## Chapter6: Bulit-in Modules
 
