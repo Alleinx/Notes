@@ -3,6 +3,7 @@
 # self-defined wrapper could cause problems when use debuggers and object serializers.
 import functools
 
+
 def demo_decorator(func):
     @functools.wraps(func)
     def wrapper(*arg, **kws):
@@ -16,10 +17,15 @@ def demo_decorator(func):
 
     return wrapper
 
+
 @demo_decorator
 def test(arg1, arg2, *, name=None):
     print('Currently in calling function test()')
     print(f'Args in test(): {arg1}, {arg2}, {name}')
+    test = {
+            1, 2, 3,
+            }
+
 
 if __name__ == '__main__':
     test(10, 20, name='Y')
