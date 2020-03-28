@@ -96,6 +96,7 @@
 - ```a``` : Insert (1) character after the cursor
 - ```o``` : Insert a line after current line.
 - ```O``` : Insert a line before current line.
+- ```<C-o>```: Execute 1 normal mode command, then switch back to insert mode.
 
 #### Search
 - ```/text```
