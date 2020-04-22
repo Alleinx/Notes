@@ -1,14 +1,19 @@
-### 1287. Element Appearing More Than 25% In Sorted Array
-### Source: https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/
+# 1287. Element Appearing More Than 25% In Sorted Array
+# Source:
+# https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/
 
 # Submission 1:
 from collections import Counter
+
+
 class Solution:
     def findSpecialInteger(self, arr: List[int]) -> int:
         cnt = Counter(arr)
         return cnt.most_common(1)[0][0]
 
 # Submission 2:
+
+
 class Solution:
     def findSpecialInteger(self, arr: List[int]) -> int:
         store = dict()
