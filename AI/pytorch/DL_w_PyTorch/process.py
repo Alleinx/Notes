@@ -13,7 +13,7 @@ def main(n_epochs, learning_rate, params, x, y):
 
         if epoch % 1000 == 0:
             print('Epoch', epoch, 'Loss', loss)
-    
+
     return params
 
 
@@ -36,7 +36,7 @@ def main_w_optim(n_epochs, optimizer, params, x, y):
 
         if epoch % 1000 == 0:
             print('Epoch', epoch, 'Loss', loss)
-    
+
     return params
 
 def train_eval_optim(n_epochs, optimizer, params, train_x, train_y, val_x, val_y)
@@ -56,7 +56,7 @@ def train_eval_optim(n_epochs, optimizer, params, train_x, train_y, val_x, val_y
                 val_predicted = model(val_x, params)
                 val_loss = loss_fn(val_predicted, val_y)
 
-            print('Epoch:', epoch, 'Training Loss:', loss, 'CV loss:', val_loss)    
+            print('Epoch:', epoch, 'Training Loss:', loss, 'CV loss:', val_loss)
     return params
 
 if __name__ == "__main__":
@@ -66,8 +66,8 @@ if __name__ == "__main__":
     # The usage of optimizer:
     params = torch.tensor([1, 1], dtype=torch.float, requires_grad=True)
     learning_rate = 1e-3
-    
-    # optimizer will store all of the input parameters and update the 
+
+    # optimizer will store all of the input parameters and update the
     # parameters with optimizer.step()
     optimizer = optim.Adam(params, lr=learning_rate)
 
@@ -78,7 +78,7 @@ if __name__ == "__main__":
     # zero_grad() method should be invoked before the .backwrad() method.
     optimizer.zero_grad()
 
-    # calculate loss 
+    # calculate loss
     loss = loss_fn(predicted, y)
 
     # calculate and update grad attributes:
