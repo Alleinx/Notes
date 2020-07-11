@@ -13,7 +13,7 @@
 
 
 #### General
-- undo: ```u```	to undo the last command, ```U``` to undo opeartions on a whole line.
+- undo: ```u```	to undo the last command, ```U``` to undo operations on a whole line.
 
 - Redo: ```<CTRL-R>```
 
@@ -40,7 +40,7 @@
         - we can jump forward/backward using ```<C-i>``` and ```<C-o>```.
     - Add expanded-name
         - ```:set suffixesadd+={.name}```
-        - Now, we can go to file "play", even we doesn't wirte its expanded name.
+        - Now, we can go to file "play", even we doesn't write its expanded name.
 
 - Jump through global mark (!)
     - As mentioned before, we could use ```m{a-z}``` to create a mark inside a file.
@@ -49,8 +49,8 @@
         - This is useful when we want to find definition in other files; Yes, we can use ```<C-o>``` to jump back; However, when the number of files increase, it takes more effort to get back to the original file; Thus, mark sure to set a "global mark" before using commands that could lead us to other places.
 
 - yank/put into/from system (!)
-    - yank into system clickboard       :Use ```"+``` prefix.
-    - put from system clickboard        :Use ```"+``` prefix under insert mode.
+    - yank into system clipboard       :Use ```"+``` prefix.
+    - put from system clipboard        :Use ```"+``` prefix under insert mode.
         - or just use ```<C-p>``` under insert mode.
 #### Plugin
 - Usage of vim-surround (!)
@@ -90,7 +90,7 @@
     - ```p```                                 : paste
 
 #### Insertion
-- ```I``` : Insert from the begining of the line.
+- ```I``` : Insert from the beginning of the line.
 - ```A``` : Insert from the end of the line.
 - ```i``` : Insert at the cursor
 - ```a``` : Insert (1) character after the cursor
@@ -116,16 +116,16 @@
 - ```:%s/old/new/g```     : replace all (old) in the file to (new); 
        
 #### Move cursor
-- ```[[```            :move to the begining of the file;
+- ```[[```            :move to the beginning of the file;
 - ```]]```            :move to the end of the file.
-- ```0```             :move to the begining of the line.
+- ```0```             :move to the beginning of the line.
 - ```$```             :move to the end of the line.
-- ```w```             :move to the begining of next word.
-- ```b```             :move to the begining of previous word.
+- ```w```             :move to the beginning of next word.
+- ```b```             :move to the beginning of previous word.
 - ```e```             :move to the end of current word.
 - ```ge```            :move to the end of previous word.
 - ```G```             :move to the end of file.
-- ```gg```            :move to the begining of the file.
+- ```gg```            :move to the beginning of the file.
 - ```[i]G```          :move to the ith line of the file.
 - ```<C-o>```         :move back to the previous position.
 - ```<C-d>```         :...
@@ -141,7 +141,7 @@
 
 -   Remove words
     - ```d + n + w```   :delete next n words.
-    - ```dw```   :remove till the begining of next word. 
+    - ```dw```   :remove till the beginning of next word. 
     - ```de```   :remove till the end of current word.
     - ```db```   :(Delete).
     - ```cw```   :de + i.
